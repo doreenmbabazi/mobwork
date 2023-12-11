@@ -6,7 +6,7 @@
 #' @param stable [logical]
 #'
 #' @export
-plot_X = function(model, clrs, stable){
+plot_X = function(model, clrs="black", stable=FALSE){
   UseMethod("plot_X", model$Xpar)
 }
 
@@ -17,7 +17,7 @@ plot_X = function(model, clrs, stable){
 #' @param clrs a [list] of colors
 #'
 #' @export
-lines_X = function(XH, model, clrs){
+lines_X = function(XH, model, clrs="black"){
   UseMethod("lines_X", model$Xpar)
 }
 

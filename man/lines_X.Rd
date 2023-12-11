@@ -4,7 +4,7 @@
 \alias{lines_X}
 \title{Basic plotting: add outputs to a plot for models of human infection and immunity}
 \usage{
-lines_X(XH, model, clrs)
+lines_X(XH, model, clrs = "black")
 }
 \arguments{
 \item{XH}{a [list] from exDE::parse_deout}

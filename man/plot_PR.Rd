@@ -4,7 +4,7 @@
 \alias{plot_PR}
 \title{Basic plotting: plot the true PR.}
 \usage{
-plot_PR(model, clrs, stable)
+plot_PR(model, clrs = "black", stable = FALSE)
 }
 \arguments{
 \item{model}{a [list] specifying the model}

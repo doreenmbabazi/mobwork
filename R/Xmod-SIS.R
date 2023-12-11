@@ -9,7 +9,7 @@ plot_X.SIS = function(model, clrs="black", stable=FALSE){
     model$outputs$orbits
   }
   with(vars$XH,
-      plot(time, 0*time + max(H), type = "n",
+      plot(time, 0*time, type = "n", ylim = c(0, max(H)),
            ylab = "# Infected", xlab = "Time"))
 
   lines_X(vars$XH, model, clrs)
@@ -24,7 +24,7 @@ lines_X.SIS = function(XH, model, clrs="black"){
   with(XH,{
     if(model$nStrata==1) lines(time, X, col=clrs)
     if(model$nStrata>1){
-      if (length(clrs)==1) clrs=rep(clrs, nStrata)
+      if (length(clrs)==1) clrs=rep(clrs, model$nStrata)
       for(i in 1:model$nStrata){
         lines(time, X[,i], col=clrs[i])
       }

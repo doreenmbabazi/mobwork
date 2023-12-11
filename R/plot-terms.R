@@ -31,7 +31,7 @@ lines_EIR <- function(terms, model, clrs="black"){
   with(terms,{
     if(model$nStrata==1) lines(time, eir, col=clrs)
     if(model$nStrata>1){
-      if (length(clrs)==1) clrs=rep(clrs, nStrata)
+      if (length(clrs)==1) clrs=rep(clrs, model$nStrata)
       for(i in 1:model$nStrata)
         lines(time, eir[,i], col=clrs[i])
     }
@@ -70,7 +70,7 @@ lines_aEIR <- function(terms, model, clrs="black"){
   with(terms,{
     if(model$nStrata==1) lines(time, eir, col=clrs)
     if(model$nStrata>1){
-      if (length(clrs)==1) clrs=rep(clrs, nStrata)
+      if (length(clrs)==1) clrs=rep(clrs, model$nStrata)
       for(i in 1:model$nStrata)
         lines(time, eir[,i], col=clrs[i])
     }
@@ -108,7 +108,7 @@ lines_eirpr <- function(model, clrs = "black"){
 #' @param stable [logical]
 #'
 #' @export
-plot_PR = function(model, clrs, stable){
+plot_PR = function(model, clrs="black", stable=FALSE){
   vars = if(stable==TRUE){
     model$outputs$stable_orbits
   }else{
@@ -118,7 +118,7 @@ plot_PR = function(model, clrs, stable){
        plot(time, 0*time + 1, type = "n", ylim = c(0,1),
             ylab = "# Infected", xlab = "Time"))
 
-  lines_PR(vars$terms, model$nStrata, clrs)
+  lines_PR(vars$terms, model, clrs)
 }
 
 #' Add the orbits for the SIS model to a plot for models of human infection and immunity
@@ -132,7 +132,7 @@ lines_PR = function(terms, model, clrs="black"){
   with(terms,{
     if(model$nStrata==1) lines(time, pr, col=clrs)
     if(model$nStrata>1){
-      if (length(clrs)==1) clrs=rep(clrs, nStrata)
+      if (length(clrs)==1) clrs=rep(clrs, model$nStrata)
       for(i in 1:model$nStrata)
         lines(time, pr[,i], col=clrs[i])
     }
