@@ -147,3 +147,24 @@ xde_scaling = function(model, N=25, F_eir=NULL){
   model <- xde_scaling_lambda(model)
   return(model)
 }
+
+#' @title Using the eirpr matrix and a RM model, convert pr to Lambda
+#' @description This takes a model and uses the XH component to define
+#' the eirpr relationship using `xde_scaling_eir` then calls `xde_scaling_lambda`
+#' @param pr a [numeric] vector
+#' @param model a [list]
+#' @param constrain a [logical]
+#' @export
+pr2Lambda = function(pr, model, constrain=TRUE){
+  with(model, stopifnot(exists("MYZss")))
+  with(model$MYZss,{
+    eir = xde_pr2eir(pr, model, TRUE)$eir
+    kappa = xde_pr2ni(pr, model, TRUE)$ni
+    Z = (betaInv %*% eir)/f/q
+    Y = OmegaInv %*% (UpsilonInv %*% (Omega %*% Z))
+    M = diag(1/f/q/kappa, model$nPatches)%*%(diag(f*q*kappa, model$nPatches) + Omega) %*% Y
+    Lambda = Omega %*% M
+    if(constrain == TRUE) Lambda = pmax(Lambda,0)
+    return(Lambda)
+  })
+}
