@@ -4,7 +4,13 @@
 \alias{plot_YZ_fracs.RM}
 \title{Basic plotting: plot the fraction infected and infective for the "RM" model}
 \usage{
-\method{plot_YZ_fracs}{RM}(model, Yclrs = "purple", Zclrs = "darkred", stable = FALSE)
+\method{plot_YZ_fracs}{RM}(
+  model,
+  Yclrs = "purple",
+  Zclrs = "darkred",
+  stable = FALSE,
+  add = FALSE
+)
 }
 \arguments{
 \item{model}{a [list] specifying the model}
@@ -14,6 +20,8 @@
 \item{Zclrs}{a [list] of colors}
 
 \item{stable}{[logical]}
+
+\item{add}{[logical]}
 }
 \description{
 Basic plotting: plot the fraction infected and infective for the "RM" model

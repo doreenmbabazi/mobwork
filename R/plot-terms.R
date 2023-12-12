@@ -80,35 +80,71 @@ lines_aEIR <- function(terms, model, clrs="black"){
 #' Plot the EIR vs. the PR
 #'
 #' @param model an [list]
+#' @param stable a [logical]
 #' @param clrs a [list]
+#' @param llty a [list]
 #'
 #' @export
-plot_eirpr <- function(model, clrs = "black", stable=FALSE){
-  vars = if(stable==TRUE){
-    model$outputs$stable_orbits
-  }else{
-    model$outputs$orbits
-  }
-  with(vars$terms,
-      plot(365*eir, pr, type = "l",
-           xlab = "aEIR", ylab = "PR",
-           xlim = range(0, 365*eir), ylim = c(0,1),
-           col = clrs))
- }
+plot_eirpr <- function(model, clrs= "black", llty = 1){
+  with(model$outputs$eirpr, {
+    plot(aeir, pr, type = "l", xaxt="n", lty = llty,
+         xlab = "aEIR", ylab = "PR", log="x",
+         xlim = range(aeir), ylim = c(0,1),
+         col = clrs)
+    axis(1, 10^c(-1:3), c(".1", "1", "10", "100","1000"))
+  })
+}
 
 #' Add lines for the EIR vs. the PR
 #'
 #' @param model an [list]
+#' @param stable a [logical]
 #' @param clrs a [list]
+#' @param llty a [list]
 #'
 #' @export
-lines_eirpr <- function(model, clrs = "black", stable=F){
+lines_eirpr <- function(model, clrs= "black", llty = 1){
+  with(model$outputs$eirpr, lines(aeir, pr, col = clrs, lty = llty))
+}
+
+#' Plot the EIR vs. the PR
+#'
+#' @param model an [list]
+#' @param stable a [logical]
+#' @param clrs a [list]
+#' @param llty a [list]
+#'
+#' @export
+plot_eirVpr <- function(model, stable=FALSE, clrs= "black", llty = 1){
   vars = if(stable==TRUE){
     model$outputs$stable_orbits
   }else{
     model$outputs$orbits
   }
-  with(vars$terms, lines(365*eir, pr, col = clrs))
+  with(vars$terms,{
+      plot(365*eir, pr, type = "l", xaxt="n", lty = llty,
+           xlab = "aEIR", ylab = "PR",
+           xlim = range(0, 365*eir), ylim = c(0,1),
+           col = clrs)
+      axis(1, 10^c(-1:3), c(".1", "1", "10", "100","1000"))
+  })
+}
+
+#' Add lines for the EIR vs. the PR
+#'
+#' @param model an [list]
+#' @param stable a [logical]
+#' @param clrs a [list]
+#' @param llty a [list]
+#'
+#' @export
+lines_eirVpr <- function(model, stable=FALSE, clrs= "black", llty = 1){
+  vars = if(stable==TRUE){
+    model$outputs$stable_orbits
+  }else{
+    model$outputs$orbits
+  }
+  with(vars$terms, lines(365*eir, pr, col = clrs, lty = llty))
  }
 
 #' Basic plotting: plot the true PR.

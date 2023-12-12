@@ -1,12 +1,13 @@
 #' Basic plotting: plot the density of infected humans for an SIS model #' #' @inheritParams plot_X
 #' @export
-plot_X.SIS = function(model, clrs="black", stable=FALSE){
+plot_X.SIS = function(model, clrs="black", stable=FALSE, add=FALSE){
   vars = if(stable==TRUE){
     model$outputs$stable_orbits
   }else{
     model$outputs$orbits
   }
-  with(vars$XH,
+
+  if(add==FALSE) with(vars$XH,
       plot(time, 0*time, type = "n", ylim = c(0, max(H)),
            ylab = "# Infected", xlab = "Time"))
 

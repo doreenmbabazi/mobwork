@@ -4,14 +4,14 @@
 #' @inheritParams plot_M
 #'
 #' @export
-plot_M.RM = function(model, clrs = "darkblue", stable=FALSE){
+plot_M.RM = function(model, clrs = "darkblue", stable=FALSE, add=FALSE){
   vars = if(stable==TRUE){
     model$outputs$stable_orbits
   }else{
     model$outputs$orbits
   }
 
-  with(vars$MYZ,
+  if(add == FALSE) with(vars$MYZ,
     plot(time, 0*time, type = "n", ylim = range(0,max(M)),
          ylab = "Mosquito Density", xlab = "Time"))
 
@@ -39,14 +39,14 @@ lines_M.RM = function(MYZ, model, clrs="darkblue"){
 #' @inheritParams plot_YZ
 #'
 #' @export
-plot_YZ.RM = function(model, Yclrs = "purple", Zclrs = "darkred", stable=FALSE){
+plot_YZ.RM = function(model, Yclrs = "purple", Zclrs="darkred", stable=FALSE, add=FALSE){
   vars = if(stable==TRUE){
     model$outputs$stable_orbits
   }else{
     model$outputs$orbits
   }
 
-  with(vars$MYZ,
+  if(add == FALSE) with(vars$MYZ,
     plot(time, 0*time, type = "n", ylim = range(0,max(Y)),
          ylab = "Mosquito Density", xlab = "Time"))
 
@@ -83,14 +83,14 @@ lines_YZ.RM = function(MYZ, model, Yclrs="purple", Zclrs = "darkred"){
 #' @inheritParams plot_YZ_fracs
 #'
 #' @export
-plot_YZ_fracs.RM = function(model, Yclrs = "purple", Zclrs = "darkred", stable=FALSE){
+plot_YZ_fracs.RM = function(model, Yclrs = "purple", Zclrs = "darkred", stable=FALSE, add=FALSE){
   vars = if(stable==TRUE){
     model$outputs$stable_orbits
   }else{
     model$outputs$orbits
   }
 
-  with(vars$MYZ,
+  if(add == FALSE) with(vars$MYZ,
        plot(time, 0*time, type = "n", ylim = range(0,1),
             ylab = "Fraction Infected", xlab = "Time"))
 

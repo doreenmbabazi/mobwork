@@ -4,7 +4,7 @@
 \alias{plot_X}
 \title{Basic plotting: default plot for models of human infection and immunity}
 \usage{
-plot_X(model, clrs = "black", stable = FALSE)
+plot_X(model, clrs = "black", stable = FALSE, add = FALSE)
 }
 \arguments{
 \item{model}{a [list] specifying the model}
@@ -12,6 +12,8 @@ plot_X(model, clrs = "black", stable = FALSE)
 \item{clrs}{a [list] of colors}
 
 \item{stable}{[logical]}
+
+\item{add}{[logical]}
 }
 \description{
 Basic plotting: default plot for models of human infection and immunity

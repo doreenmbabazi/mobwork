@@ -4,7 +4,7 @@
 \alias{plot_X.SIS}
 \title{Basic plotting: plot the density of infected humans for an SIS model #' #' @inheritParams plot_X}
 \usage{
-\method{plot_X}{SIS}(model, clrs = "black", stable = FALSE)
+\method{plot_X}{SIS}(model, clrs = "black", stable = FALSE, add = FALSE)
 }
 \description{
 Basic plotting: plot the density of infected humans for an SIS model #' #' @inheritParams plot_X

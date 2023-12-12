@@ -4,7 +4,7 @@
 \alias{plot_YZ}
 \title{Basic plotting: plot the density of infected and infective mosquitoes}
 \usage{
-plot_YZ(model, Yclrs, Zclrs, stable)
+plot_YZ(model, Yclrs, Zclrs, stable, add)
 }
 \arguments{
 \item{model}{a [list] specifying the model}
@@ -14,6 +14,8 @@ plot_YZ(model, Yclrs, Zclrs, stable)
 \item{Zclrs}{a [list] of colors}
 
 \item{stable}{[logical]}
+
+\item{add}{[logical]}
 }
 \description{
 Basic plotting: plot the density of infected and infective mosquitoes

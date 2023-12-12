@@ -4,7 +4,7 @@
 \alias{plot_YZ_fracs}
 \title{Basic plotting: plot the proportion of mosquitoes that are infected and infective.}
 \usage{
-plot_YZ_fracs(model, Yclrs, Zclrs, stable)
+plot_YZ_fracs(model, Yclrs, Zclrs, stable, add)
 }
 \arguments{
 \item{model}{a [list] specifying the model}
@@ -14,6 +14,8 @@ plot_YZ_fracs(model, Yclrs, Zclrs, stable)
 \item{Zclrs}{a [list] of colors}
 
 \item{stable}{[logical]}
+
+\item{add}{[logical]}
 }
 \description{
 Basic plotting: plot the proportion of mosquitoes that are infected and infective.

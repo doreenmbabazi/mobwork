@@ -4,7 +4,7 @@
 \alias{plot_M}
 \title{Basic plotting: plot mosquito population density}
 \usage{
-plot_M(model, clrs, stable)
+plot_M(model, clrs, stable, add)
 }
 \arguments{
 \item{model}{a [list] specifying the model}
@@ -12,6 +12,8 @@ plot_M(model, clrs, stable)
 \item{clrs}{a [list] of colors}
 
 \item{stable}{[logical]}
+
+\item{add}{[logical]}
 }
 \description{
 Basic plotting: plot mosquito population density

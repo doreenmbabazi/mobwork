@@ -4,9 +4,10 @@
 #' @param model a [list] specifying the model
 #' @param clrs a [list] of colors
 #' @param stable [logical]
+#' @param add [logical]
 #'
 #' @export
-plot_X = function(model, clrs="black", stable=FALSE){
+plot_X = function(model, clrs="black", stable=FALSE, add=FALSE){
   UseMethod("plot_X", model$Xpar)
 }
 

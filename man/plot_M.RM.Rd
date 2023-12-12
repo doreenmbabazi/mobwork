@@ -4,7 +4,7 @@
 \alias{plot_M.RM}
 \title{Basic plotting: plot mosquito population density for the "RM" model}
 \usage{
-\method{plot_M}{RM}(model, clrs = "darkblue", stable = FALSE)
+\method{plot_M}{RM}(model, clrs = "darkblue", stable = FALSE, add = FALSE)
 }
 \arguments{
 \item{model}{a [list] specifying the model}
@@ -12,6 +12,8 @@
 \item{clrs}{a [list] of colors}
 
 \item{stable}{[logical]}
+
+\item{add}{[logical]}
 }
 \description{
 Basic plotting: plot mosquito population density for the "RM" model

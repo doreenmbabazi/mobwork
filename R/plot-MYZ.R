@@ -4,9 +4,10 @@
 #' @param model a [list] specifying the model
 #' @param clrs a [list] of colors
 #' @param stable [logical]
+#' @param add [logical]
 #'
 #' @export
-plot_M = function(model, clrs, stable){
+plot_M = function(model, clrs, stable, add){
   UseMethod("plot_M", model$MYZpar)
 }
 
@@ -27,9 +28,10 @@ lines_M = function(MYZ, model, clrs){
 #' @param Yclrs a [list] of colors
 #' @param Zclrs a [list] of colors
 #' @param stable [logical]
+#' @param add [logical]
 #'
 #' @export
-plot_YZ = function(model, Yclrs, Zclrs, stable){
+plot_YZ = function(model, Yclrs, Zclrs, stable, add){
   UseMethod("plot_YZ", model$MYZpar)
 }
 
@@ -51,9 +53,10 @@ lines_YZ = function(MYZ, model, Yclrs, Zclrs){
 #' @param Yclrs a [list] of colors
 #' @param Zclrs a [list] of colors
 #' @param stable [logical]
+#' @param add [logical]
 #'
 #' @export
-plot_YZ_fracs = function(model, Yclrs, Zclrs, stable){
+plot_YZ_fracs = function(model, Yclrs, Zclrs, stable, add){
   UseMethod("plot_YZ_fracs", model$MYZpar)
 }
 
