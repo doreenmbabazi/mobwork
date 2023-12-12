@@ -9,8 +9,6 @@ xde_scaling_eir = function(model, N=25){
   stopifnot(class(model$xde) == "cohort")
 
   # make sure that eir & ni are output
-  model$eir_out= TRUE
-  model$NI_out= TRUE
   model <- exDE::make_indices(model)
 
   # Get the
@@ -38,7 +36,7 @@ xde_scaling_eir = function(model, N=25){
     ni[i] = mean(mean_ni)
   }
 
-  model$output$eirpr <- list(aeir=eir, eir=eir/365, pr=pr, ni=ni, scaling=scaling)
+  model$outputs$eirpr <- list(aeir=eir, eir=eir/365, pr=pr, ni=ni, scaling=scaling)
   model$F_eir = F_eir_base
 
   return(model)
@@ -54,9 +52,6 @@ xde_scaling_Z = function(model, N=25){
   stopifnot(model$nPatches == 1)
   stopifnot(class(model$xde) == "human")
 
-  # make sure that eir & ni are output
-  model$eir_out= TRUE
-  model$NI_out= TRUE
   model <- exDE::make_indices(model)
   y0 = exDE::get_inits(model)
 
@@ -86,7 +81,7 @@ xde_scaling_Z = function(model, N=25){
     ni[i] = mean(mean_ni)
   }
 
-  model$output$eirpr <- list(aeir=eir, eir=eir/365, pr=pr, ni=ni, scaling=scaling)
+  model$outputs$eirpr <- list(aeir=eir, eir=eir/365, pr=pr, ni=ni, scaling=scaling)
   model$MYZpar$Zf = F_Z_base
 
   return(model)
@@ -97,7 +92,7 @@ xde_scaling_Z = function(model, N=25){
 #' of `xde_scaling_eir` or `xde_scaling_Z`.  The outputs are attached to eirpr
 #' @param model a [list]
 #' @export
-xde_scaling_lambda = function(model){with(model,with(output,{
+xde_scaling_lambda = function(model){with(model,with(outputs,{
   stopifnot(exists("MYZss"))
   N = length(eirpr$eir)
   Z=Y=M=lambda=rep(0,N)
@@ -107,8 +102,8 @@ xde_scaling_lambda = function(model){with(model,with(output,{
     M[i] = with(MYZss, f*q*eirpr$ni[i]/(f*q*eirpr$ni[i] + g)*Y[i])
     lambda[i] = M[i]/MYZss$g
   }
-  model$output$eirpr$m=M
-  model$output$eirpr$lambda=lambda
+  model$outputs$eirpr$m=M
+  model$outputs$eirpr$lambda=lambda
   return(model)
 }))}
 
@@ -147,7 +142,7 @@ xde_scaling = function(model, N=25, F_eir=NULL){
   mod0 = exDE::xde_setup_cohort("mod0", F_eir)
   mod0$Xpar <- model$Xpar
   mod0$Hpar <- model$Hpar
-  model$output$eirpr = xde_scaling_eir(mod0, N)$output$eirpr
+  model$outputs$eirpr = xde_scaling_eir(mod0, N)$outputs$eirpr
   model <- ssMYZ(model)
   model <- xde_scaling_lambda(model)
   return(model)

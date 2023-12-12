@@ -14,5 +14,5 @@ xde_eir2ni(eir, model, extend = FALSE)
 \item{extend}{a [logical] option to determine whether to extend outside the range}
 }
 \description{
-Use the eirpr table to interpolate
+Use the outputs$eirpr table to interpolate
 }

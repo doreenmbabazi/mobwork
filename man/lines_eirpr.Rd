@@ -4,7 +4,7 @@
 \alias{lines_eirpr}
 \title{Add lines for the EIR vs. the PR}
 \usage{
-lines_eirpr(model, clrs = "black")
+lines_eirpr(model, clrs = "black", stable = F)
 }
 \arguments{
 \item{model}{an [list]}

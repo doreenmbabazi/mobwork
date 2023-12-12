@@ -14,5 +14,5 @@ xde_pr2eir(pr, model, extend = FALSE)
 \item{extend}{a [logical] option to determine whether to extend outside the range}
 }
 \description{
-Use the eirpr table to convert a set of pr values into eir values
+Use the outputs$eirpr table to convert a set of pr values into eir values
 }

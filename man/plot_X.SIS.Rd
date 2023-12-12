@@ -2,17 +2,10 @@
 % Please edit documentation in R/Xmod-SIS.R
 \name{plot_X.SIS}
 \alias{plot_X.SIS}
-\title{Basic plotting: plot the density of infected humans for an SIS model}
+\title{Basic plotting: plot the density of infected humans for an SIS model #' #' @inheritParams plot_X}
 \usage{
 \method{plot_X}{SIS}(model, clrs = "black", stable = FALSE)
 }
-\arguments{
-\item{model}{a [list] specifying the model}
-
-\item{clrs}{a [list] of colors}
-
-\item{stable}{[logical]}
-}
 \description{
-Basic plotting: plot the density of infected humans for an SIS model
+Basic plotting: plot the density of infected humans for an SIS model #' #' @inheritParams plot_X
 }

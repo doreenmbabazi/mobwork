@@ -4,7 +4,7 @@
 \alias{plot_eirpr}
 \title{Plot the EIR vs. the PR}
 \usage{
-plot_eirpr(model, clrs = "black")
+plot_eirpr(model, clrs = "black", stable = FALSE)
 }
 \arguments{
 \item{model}{an [list]}

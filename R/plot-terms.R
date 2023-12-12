@@ -83,8 +83,13 @@ lines_aEIR <- function(terms, model, clrs="black"){
 #' @param clrs a [list]
 #'
 #' @export
-plot_eirpr <- function(model, clrs = "black"){
-  with(model$outputs$eirpr,
+plot_eirpr <- function(model, clrs = "black", stable=FALSE){
+  vars = if(stable==TRUE){
+    model$outputs$stable_orbits
+  }else{
+    model$outputs$orbits
+  }
+  with(vars$terms,
       plot(365*eir, pr, type = "l",
            xlab = "aEIR", ylab = "PR",
            xlim = range(0, 365*eir), ylim = c(0,1),
@@ -97,8 +102,13 @@ plot_eirpr <- function(model, clrs = "black"){
 #' @param clrs a [list]
 #'
 #' @export
-lines_eirpr <- function(model, clrs = "black"){
-  with(model$outputs$eirpr, lines(365*eir, pr, col = clrs))
+lines_eirpr <- function(model, clrs = "black", stable=F){
+  vars = if(stable==TRUE){
+    model$outputs$stable_orbits
+  }else{
+    model$outputs$orbits
+  }
+  with(vars$terms, lines(365*eir, pr, col = clrs))
  }
 
 #' Basic plotting: plot the true PR.
