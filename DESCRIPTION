@@ -9,6 +9,8 @@ Description: More about what it does (maybe more than one line)
 License: GPL-3 
 Encoding: UTF-8
 LazyData: true
+URL: https://dd-harp.github.io/mobwork/
+BugReports: https://github.com/dd-harp/mobwork/issues
 Imports:
     exDE,
     stats
