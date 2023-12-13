@@ -2,7 +2,7 @@
 % Please edit documentation in R/Xmod-SIS.R
 \name{split_stratum_by_biting.SIS}
 \alias{split_stratum_by_biting.SIS}
-\title{Split a stratum into two strata, assigning}
+\title{Split a stratum into two strata, assigning a fraction `p` a new biting weight that is multiplied by a factor `fac` compared with the old one. The biting weight for the remaining `1-p` gets a new factor `1/fac`}
 \usage{
 \method{split_stratum_by_biting}{SIS}(pars, i, p, fac)
 }
@@ -17,7 +17,13 @@
 }
 \value{
 pars a list
+
+i [integer] -- the stratum to split
+
+p [numeric] -- the fraction that gets multiplied by `fac`
+
+fac [numeric] -- the factor
 }
 \description{
-Split a stratum into two strata, assigning
+Split a stratum into two strata, assigning a fraction `p` a new biting weight that is multiplied by a factor `fac` compared with the old one. The biting weight for the remaining `1-p` gets a new factor `1/fac`
 }

@@ -30,14 +30,17 @@ lines_X.SIS = function(XH, model, clrs="black"){
     }
 })}
 
-#' Split a stratum into two strata, assigning
+#' Split a stratum into two strata, assigning a fraction `p` a new biting weight that is multiplied by a factor `fac` compared with the old one. The biting weight for the remaining `1-p` gets a new factor `1/fac`
 #'
 #' @inheritParams split_stratum_by_biting
 #'
 #' @return pars a list
+#' @return i [integer] -- the stratum to split
+#' @return p [numeric] -- the fraction that gets multiplied by `fac`
+#' @return fac [numeric] -- the factor
 #' @export
 split_stratum_by_biting.SIS = function(pars, i, p, fac){
-  if(i > pars$nStrata) exit()
+  stopifnot(i <= pars$nStrata)
   pars$nStrata = pars$nStrata + 1
 
   pars$Xpar$b <- c(pars$Xpar$b, pars$Xpar$b[i])
@@ -58,7 +61,7 @@ split_stratum_by_biting.SIS = function(pars, i, p, fac){
   pars$Hpar$H[i] = pars$Hpar$H[i]*(1-p)
   pars$Hpar$TaR = cbind(pars$Hpar$TaR, pars$Hpar$TaR[,i])
 
-  pars <- make_indices(pars)
+  pars <- exDE::make_indices(pars)
 
   return(pars)
 }
