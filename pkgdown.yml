@@ -3,7 +3,7 @@ pkgdown: 2.0.7
 pkgdown_sha: ~
 articles:
   Xmod-SIS: Xmod-SIS.html
-last_built: 2023-12-13T22:05Z
+last_built: 2023-12-13T22:12Z
 urls:
   reference: https://dd-harp.github.io/mobwork/reference
   article: https://dd-harp.github.io/mobwork/articles
