@@ -19,13 +19,13 @@ make_MYZpar_RMG(
 )
 }
 \arguments{
-\item{pars}{a [list]}
+\item{pars}{a \link{list}}
 
-\item{MYZopts}{a [list] of values that overwrites the defaults}
+\item{MYZopts}{a \link{list} of values that overwrites the defaults}
 
-\item{calK}{mosquito dispersal matrix of dimensions `nPatches` by `nPatches`}
+\item{calK}{mosquito dispersal matrix of dimensions \code{nPatches} by \code{nPatches}}
 
-\item{solve_as}{is either `ode` to solve as an ode or `dde` to solve as a dde}
+\item{solve_as}{is either \code{ode} to solve as an ode or \code{dde} to solve as a dde}
 
 \item{g}{mosquito mortality rate}
 
@@ -42,7 +42,7 @@ make_MYZpar_RMG(
 \item{eggsPerBatch}{eggs laid per oviposition}
 }
 \value{
-a [list]
+a \link{list}
 }
 \description{
 Make parameters for RMG ODE adult mosquito model

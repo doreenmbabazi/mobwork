@@ -2,12 +2,12 @@
 % Please edit documentation in R/scaling.R
 \name{ssMYZ}
 \alias{ssMYZ}
-\title{Set up the MYZss object for `xde_scaling_lambda`}
+\title{Set up the MYZss object for \code{xde_scaling_lambda}}
 \usage{
 ssMYZ(model)
 }
 \arguments{
-\item{model}{a [list]}
+\item{model}{a \link{list}}
 }
 \description{
 This function computes several quantities that are require

@@ -14,8 +14,8 @@ F_eggs.RMG(t, y, pars)
 \item{pars}{a \link{list}}
 }
 \value{
-a [numeric] vector of length `nPatches`
+a \link{numeric} vector of length \code{nPatches}
 }
 \description{
-Implements [F_eggs] for the RMG model.
+Implements \link{F_eggs} for the RMG model.
 }

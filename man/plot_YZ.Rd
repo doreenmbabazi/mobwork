@@ -7,15 +7,15 @@
 plot_YZ(model, Yclrs, Zclrs, stable, add)
 }
 \arguments{
-\item{model}{a [list] specifying the model}
+\item{model}{a \link{list} specifying the model}
 
-\item{Yclrs}{a [list] of colors}
+\item{Yclrs}{a \link{list} of colors}
 
-\item{Zclrs}{a [list] of colors}
+\item{Zclrs}{a \link{list} of colors}
 
-\item{stable}{[logical]}
+\item{stable}{\link{logical}}
 
-\item{add}{[logical]}
+\item{add}{\link{logical}}
 }
 \description{
 Basic plotting: plot the density of infected and infective mosquitoes

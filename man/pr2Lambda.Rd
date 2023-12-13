@@ -7,13 +7,13 @@
 pr2Lambda(pr, model, constrain = TRUE)
 }
 \arguments{
-\item{pr}{a [numeric] vector}
+\item{pr}{a \link{numeric} vector}
 
-\item{model}{a [list]}
+\item{model}{a \link{list}}
 
-\item{constrain}{a [logical]}
+\item{constrain}{a \link{logical}}
 }
 \description{
 This takes a model and uses the XH component to define
-the eirpr relationship using `xde_scaling_eir` then calls `xde_scaling_lambda`
+the eirpr relationship using \code{xde_scaling_eir} then calls \code{xde_scaling_lambda}
 }

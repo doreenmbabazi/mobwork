@@ -18,8 +18,8 @@ dMYZdt.RMG(t, y, pars, Lambda, kappa)
 \item{kappa}{net infectiousness of human population}
 }
 \value{
-a [numeric] vector
+a \link{numeric} vector
 }
 \description{
-Implements [dMYZdt] for the RMG ODE model.
+Implements \link{dMYZdt} for the RMG ODE model.
 }

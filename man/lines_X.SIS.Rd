@@ -7,11 +7,11 @@
 \method{lines_X}{SIS}(XH, model, clrs = "black")
 }
 \arguments{
-\item{XH}{a [list] from exDE::parse_deout}
+\item{XH}{a \link{list} from exDE::parse_deout}
 
-\item{model}{a [list] specifying the model}
+\item{model}{a \link{list} specifying the model}
 
-\item{clrs}{a [list] of colors}
+\item{clrs}{a \link{list} of colors}
 }
 \description{
 Add the orbits for the SIS model to a plot for models of human infection and immunity

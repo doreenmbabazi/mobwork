@@ -7,13 +7,11 @@
 lines_eirpr(model, clrs = "black", llty = 1)
 }
 \arguments{
-\item{model}{an [list]}
+\item{model}{an \link{list}}
 
-\item{clrs}{a [list]}
+\item{clrs}{a \link{list}}
 
-\item{llty}{a [list]}
-
-\item{stable}{a [logical]}
+\item{llty}{a \link{list}}
 }
 \description{
 Add lines for the EIR vs. the PR

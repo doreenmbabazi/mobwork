@@ -1,8 +1,8 @@
 Package: mobwork
 Type: Package
-Title: What the Package Does (Title Case)
+Title: Enhanced functionality for exDE 
 Version: 0.1.0
-Author: Who wrote it
+Author: David L Smith 
 Maintainer: David L Smith <smitdave@gmail.com>
 Description: More about what it does (maybe more than one line)
     Use four spaces when indenting paragraphs within the Description.
@@ -12,4 +12,8 @@ LazyData: true
 Imports:
     exDE,
     stats
+Suggests:
+    knitr
 RoxygenNote: 7.2.3
+Roxygen: list(markdown = TRUE)
+VignetteBuilder: knitr

@@ -16,20 +16,24 @@ make_MYZinits_RMG(
 )
 }
 \arguments{
-\item{pars}{a [list]}
+\item{pars}{a \link{list}}
 
-\item{MYZopts}{a [list] of values that overwrites the defaults}
+\item{MYZopts}{a \link{list} of values that overwrites the defaults}
 
-\item{U0}{total mosquito density at each patch}
+\item{U0}{total uninfected, not gravid mosquito density at each patch}
 
-\item{Y0}{infected mosquito density at each patch}
+\item{Gu0}{total uninfected, gravid mosquito density at each patch}
 
-\item{Z0}{infectious mosquito density at each patch}
+\item{Y0}{infected, not gravid mosquito density at each patch}
 
-\item{P0}{total parous mosquito density at each patch}
+\item{Gy0}{infected, gravid mosquito density at each patch}
+
+\item{Z0}{infectious, not gravid mosquito density at each patch}
+
+\item{Gz0}{infectious, gravid mosquito density at each patch}
 }
 \value{
-a [list]
+a \link{list}
 }
 \description{
 Make inits for RMG adult mosquito model

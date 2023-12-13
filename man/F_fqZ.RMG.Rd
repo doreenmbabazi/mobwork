@@ -14,8 +14,8 @@ F_fqZ.RMG(t, y, pars)
 \item{pars}{a \link{list}}
 }
 \value{
-a [numeric] vector of length `nPatches`
+a \link{numeric} vector of length \code{nPatches}
 }
 \description{
-Implements [F_fqZ] for the RMG model.
+Implements \link{F_fqZ} for the RMG model.
 }

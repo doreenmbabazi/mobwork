@@ -7,7 +7,7 @@
 make_inits_MYZ_RMG(pars, U0, Gu0, Y0, Gy0, Z0, Gz0)
 }
 \arguments{
-\item{pars}{a [list]}
+\item{pars}{a \link{list}}
 
 \item{U0}{total mosquito density at each patch}
 

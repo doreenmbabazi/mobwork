@@ -80,7 +80,6 @@ lines_aEIR <- function(terms, model, clrs="black"){
 #' Plot the EIR vs. the PR
 #'
 #' @param model an [list]
-#' @param stable a [logical]
 #' @param clrs a [list]
 #' @param llty a [list]
 #'
@@ -98,7 +97,6 @@ plot_eirpr <- function(model, clrs= "black", llty = 1){
 #' Add lines for the EIR vs. the PR
 #'
 #' @param model an [list]
-#' @param stable a [logical]
 #' @param clrs a [list]
 #' @param llty a [list]
 #'

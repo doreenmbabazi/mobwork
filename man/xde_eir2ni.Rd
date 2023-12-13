@@ -7,11 +7,11 @@
 xde_eir2ni(eir, model, extend = FALSE)
 }
 \arguments{
-\item{eir}{a [vector]}
+\item{eir}{a \link{vector}}
 
-\item{model}{a [list]}
+\item{model}{a \link{list}}
 
-\item{extend}{a [logical] option to determine whether to extend outside the range}
+\item{extend}{a \link{logical} option to determine whether to extend outside the range}
 }
 \description{
 Use the outputs$eirpr table to interpolate

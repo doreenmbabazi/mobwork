@@ -7,13 +7,13 @@
 \method{lines_YZ}{RM}(MYZ, model, Yclrs = "purple", Zclrs = "darkred")
 }
 \arguments{
-\item{MYZ}{a [list] the output of exDE::parse_deout}
+\item{MYZ}{a \link{list} the output of exDE::parse_deout}
 
-\item{model}{a [list] specifying the model}
+\item{model}{a \link{list} specifying the model}
 
-\item{Yclrs}{a [list] of colors}
+\item{Yclrs}{a \link{list} of colors}
 
-\item{Zclrs}{a [list] of colors}
+\item{Zclrs}{a \link{list} of colors}
 }
 \description{
 Add the orbits for the SIS model to a plot for models of human infection and immunity

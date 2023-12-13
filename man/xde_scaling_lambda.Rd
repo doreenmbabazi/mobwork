@@ -7,9 +7,9 @@
 xde_scaling_lambda(model)
 }
 \arguments{
-\item{model}{a [list]}
+\item{model}{a \link{list}}
 }
 \description{
-This function computes `m` and `lambda` for the output of one
-of `xde_scaling_eir` or `xde_scaling_Z`.  The outputs are attached to eirpr
+This function computes \code{m} and \code{lambda} for the output of one
+of \code{xde_scaling_eir} or \code{xde_scaling_Z}.  The outputs are attached to eirpr
 }

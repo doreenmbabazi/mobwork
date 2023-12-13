@@ -13,5 +13,5 @@ get_inits_MYZ.RMG(pars)
 none
 }
 \description{
-Implements [get_inits_MYZ] for the RMG model.
+Implements \link{get_inits_MYZ} for the RMG model.
 }

@@ -7,9 +7,9 @@
 xde_scaling_eir(model, N = 25)
 }
 \arguments{
-\item{model}{a [list]}
+\item{model}{a \link{list}}
 
-\item{N}{an [integer]}
+\item{N}{an \link{integer}}
 }
 \description{
 This function computes average annual values for the eir, the pr, and other

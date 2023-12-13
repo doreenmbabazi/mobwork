@@ -7,7 +7,7 @@
 split_stratum_by_biting(pars, i, p, fac)
 }
 \arguments{
-\item{pars}{a [list] defining a model}
+\item{pars}{a \link{list} defining a model}
 
 \item{i}{the stratum to split}
 

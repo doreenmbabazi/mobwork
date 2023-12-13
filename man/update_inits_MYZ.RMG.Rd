@@ -7,7 +7,7 @@
 update_inits_MYZ.RMG(pars, y0)
 }
 \arguments{
-\item{pars}{a [list]}
+\item{pars}{a \link{list}}
 
 \item{y0}{a vector of initial values}
 }

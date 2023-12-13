@@ -7,11 +7,11 @@
 plot_EIR(model, clrs = "black", stable = FALSE)
 }
 \arguments{
-\item{model}{a [list] specifying the model}
+\item{model}{a \link{list} specifying the model}
 
-\item{clrs}{a [list] of colors}
+\item{clrs}{a \link{list} of colors}
 
-\item{stable}{[logical]}
+\item{stable}{\link{logical}}
 }
 \description{
 Basic plotting: plot the true EIR

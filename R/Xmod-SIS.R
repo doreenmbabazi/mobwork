@@ -1,4 +1,6 @@
-#' Basic plotting: plot the density of infected humans for an SIS model #' #' @inheritParams plot_X
+#' Basic plotting: plot the density of infected humans for an SIS model
+#'
+#' @inheritParams plot_X
 #' @export
 plot_X.SIS = function(model, clrs="black", stable=FALSE, add=FALSE){
   vars = if(stable==TRUE){

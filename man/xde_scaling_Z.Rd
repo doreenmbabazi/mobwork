@@ -7,9 +7,9 @@
 xde_scaling_Z(model, N = 25)
 }
 \arguments{
-\item{model}{a [list]}
+\item{model}{a \link{list}}
 
-\item{N}{an [integer], the size of the mesh on aEIR}
+\item{N}{an \link{integer}, the size of the mesh on aEIR}
 }
 \description{
 This function computes average annual values for the eir, the pr, and other

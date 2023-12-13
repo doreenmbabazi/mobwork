@@ -7,13 +7,13 @@
 plot_eirVpr(model, stable = FALSE, clrs = "black", llty = 1)
 }
 \arguments{
-\item{model}{an [list]}
+\item{model}{an \link{list}}
 
-\item{stable}{a [logical]}
+\item{stable}{a \link{logical}}
 
-\item{clrs}{a [list]}
+\item{clrs}{a \link{list}}
 
-\item{llty}{a [list]}
+\item{llty}{a \link{list}}
 }
 \description{
 Plot the EIR vs. the PR

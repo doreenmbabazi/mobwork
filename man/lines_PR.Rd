@@ -7,11 +7,11 @@
 lines_PR(terms, model, clrs = "black")
 }
 \arguments{
-\item{terms}{a [list] with the outputs of exDE::parse_deout}
+\item{terms}{a \link{list} with the outputs of exDE::parse_deout}
 
-\item{model}{an [list]}
+\item{model}{an \link{list}}
 
-\item{clrs}{a [list]}
+\item{clrs}{a \link{list}}
 }
 \description{
 Add the orbits for the SIS model to a plot for models of human infection and immunity

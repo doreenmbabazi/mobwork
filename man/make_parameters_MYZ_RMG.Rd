@@ -7,7 +7,7 @@
 make_parameters_MYZ_RMG(pars, g, sigma, f, q, nu, eggsPerBatch, eip, calK)
 }
 \arguments{
-\item{pars}{a [list]}
+\item{pars}{a \link{list}}
 
 \item{g}{mosquito mortality rate}
 
@@ -23,9 +23,7 @@ make_parameters_MYZ_RMG(pars, g, sigma, f, q, nu, eggsPerBatch, eip, calK)
 
 \item{eip}{length of extrinsic incubation period}
 
-\item{calK}{mosquito dispersal matrix of dimensions `nPatches` by `nPatches`}
-
-\item{solve_as}{is either `ode` to solve as an ode or `dde` to solve as a dde}
+\item{calK}{mosquito dispersal matrix of dimensions \code{nPatches} by \code{nPatches}}
 }
 \value{
 none

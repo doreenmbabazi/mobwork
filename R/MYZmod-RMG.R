@@ -134,10 +134,12 @@ make_MYZpar_RMG = function(pars, MYZopts=list(), calK,
 #' @title Make inits for RMG adult mosquito model
 #' @param pars a [list]
 #' @param MYZopts a [list] of values that overwrites the defaults
-#' @param U0 total mosquito density at each patch
-#' @param P0 total parous mosquito density at each patch
-#' @param Y0 infected mosquito density at each patch
-#' @param Z0 infectious mosquito density at each patch
+#' @param U0 total uninfected, not gravid mosquito density at each patch
+#' @param Gu0 total uninfected, gravid mosquito density at each patch
+#' @param Y0 infected, not gravid mosquito density at each patch
+#' @param Gy0 infected, gravid mosquito density at each patch
+#' @param Z0 infectious, not gravid mosquito density at each patch
+#' @param Gz0 infectious, gravid mosquito density at each patch
 #' @return a [list]
 #' @export
 make_MYZinits_RMG = function(pars, MYZopts = list(),
@@ -194,7 +196,6 @@ make_indices_MYZ.RMG <- function(pars) {
 #' @param nu oviposition rate, per mosquito
 #' @param eggsPerBatch eggs laid per oviposition
 #' @param eip length of extrinsic incubation period
-#' @param solve_as is either `ode` to solve as an ode or `dde` to solve as a dde
 #' @return none
 #' @export
 make_parameters_MYZ_RMG <- function(pars, g, sigma, f, q, nu, eggsPerBatch, eip, calK) {
@@ -223,17 +224,18 @@ make_parameters_MYZ_RMG <- function(pars, g, sigma, f, q, nu, eggsPerBatch, eip,
 #' @inheritParams exDE::parse_deout_MYZ
 #' @return none
 #' @export
-parse_deout_MYZ.RMG <- function(varslist, deout, pars) {
-  varslist$U = deout[,pars$MYZpar$U_ix+1]
-  varslist$Gu = deout[,pars$MYZpar$Gu_ix+1]
-  varslist$Y = deout[,pars$MYZpar$Y_ix+1]
-  varslist$Gy = deout[,pars$MYZpar$Gy_ix+1]
-  varslist$Z = deout[,pars$MYZpar$Z_ix+1]
-  varslist$Gz = deout[,pars$MYZpar$Gz_ix+1]
-  varslist$M = with(varslist, U+Y+Z+Gu+Gy+Gz)
-  varslist$y = with(varslist, (Y + Gy)/M)
-  varslist$z = with(varslist, (Z + Gz)/M)
-  return(varslist)
+parse_deout_MYZ.RMG <- function(deout, pars) {
+  time = deout[,1]
+  U = deout[,pars$MYZpar$U_ix+1]
+  Gu = deout[,pars$MYZpar$Gu_ix+1]
+  Y = deout[,pars$MYZpar$Y_ix+1]
+  Gy = deout[,pars$MYZpar$Gy_ix+1]
+  Z = deout[,pars$MYZpar$Z_ix+1]
+  Gz = deout[,pars$MYZpar$Gz_ix+1]
+  M =  U+Y+Z+Gu+Gy+Gz
+  y = (Y + Gy)/M
+  z = (Z + Gz)/M
+  return(list(time=time, U=U, Gu=Gu, Y=Y, Gy=Gy, Z=Z, Gz=Gz, M=M, y=y, z=z))
 }
 
 #' @title Make inits for RMG adult mosquito model

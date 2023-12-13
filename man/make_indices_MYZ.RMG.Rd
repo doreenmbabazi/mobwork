@@ -13,5 +13,5 @@ make_indices_MYZ.RMG(pars)
 none
 }
 \description{
-Implements [make_indices_MYZ] for the RMG model.
+Implements \link{make_indices_MYZ} for the RMG model.
 }

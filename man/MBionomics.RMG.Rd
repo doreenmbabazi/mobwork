@@ -14,8 +14,8 @@ MBionomics.RMG(t, y, pars)
 \item{pars}{a \link{list}}
 }
 \value{
-a named [list]
+a named \link{list}
 }
 \description{
-Implements [MBionomics] for the RMG model
+Implements \link{MBionomics} for the RMG model
 }

@@ -7,11 +7,11 @@
 \method{lines_M}{RMG}(MYZ, model, clrs = "darkblue")
 }
 \arguments{
-\item{MYZ}{a [list] the outputs of exDE::parse_deout}
+\item{MYZ}{a \link{list} the outputs of exDE::parse_deout}
 
-\item{model}{a [list] specifying the model}
+\item{model}{a \link{list} specifying the model}
 
-\item{clrs}{a [list] of colors}
+\item{clrs}{a \link{list} of colors}
 }
 \description{
 Add the orbits for the SIS model to a plot for models of human infection and immunity

@@ -7,13 +7,13 @@
 plot_X(model, clrs = "black", stable = FALSE, add = FALSE)
 }
 \arguments{
-\item{model}{a [list] specifying the model}
+\item{model}{a \link{list} specifying the model}
 
-\item{clrs}{a [list] of colors}
+\item{clrs}{a \link{list} of colors}
 
-\item{stable}{[logical]}
+\item{stable}{\link{logical}}
 
-\item{add}{[logical]}
+\item{add}{\link{logical}}
 }
 \description{
 Basic plotting: default plot for models of human infection and immunity

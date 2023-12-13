@@ -7,13 +7,13 @@
 xde_scaling(model, N = 25, F_eir = NULL)
 }
 \arguments{
-\item{model}{a [list]}
+\item{model}{a \link{list}}
 
-\item{N}{an [integer], the size of the mesh on aEIR}
+\item{N}{an \link{integer}, the size of the mesh on aEIR}
 
-\item{F_eir}{a [function], the size of the mesh on aEIR}
+\item{F_eir}{a \link{function}, the size of the mesh on aEIR}
 }
 \description{
 This takes a model and uses the XH component to define
-the eirpr relationship using `xde_scaling_eir` then calls `xde_scaling_lambda`
+the eirpr relationship using \code{xde_scaling_eir} then calls \code{xde_scaling_lambda}
 }

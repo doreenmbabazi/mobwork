@@ -18,8 +18,8 @@ setup_MYZ.RMG(pars, MYZname, nPatches = 1, MYZopts = list(), calK = diag(1))
 \item{calK}{is a \link{matrix}}
 }
 \value{
-a [list] vector
+a \link{list} vector
 }
 \description{
-Implements [setup_MYZ] for the RMG model
+Implements \link{setup_MYZ} for the RMG model
 }

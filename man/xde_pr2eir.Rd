@@ -7,11 +7,11 @@
 xde_pr2eir(pr, model, extend = FALSE)
 }
 \arguments{
-\item{pr}{a [vector]}
+\item{pr}{a \link{vector}}
 
-\item{model}{a [list]}
+\item{model}{a \link{list}}
 
-\item{extend}{a [logical] option to determine whether to extend outside the range}
+\item{extend}{a \link{logical} option to determine whether to extend outside the range}
 }
 \description{
 Use the outputs$eirpr table to convert a set of pr values into eir values
