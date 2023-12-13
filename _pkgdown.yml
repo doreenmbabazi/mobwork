@@ -1,4 +1,88 @@
-url: ~
+url: https://dd-harp.github.io/mobwork/
 template:
   bootstrap: 5
-
+navbar:
+  left:
+  - text: Functions
+    href: reference/index.html
+  - text: Articles
+    menu:
+    - text: The SIS model
+      href: articles/Xmod-SIS.html
+  right:
+  - icon: fa-github
+    href: https://github.com/dd-harp/exDE/
+home:
+  sidebar:
+    structure:
+    - links
+    - license
+    - community
+    - citation
+    - authors
+    - dev
+    - custom_news
+    components:
+      custom_news:
+        title: Changelog
+        text: <a href="news/index.html">News</a>
+reference:
+- title: Everything
+  contents:
+  - lines_M.RM
+  - lines_M.RMG
+  - lines_X.SIS
+  - lines_YZ.RM
+  - lines_YZ.RMG
+  - lines_YZ_fracs.RM
+  - lines_YZ_fracs.RMG
+  - plot_M.RM
+  - plot_M.RMG
+  - plot_X.SIS
+  - plot_YZ.RM
+  - plot_YZ.RMG
+  - plot_YZ_fracs.RM
+  - plot_YZ_fracs.RMG
+  - split_stratum_by_biting.SIS
+  - F_eggs.RMG
+  - F_fqZ.RMG
+  - MBionomics.RMG
+  - dMYZdt.RMG
+  - get_inits_MYZ.RMG
+  - lines_EIR
+  - lines_M
+  - lines_PR
+  - lines_X
+  - lines_YZ
+  - lines_YZ_fracs
+  - lines_aEIR
+  - lines_eirVpr
+  - lines_eirpr
+  - make_MYZinits_RMG
+  - make_MYZpar_RMG
+  - make_indices_MYZ.RMG
+  - make_inits_MYZ_RMG
+  - make_parameters_MYZ_RMG
+  - parse_deout_MYZ.RMG
+  - plot_EIR
+  - plot_M
+  - plot_PR
+  - plot_X
+  - plot_YZ
+  - plot_YZ_fracs
+  - plot_aEIR
+  - plot_eirVpr
+  - plot_eirpr
+  - pr2Lambda
+  - setup_MYZ.RMG
+  - split_stratum_by_biting
+  - ssMYZ
+  - update_inits_MYZ.RMG
+  - xde_eir2ni
+  - xde_eir2pr
+  - xde_pr2eir
+  - xde_pr2ni
+  - xde_scaling
+  - xde_scaling_Z
+  - xde_scaling_eir
+  - xde_scaling_lambda
