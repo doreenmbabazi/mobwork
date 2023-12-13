@@ -1,0 +1,55 @@
+---
+title: "The `SIS` model for malaria"
+date: "`r format(Sys.time(), '%B %d, %Y')`"
+output:
+  html_document: 
+    theme: paper 
+  pdf_document: default
+split_by: section+number
+---
+  
+```{r, echo=FALSE, warning=FALSE, messages=FALSE, purl=F}
+library(exDE) 
+library(mobwork) 
+library(deSolve) 
+suppressMessages(require(knitr))
+```
+
+# {.tabset}
+
+## $\odot$  
+
+The SIS model, as it is now called, is a simple compartmental model, first introduced by Ross. It is included in `exDE` as a base model. 
+
+The model defined herein is defined in two parts. To model exposure and infection (*i.e.* the conversion of eir into foi), we assume that the fraction of infective bites that cause an infection is $b$. The dynamics are given by: 
+
+$$
+\frac{dX}{dt} = h (H-X)-rX
+$$
+
+True prevalence is:
+
+$$x = \frac{X}{H}.$$ 
+
+In our implementation, net infectiousness is linearly proportional to prevalence:
+
+$$c x.$$
+In this implementation, there is no immunity, but we assume a constant fraction of all infectious bites cause an infection. 
+
+**Parameters**
+
++ $r$ is the rate infections clear
+
++ $b$ is the fraction of bites by infective mosquitoes that transmit parasites and cause an infection. 
+
++ $c$ is the fraction of bites on an infectious human that would infect a mosquito. 
+
+
+## $\dagger$ 
+
+**References** 
+
+1. Ross R. Report on the Prevention of Malaria in Mauritius. London: Waterlow; 1908.
+2. Ross R. The Prevention of Malaria. 2nd ed. London: John Murray; 1911.
+3. Smith DL, Battle KE, Hay SI, Barker CM, Scott TW, McKenzie FE. Ross, Macdonald, and a theory for the dynamics and control of mosquito-transmitted pathogens. PLoS Pathog. 2012;8: e1002588. doi:10.1371/journal.ppat.1002588
+
