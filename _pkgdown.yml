@@ -34,11 +34,9 @@ reference:
   - plot_eirpr
   - lines_eirpr
 - title: Human Infection Dynamics
-  contents:
-  - split_stratum_by_biting
+  contents: split_stratum_by_biting
 - subtitle: The SIS Model
-  contents:
-  - split_stratum_by_biting.SIS
+  contents: split_stratum_by_biting.SIS
 - title: The Adult RMG Model
   contents:
   - F_eggs.RMG
@@ -55,8 +53,7 @@ reference:
   - setup_MYZ.RMG
   - update_inits_MYZ.RMG
 - title: Scaling Relationships
-  contents:
-  - ssMYZ
+  contents: ssMYZ
 - subtitle: Compute Scaling Relationships
   contents:
   - xde_scaling
