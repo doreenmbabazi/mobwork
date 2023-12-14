@@ -47,7 +47,7 @@
     </div>
 
     <div class="section level2">
-      <h2 id="everything">Everything<a class="anchor" aria-label="anchor" href="#everything"></a></h2>
+      <h2 id="plot-terms">Plot terms<a class="anchor" aria-label="anchor" href="#plot-terms"></a></h2>
       
       
 
@@ -59,14 +59,96 @@
 
       <dl><dt>
           
-          <code><a href="lines_M.RM.html">lines_M(<i>&lt;RM&gt;</i>)</a></code> 
+          <code><a href="plot_EIR.html">plot_EIR()</a></code> 
+        </dt>
+        <dd>Plot the EIR <em>vs.</em> time</dd>
+      </dl><dl><dt>
+          
+          <code><a href="lines_EIR.html">lines_EIR()</a></code> 
+        </dt>
+        <dd>Add lines for the EIR <em>vs.</em> time</dd>
+      </dl><dl><dt>
+          
+          <code><a href="plot_aEIR.html">plot_aEIR()</a></code> 
+        </dt>
+        <dd>PLot the aEIR <em>vs.</em> time</dd>
+      </dl><dl><dt>
+          
+          <code><a href="lines_aEIR.html">lines_aEIR()</a></code> 
+        </dt>
+        <dd>Add lines for the aEIR <em>vs.</em> time</dd>
+      </dl><dl><dt>
+          
+          <code><a href="plot_PR.html">plot_PR()</a></code> 
+        </dt>
+        <dd>Basic plotting: plot the true PR.</dd>
+      </dl><dl><dt>
+          
+          <code><a href="lines_PR.html">lines_PR()</a></code> 
         </dt>
         <dd>Add the orbits for the SIS model to a plot for models of human infection and immunity</dd>
       </dl><dl><dt>
           
-          <code><a href="lines_M.RMG.html">lines_M(<i>&lt;RMG&gt;</i>)</a></code> 
+          <code><a href="plot_eirVpr.html">plot_eirVpr()</a></code> 
         </dt>
-        <dd>Add the orbits for the SIS model to a plot for models of human infection and immunity</dd>
+        <dd>Plot EIR(t) <em>vs.</em> the PR(t)</dd>
+      </dl><dl><dt>
+          
+          <code><a href="lines_eirVpr.html">lines_eirVpr()</a></code> 
+        </dt>
+        <dd>Add lines for the EIR(t) <em>vs.</em> the PR(t)</dd>
+      </dl><dl><dt>
+          
+          <code><a href="plot_eirpr.html">plot_eirpr()</a></code> 
+        </dt>
+        <dd>Plot the eir-pr scaling relationship</dd>
+      </dl><dl><dt>
+          
+          <code><a href="lines_eirpr.html">lines_eirpr()</a></code> 
+        </dt>
+        <dd>Add lines for an eir-pr scaling relationship</dd>
+      </dl></div><div class="section level2">
+      <h2 id="human-infection-dynamics">Human Infection Dynamics<a class="anchor" aria-label="anchor" href="#human-infection-dynamics"></a></h2>
+      
+      
+
+      
+    </div><div id="" class="section level2">
+      
+      
+      
+
+      <dl><dt>
+          
+          <code><a href="plot_X.html">plot_X()</a></code> 
+        </dt>
+        <dd>Basic plotting: default plot for models of human infection and immunity</dd>
+      </dl><dl><dt>
+          
+          <code><a href="lines_X.html">lines_X()</a></code> 
+        </dt>
+        <dd>Basic plotting: add outputs to a plot for models of human infection and immunity</dd>
+      </dl><dl><dt>
+          
+          <code><a href="split_stratum_by_biting.html">split_stratum_by_biting()</a></code> 
+        </dt>
+        <dd>Split a stratum into two strata, assigning</dd>
+      </dl></div><div class="section level2">
+      
+      <h3 id="the-sis-model">The SIS Model<a class="anchor" aria-label="anchor" href="#the-sis-model"></a></h3>
+      
+
+      
+    </div><div id="" class="section level2">
+      
+      
+      
+
+      <dl><dt>
+          
+          <code><a href="plot_X.SIS.html">plot_X(<i>&lt;SIS&gt;</i>)</a></code> 
+        </dt>
+        <dd>Basic plotting: plot the density of infected humans for an SIS model</dd>
       </dl><dl><dt>
           
           <code><a href="lines_X.SIS.html">lines_X(<i>&lt;SIS&gt;</i>)</a></code> 
@@ -74,39 +156,71 @@
         <dd>Add the orbits for the SIS model to a plot for models of human infection and immunity</dd>
       </dl><dl><dt>
           
-          <code><a href="lines_YZ.RM.html">lines_YZ(<i>&lt;RM&gt;</i>)</a></code> 
+          <code><a href="split_stratum_by_biting.SIS.html">split_stratum_by_biting(<i>&lt;SIS&gt;</i>)</a></code> 
         </dt>
-        <dd>Add the orbits for the SIS model to a plot for models of human infection and immunity</dd>
+        <dd>Split a stratum into two strata, assigning a fraction <code>p</code> a new biting weight that is multiplied by a factor <code>fac</code> compared with the old one. The biting weight for the remaining <code>1-p</code> gets a new factor <code>1/fac</code></dd>
+      </dl></div><div class="section level2">
+      <h2 id="adult-mosquitoes">Adult Mosquitoes<a class="anchor" aria-label="anchor" href="#adult-mosquitoes"></a></h2>
+      
+      
+
+      
+    </div><div id="" class="section level2">
+      
+      
+      
+
+      <dl><dt>
+          
+          <code><a href="plot_M.html">plot_M()</a></code> 
+        </dt>
+        <dd>Basic plotting: plot mosquito population density</dd>
       </dl><dl><dt>
           
-          <code><a href="lines_YZ.RMG.html">lines_YZ(<i>&lt;RMG&gt;</i>)</a></code> 
+          <code><a href="lines_M.html">lines_M()</a></code> 
         </dt>
-        <dd>Add the orbits for the SIS model to a plot for models of human infection and immunity</dd>
+        <dd>Basic plotting: add to a plot for mosquito population density</dd>
       </dl><dl><dt>
           
-          <code><a href="lines_YZ_fracs.RM.html">lines_YZ_fracs(<i>&lt;RM&gt;</i>)</a></code> 
+          <code><a href="plot_YZ.html">plot_YZ()</a></code> 
         </dt>
-        <dd>Add lines for the fraction infected and infective for the "RM" model</dd>
+        <dd>Basic plotting: plot the density of infected and infective mosquitoes</dd>
       </dl><dl><dt>
           
-          <code><a href="lines_YZ_fracs.RMG.html">lines_YZ_fracs(<i>&lt;RMG&gt;</i>)</a></code> 
+          <code><a href="lines_YZ.html">lines_YZ()</a></code> 
         </dt>
-        <dd>Add lines for the fraction infected and infective for the "RMG" model</dd>
+        <dd>Basic plotting: add lines for the density of infected and infective mosquitoes</dd>
       </dl><dl><dt>
+          
+          <code><a href="plot_YZ_fracs.html">plot_YZ_fracs()</a></code> 
+        </dt>
+        <dd>Basic plotting: plot the proportion of mosquitoes that are infected and infective.</dd>
+      </dl><dl><dt>
+          
+          <code><a href="lines_YZ_fracs.html">lines_YZ_fracs()</a></code> 
+        </dt>
+        <dd>Add lines for the fraction of mosquitoes infected and infective</dd>
+      </dl></div><div class="section level2">
+      
+      <h3 id="the-rm-model">The RM Model<a class="anchor" aria-label="anchor" href="#the-rm-model"></a></h3>
+      
+
+      
+    </div><div id="" class="section level2">
+      
+      
+      
+
+      <dl><dt>
           
           <code><a href="plot_M.RM.html">plot_M(<i>&lt;RM&gt;</i>)</a></code> 
         </dt>
         <dd>Basic plotting: plot mosquito population density for the "RM" model</dd>
       </dl><dl><dt>
           
-          <code><a href="plot_M.RMG.html">plot_M(<i>&lt;RMG&gt;</i>)</a></code> 
+          <code><a href="lines_M.RM.html">lines_M(<i>&lt;RM&gt;</i>)</a></code> 
         </dt>
-        <dd>Basic plotting: plot mosquito population density for the "RMG" model</dd>
-      </dl><dl><dt>
-          
-          <code><a href="plot_X.SIS.html">plot_X(<i>&lt;SIS&gt;</i>)</a></code> 
-        </dt>
-        <dd>Basic plotting: plot the density of infected humans for an SIS model</dd>
+        <dd>Add the orbits for the SIS model to a plot for models of human infection and immunity</dd>
       </dl><dl><dt>
           
           <code><a href="plot_YZ.RM.html">plot_YZ(<i>&lt;RM&gt;</i>)</a></code> 
@@ -114,9 +228,9 @@
         <dd>Basic plotting: plot mosquito population density for the "RM" model</dd>
       </dl><dl><dt>
           
-          <code><a href="plot_YZ.RMG.html">plot_YZ(<i>&lt;RMG&gt;</i>)</a></code> 
+          <code><a href="lines_YZ.RM.html">lines_YZ(<i>&lt;RM&gt;</i>)</a></code> 
         </dt>
-        <dd>Basic plotting: plot mosquito population density for the "RMG" model</dd>
+        <dd>Add the orbits for the SIS model to a plot for models of human infection and immunity</dd>
       </dl><dl><dt>
           
           <code><a href="plot_YZ_fracs.RM.html">plot_YZ_fracs(<i>&lt;RM&gt;</i>)</a></code> 
@@ -124,15 +238,21 @@
         <dd>Basic plotting: plot the fraction infected and infective for the "RM" model</dd>
       </dl><dl><dt>
           
-          <code><a href="plot_YZ_fracs.RMG.html">plot_YZ_fracs(<i>&lt;RMG&gt;</i>)</a></code> 
+          <code><a href="lines_YZ_fracs.RM.html">lines_YZ_fracs(<i>&lt;RM&gt;</i>)</a></code> 
         </dt>
-        <dd>Basic plotting: plot the fraction infected and infective for the "RMG" model</dd>
-      </dl><dl><dt>
-          
-          <code><a href="split_stratum_by_biting.SIS.html">split_stratum_by_biting(<i>&lt;SIS&gt;</i>)</a></code> 
-        </dt>
-        <dd>Split a stratum into two strata, assigning a fraction <code>p</code> a new biting weight that is multiplied by a factor <code>fac</code> compared with the old one. The biting weight for the remaining <code>1-p</code> gets a new factor <code>1/fac</code></dd>
-      </dl><dl><dt>
+        <dd>Add lines for the fraction infected and infective for the "RM" model</dd>
+      </dl></div><div class="section level2">
+      
+      <h3 id="the-rmg-model">The RMG Model<a class="anchor" aria-label="anchor" href="#the-rmg-model"></a></h3>
+      
+
+      
+    </div><div id="" class="section level2">
+      
+      
+      
+
+      <dl><dt>
           
           <code><a href="F_eggs.RMG.html">F_eggs.RMG()</a></code> 
         </dt>
@@ -157,51 +277,6 @@
           <code><a href="get_inits_MYZ.RMG.html">get_inits_MYZ.RMG()</a></code> 
         </dt>
         <dd>Return initial values as a vector</dd>
-      </dl><dl><dt>
-          
-          <code><a href="lines_EIR.html">lines_EIR()</a></code> 
-        </dt>
-        <dd>Add lines for the true EIR</dd>
-      </dl><dl><dt>
-          
-          <code><a href="lines_M.html">lines_M()</a></code> 
-        </dt>
-        <dd>Basic plotting: add to a plot for mosquito population density</dd>
-      </dl><dl><dt>
-          
-          <code><a href="lines_PR.html">lines_PR()</a></code> 
-        </dt>
-        <dd>Add the orbits for the SIS model to a plot for models of human infection and immunity</dd>
-      </dl><dl><dt>
-          
-          <code><a href="lines_X.html">lines_X()</a></code> 
-        </dt>
-        <dd>Basic plotting: add outputs to a plot for models of human infection and immunity</dd>
-      </dl><dl><dt>
-          
-          <code><a href="lines_YZ.html">lines_YZ()</a></code> 
-        </dt>
-        <dd>Basic plotting: add lines for the density of infected and infective mosquitoes</dd>
-      </dl><dl><dt>
-          
-          <code><a href="lines_YZ_fracs.html">lines_YZ_fracs()</a></code> 
-        </dt>
-        <dd>Add lines for the fraction of mosquitoes infected and infective</dd>
-      </dl><dl><dt>
-          
-          <code><a href="lines_aEIR.html">lines_aEIR()</a></code> 
-        </dt>
-        <dd>Add the orbits for the SIS model to a plot for models of human infection and immunity</dd>
-      </dl><dl><dt>
-          
-          <code><a href="lines_eirVpr.html">lines_eirVpr()</a></code> 
-        </dt>
-        <dd>Add lines for the EIR vs. the PR</dd>
-      </dl><dl><dt>
-          
-          <code><a href="lines_eirpr.html">lines_eirpr()</a></code> 
-        </dt>
-        <dd>Add lines for the EIR vs. the PR</dd>
       </dl><dl><dt>
           
           <code><a href="make_MYZinits_RMG.html">make_MYZinits_RMG()</a></code> 
@@ -234,69 +309,9 @@
         <dd>Parse the output of deSolve and return variables for the RMG model</dd>
       </dl><dl><dt>
           
-          <code><a href="plot_EIR.html">plot_EIR()</a></code> 
-        </dt>
-        <dd>Basic plotting: plot the true EIR</dd>
-      </dl><dl><dt>
-          
-          <code><a href="plot_M.html">plot_M()</a></code> 
-        </dt>
-        <dd>Basic plotting: plot mosquito population density</dd>
-      </dl><dl><dt>
-          
-          <code><a href="plot_PR.html">plot_PR()</a></code> 
-        </dt>
-        <dd>Basic plotting: plot the true PR.</dd>
-      </dl><dl><dt>
-          
-          <code><a href="plot_X.html">plot_X()</a></code> 
-        </dt>
-        <dd>Basic plotting: default plot for models of human infection and immunity</dd>
-      </dl><dl><dt>
-          
-          <code><a href="plot_YZ.html">plot_YZ()</a></code> 
-        </dt>
-        <dd>Basic plotting: plot the density of infected and infective mosquitoes</dd>
-      </dl><dl><dt>
-          
-          <code><a href="plot_YZ_fracs.html">plot_YZ_fracs()</a></code> 
-        </dt>
-        <dd>Basic plotting: plot the proportion of mosquitoes that are infected and infective.</dd>
-      </dl><dl><dt>
-          
-          <code><a href="plot_aEIR.html">plot_aEIR()</a></code> 
-        </dt>
-        <dd>Basic plotting: plot the true aEIR</dd>
-      </dl><dl><dt>
-          
-          <code><a href="plot_eirVpr.html">plot_eirVpr()</a></code> 
-        </dt>
-        <dd>Plot the EIR vs. the PR</dd>
-      </dl><dl><dt>
-          
-          <code><a href="plot_eirpr.html">plot_eirpr()</a></code> 
-        </dt>
-        <dd>Plot the EIR vs. the PR</dd>
-      </dl><dl><dt>
-          
-          <code><a href="pr2Lambda.html">pr2Lambda()</a></code> 
-        </dt>
-        <dd>Using the eirpr matrix and a RM model, convert pr to Lambda</dd>
-      </dl><dl><dt>
-          
           <code><a href="setup_MYZ.RMG.html">setup_MYZ.RMG()</a></code> 
         </dt>
         <dd>Setup the RMG model</dd>
-      </dl><dl><dt>
-          
-          <code><a href="split_stratum_by_biting.html">split_stratum_by_biting()</a></code> 
-        </dt>
-        <dd>Split a stratum into two strata, assigning</dd>
-      </dl><dl><dt>
-          
-          <code><a href="ssMYZ.html">ssMYZ()</a></code> 
-        </dt>
-        <dd>Set up the MYZss object for <code>xde_scaling_lambda</code></dd>
       </dl><dl><dt>
           
           <code><a href="update_inits_MYZ.RMG.html">update_inits_MYZ.RMG()</a></code> 
@@ -304,25 +319,62 @@
         <dd>Make inits for RMG adult mosquito model</dd>
       </dl><dl><dt>
           
-          <code><a href="xde_eir2ni.html">xde_eir2ni()</a></code> 
+          <code><a href="lines_M.RMG.html">lines_M(<i>&lt;RMG&gt;</i>)</a></code> 
         </dt>
-        <dd>Convert eir to ni</dd>
+        <dd>Add the orbits for the SIS model to a plot for models of human infection and immunity</dd>
       </dl><dl><dt>
           
-          <code><a href="xde_eir2pr.html">xde_eir2pr()</a></code> 
+          <code><a href="lines_YZ.RMG.html">lines_YZ(<i>&lt;RMG&gt;</i>)</a></code> 
         </dt>
-        <dd>Convert eir to pr</dd>
+        <dd>Add the orbits for the SIS model to a plot for models of human infection and immunity</dd>
       </dl><dl><dt>
           
-          <code><a href="xde_pr2eir.html">xde_pr2eir()</a></code> 
+          <code><a href="lines_YZ_fracs.RMG.html">lines_YZ_fracs(<i>&lt;RMG&gt;</i>)</a></code> 
         </dt>
-        <dd>Convert pr to eir</dd>
+        <dd>Add lines for the fraction infected and infective for the "RMG" model</dd>
       </dl><dl><dt>
           
-          <code><a href="xde_pr2ni.html">xde_pr2ni()</a></code> 
+          <code><a href="plot_M.RMG.html">plot_M(<i>&lt;RMG&gt;</i>)</a></code> 
         </dt>
-        <dd>Convert pr to ni</dd>
+        <dd>Basic plotting: plot mosquito population density for the "RMG" model</dd>
       </dl><dl><dt>
+          
+          <code><a href="plot_YZ.RMG.html">plot_YZ(<i>&lt;RMG&gt;</i>)</a></code> 
+        </dt>
+        <dd>Basic plotting: plot mosquito population density for the "RMG" model</dd>
+      </dl><dl><dt>
+          
+          <code><a href="plot_YZ_fracs.RMG.html">plot_YZ_fracs(<i>&lt;RMG&gt;</i>)</a></code> 
+        </dt>
+        <dd>Basic plotting: plot the fraction infected and infective for the "RMG" model</dd>
+      </dl></div><div class="section level2">
+      <h2 id="scaling-relationships">Scaling Relationships<a class="anchor" aria-label="anchor" href="#scaling-relationships"></a></h2>
+      
+      
+
+      
+    </div><div id="" class="section level2">
+      
+      
+      
+
+      <dl><dt>
+          
+          <code><a href="ssMYZ.html">ssMYZ()</a></code> 
+        </dt>
+        <dd>Set up the MYZss object for <code>xde_scaling_lambda</code></dd>
+      </dl></div><div class="section level2">
+      
+      <h3 id="compute-scaling-relationships">Compute Scaling Relationships<a class="anchor" aria-label="anchor" href="#compute-scaling-relationships"></a></h3>
+      
+
+      
+    </div><div id="" class="section level2">
+      
+      
+      
+
+      <dl><dt>
           
           <code><a href="xde_scaling.html">xde_scaling()</a></code> 
         </dt>
@@ -342,8 +394,45 @@
           <code><a href="xde_scaling_lambda.html">xde_scaling_lambda()</a></code> 
         </dt>
         <dd>Compute lambda from an eirpr object using the Ross-Macdonald model</dd>
+      </dl><dl><dt>
+          
+          <code><a href="pr2Lambda.html">pr2Lambda()</a></code> 
+        </dt>
+        <dd>Using the eirpr matrix and a RM model, convert pr to Lambda</dd>
+      </dl></div><div class="section level2">
+      
+      <h3 id="convert-scaling-relationships">Convert Scaling Relationships<a class="anchor" aria-label="anchor" href="#convert-scaling-relationships"></a></h3>
+      
+
+      
+    </div><div id="" class="section level2">
+      
+      
+      
+
+      <dl><dt>
+          
+          <code><a href="xde_eir2ni.html">xde_eir2ni()</a></code> 
+        </dt>
+        <dd>Convert eir to ni</dd>
+      </dl><dl><dt>
+          
+          <code><a href="xde_eir2pr.html">xde_eir2pr()</a></code> 
+        </dt>
+        <dd>Convert eir to pr</dd>
+      </dl><dl><dt>
+          
+          <code><a href="xde_pr2eir.html">xde_pr2eir()</a></code> 
+        </dt>
+        <dd>Convert pr to eir</dd>
+      </dl><dl><dt>
+          
+          <code><a href="xde_pr2ni.html">xde_pr2ni()</a></code> 
+        </dt>
+        <dd>Convert pr to ni</dd>
       </dl></div>
-  </main></div>
+  </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
+    </nav></aside></div>
 
 
     <footer><div class="pkgdown-footer-left">
