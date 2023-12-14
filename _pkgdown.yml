@@ -27,63 +27,79 @@ home:
         title: Changelog
         text: <a href="news/index.html">News</a>
 reference:
-- title: Everything
+- title: Plot terms
   contents:
-  - lines_M.RM
-  - lines_M.RMG
-  - lines_X.SIS
-  - lines_YZ.RM
-  - lines_YZ.RMG
-  - lines_YZ_fracs.RM
-  - lines_YZ_fracs.RMG
-  - plot_M.RM
-  - plot_M.RMG
+  - plot_EIR
+  - lines_EIR
+  - plot_aEIR
+  - lines_aEIR
+  - plot_PR
+  - lines_PR
+  - plot_eirVpr
+  - lines_eirVpr
+  - plot_eirpr
+  - lines_eirpr
+- title: Human Infection Dynamics
+  contents:
+  - plot_X
+  - lines_X
+  - split_stratum_by_biting
+- subtitle: The SIS Model
+  contents:
   - plot_X.SIS
-  - plot_YZ.RM
-  - plot_YZ.RMG
-  - plot_YZ_fracs.RM
-  - plot_YZ_fracs.RMG
+  - lines_X.SIS
   - split_stratum_by_biting.SIS
+- title: Adult Mosquitoes
+  contents:
+  - plot_M
+  - lines_M
+  - plot_YZ
+  - lines_YZ
+  - plot_YZ_fracs
+  - lines_YZ_fracs
+- subtitle: The RM Model
+  contents:
+  - plot_M.RM
+  - lines_M.RM
+  - plot_YZ.RM
+  - lines_YZ.RM
+  - plot_YZ_fracs.RM
+  - lines_YZ_fracs.RM
+- subtitle: The RMG Model
+  contents:
   - F_eggs.RMG
   - F_fqZ.RMG
   - MBionomics.RMG
   - dMYZdt.RMG
   - get_inits_MYZ.RMG
-  - lines_EIR
-  - lines_M
-  - lines_PR
-  - lines_X
-  - lines_YZ
-  - lines_YZ_fracs
-  - lines_aEIR
-  - lines_eirVpr
-  - lines_eirpr
   - make_MYZinits_RMG
   - make_MYZpar_RMG
   - make_indices_MYZ.RMG
   - make_inits_MYZ_RMG
   - make_parameters_MYZ_RMG
   - parse_deout_MYZ.RMG
-  - plot_EIR
-  - plot_M
-  - plot_PR
-  - plot_X
-  - plot_YZ
-  - plot_YZ_fracs
-  - plot_aEIR
-  - plot_eirVpr
-  - plot_eirpr
-  - pr2Lambda
   - setup_MYZ.RMG
-  - split_stratum_by_biting
-  - ssMYZ
   - update_inits_MYZ.RMG
-  - xde_eir2ni
-  - xde_eir2pr
-  - xde_pr2eir
-  - xde_pr2ni
+  - lines_M.RMG
+  - lines_YZ.RMG
+  - lines_YZ_fracs.RMG
+  - plot_M.RMG
+  - plot_YZ.RMG
+  - plot_YZ_fracs.RMG
+- title: Scaling Relationships
+  contents:
+  - ssMYZ
+- subtitle: Compute Scaling Relationships
+  contents:
   - xde_scaling
   - xde_scaling_Z
   - xde_scaling_eir
   - xde_scaling_lambda
+  - pr2Lambda
+- subtitle: Convert Scaling Relationships
+  contents:
+  - xde_eir2ni
+  - xde_eir2pr
+  - xde_pr2eir
+  - xde_pr2ni
 
