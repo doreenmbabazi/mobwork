@@ -29,43 +29,17 @@ home:
 reference:
 - title: Plot terms
   contents:
-  - plot_EIR
-  - lines_EIR
-  - plot_aEIR
-  - lines_aEIR
-  - plot_PR
-  - lines_PR
   - plot_eirVpr
   - lines_eirVpr
   - plot_eirpr
   - lines_eirpr
 - title: Human Infection Dynamics
   contents:
-  - plot_X
-  - lines_X
   - split_stratum_by_biting
 - subtitle: The SIS Model
   contents:
-  - plot_X.SIS
-  - lines_X.SIS
   - split_stratum_by_biting.SIS
-- title: Adult Mosquitoes
-  contents:
-  - plot_M
-  - lines_M
-  - plot_YZ
-  - lines_YZ
-  - plot_YZ_fracs
-  - lines_YZ_fracs
-- subtitle: The RM Model
-  contents:
-  - plot_M.RM
-  - lines_M.RM
-  - plot_YZ.RM
-  - lines_YZ.RM
-  - plot_YZ_fracs.RM
-  - lines_YZ_fracs.RM
-- subtitle: The RMG Model
+- title: The Adult RMG Model
   contents:
   - F_eggs.RMG
   - F_fqZ.RMG
@@ -80,12 +54,6 @@ reference:
   - parse_deout_MYZ.RMG
   - setup_MYZ.RMG
   - update_inits_MYZ.RMG
-  - lines_M.RMG
-  - lines_YZ.RMG
-  - lines_YZ_fracs.RMG
-  - plot_M.RMG
-  - plot_YZ.RMG
-  - plot_YZ_fracs.RMG
 - title: Scaling Relationships
   contents:
   - ssMYZ
