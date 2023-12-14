@@ -4,7 +4,7 @@
 \alias{F_fqZ.RMG}
 \title{Blood feeding rate of the infective mosquito population}
 \usage{
-F_fqZ.RMG(t, y, pars)
+\method{F_fqZ}{RMG}(t, y, pars)
 }
 \arguments{
 \item{t}{current simulation time}

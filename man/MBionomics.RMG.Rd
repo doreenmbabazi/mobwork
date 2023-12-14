@@ -4,7 +4,7 @@
 \alias{MBionomics.RMG}
 \title{Reset bloodfeeding and mortality rates to baseline}
 \usage{
-MBionomics.RMG(t, y, pars)
+\method{MBionomics}{RMG}(t, y, pars)
 }
 \arguments{
 \item{t}{current simulation time}

@@ -4,7 +4,7 @@
 \alias{dMYZdt.RMG}
 \title{Derivatives for adult mosquitoes}
 \usage{
-dMYZdt.RMG(t, y, pars, Lambda, kappa)
+\method{dMYZdt}{RMG}(t, y, pars, Lambda, kappa)
 }
 \arguments{
 \item{t}{current simulation time}

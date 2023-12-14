@@ -278,7 +278,6 @@ get_inits_MYZ.RMG <- function(pars) {with(pars$MYZinits,{
   c(U0, Gu0, Y0, Gy0, Z0, Gz0)
 })}
 
-
 #' Basic plotting: plot mosquito population density for the "RMG" model
 #'
 #' @inheritParams plot_M

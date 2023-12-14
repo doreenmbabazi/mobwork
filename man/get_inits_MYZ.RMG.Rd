@@ -4,7 +4,7 @@
 \alias{get_inits_MYZ.RMG}
 \title{Return initial values as a vector}
 \usage{
-get_inits_MYZ.RMG(pars)
+\method{get_inits_MYZ}{RMG}(pars)
 }
 \arguments{
 \item{pars}{a \link{list}}

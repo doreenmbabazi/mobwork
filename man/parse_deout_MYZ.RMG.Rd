@@ -4,7 +4,7 @@
 \alias{parse_deout_MYZ.RMG}
 \title{Parse the output of deSolve and return variables for the RMG model}
 \usage{
-parse_deout_MYZ.RMG(deout, pars)
+\method{parse_deout_MYZ}{RMG}(deout, pars)
 }
 \arguments{
 \item{deout}{a \link{matrix} of outputs from deSolve}

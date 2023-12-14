@@ -4,8 +4,10 @@ date: "`r format(Sys.time(), '%B %d, %Y')`"
 output:
   html_document: 
     theme: paper 
-  pdf_document: default
-split_by: section+number
+vignette: >
+  %\VignetteIndexEntry{The Generalized Ross-Macdonald Adult Mosquito Model}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
 ---
   
 ```{r, echo=FALSE, warning=FALSE, messages=FALSE, purl=F}

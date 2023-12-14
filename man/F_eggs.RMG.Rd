@@ -4,7 +4,7 @@
 \alias{F_eggs.RMG}
 \title{Number of eggs laid by adult mosquitoes}
 \usage{
-F_eggs.RMG(t, y, pars)
+\method{F_eggs}{RMG}(t, y, pars)
 }
 \arguments{
 \item{t}{current simulation time}

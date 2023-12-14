@@ -4,7 +4,7 @@
 \alias{setup_MYZ.RMG}
 \title{Setup the RMG model}
 \usage{
-setup_MYZ.RMG(pars, MYZname, nPatches = 1, MYZopts = list(), calK = diag(1))
+\method{setup_MYZ}{RMG}(pars, MYZname, nPatches = 1, MYZopts = list(), calK = diag(1))
 }
 \arguments{
 \item{pars}{a \link{list}}

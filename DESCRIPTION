@@ -13,9 +13,11 @@ RoxygenNote: 7.2.3
 URL: https://dd-harp.github.io/mobwork/
 BugReports: https://github.com/dd-harp/mobwork/issues
 Roxygen: list(markdown = TRUE)
+Depends:
+  exDE
 Imports:
-  exDE,
   stats
 Suggests:
-    knitr
+    knitr,
+    rmarkdown 
 VignetteBuilder: knitr

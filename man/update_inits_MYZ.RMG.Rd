@@ -4,7 +4,7 @@
 \alias{update_inits_MYZ.RMG}
 \title{Make inits for RMG adult mosquito model}
 \usage{
-update_inits_MYZ.RMG(pars, y0)
+\method{update_inits_MYZ}{RMG}(pars, y0)
 }
 \arguments{
 \item{pars}{a \link{list}}
