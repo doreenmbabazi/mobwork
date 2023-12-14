@@ -2,7 +2,7 @@
 "_PACKAGE"
 
 ## usethis namespace: start
-#' @import "exDE"
+#' @import "dd-harp/exDE"
 ## usethis namespace: end
 NULL
 #>NULL
