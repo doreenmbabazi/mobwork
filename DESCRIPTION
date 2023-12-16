@@ -16,8 +16,10 @@ Roxygen: list(markdown = TRUE)
 Depends:
   exDE
 Imports:
-  stats
+  stats,
+  viridisLite
 Suggests:
     knitr,
+    viridis,
     rmarkdown 
 VignetteBuilder: knitr

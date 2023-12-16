@@ -144,7 +144,7 @@ xde_scaling = function(model, N=25, F_eir=NULL){
   mod0$Hpar <- model$Hpar
   model$outputs$eirpr = xde_scaling_eir(mod0, N)$outputs$eirpr
   model <- ssMYZ(model)
-  model <- xde_scaling_lambda(model)
+  model <- pr2Lambda(model)
   return(model)
 }
 

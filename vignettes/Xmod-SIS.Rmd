@@ -5,7 +5,7 @@ output:
   html_document: 
     theme: paper 
 vignette: >
-  %\VignetteIndexEntry{The Generalized Ross-Macdonald Adult Mosquito Model}
+  %\VignetteIndexEntry{The SIS Model for Human Infection}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---

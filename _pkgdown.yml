@@ -37,7 +37,7 @@ reference:
   contents: split_stratum_by_biting
 - subtitle: The SIS Model
   contents: split_stratum_by_biting.SIS
-- title: The Adult RMG Model
+- title: The Adult Mosquito RMG Model
   contents:
   - F_eggs.RMG
   - F_fqZ.RMG
@@ -52,6 +52,22 @@ reference:
   - parse_deout_MYZ.RMG
   - setup_MYZ.RMG
   - update_inits_MYZ.RMG
+- title: The Garki model
+  contents:
+  - F_X.garki
+  - F_pr.garki
+  - F_b.garki
+  - dXdt.garki
+  - setup_X.garki
+  - make_Xpar_garki
+  - make_Xinits_garki
+  - make_indices_X.garki
+  - parse_deout_X.garki
+  - get_inits_X.garki
+  - update_inits_X.garki
+  - HTC.garki
+  - xde_plot_X.garki
+  - xde_lines_X.garki
 - title: Scaling Relationships
   contents: ssMYZ
 - subtitle: Compute Scaling Relationships
@@ -67,4 +83,5 @@ reference:
   - xde_eir2pr
   - xde_pr2eir
   - xde_pr2ni
-
+  - xde_pr2m
+  - xde_pr2lambda

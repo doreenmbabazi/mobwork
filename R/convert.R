@@ -119,3 +119,63 @@ xde_pr2ni = function(pr, model, extend=FALSE){
   return(pr2ni)
 }
 
+
+#' @title Convert pr to mosquito density
+#' @description Use the outputs$eirpr table to convert a set of pr values into scaled mosquito density values
+#' @param pr a [vector]
+#' @param model a [list]
+#' @param extend a [logical] option to determine whether to extend outside the range
+#' @export
+xde_pr2m = function(pr, model, extend=FALSE){
+  with(model$outputs, stopifnot(exists("eirpr")))
+  PR = model$outputs$eirpr$pr
+  m = model$outputs$eirpr$m
+  if(extend==TRUE){
+    PR = c(0, PR, 1)
+    m = c(0, m, 10*max(m))
+  }
+  ix = which(pr<=max(PR) & pr>=min(PR))
+  get_m = function(pr){
+    if(pr == min(PR)) return(min(m))
+    if(pr == max(PR)) return(max(m))
+    ix = max(which(PR<pr))
+    ff = (pr-PR[ix])/(PR[ix+1]-PR[ix])
+    m=m[ix] + ff*(m[ix+1]-m[ix])
+    return(m)
+  }
+  mm = 0*pr-1
+  mm[ix] = sapply(pr[ix], get_m)
+  pr2m = list(pr=pr[ix], m=mm[ix])
+  if(length(ix)>0) pr2m$errors = c(pr=pr[-ix])
+  return(pr2m)
+}
+
+#' @title Convert pr to lambda
+#' @description Use the outputs$lambdapr table to convert a set of pr values into lambda values
+#' @param pr a [vector]
+#' @param model a [list]
+#' @param extend a [logical] option to determine whether to extend outside the range
+#' @export
+xde_pr2lambda = function(pr, model, extend=FALSE){
+  with(model$outputs, stopifnot(exists("eirpr")))
+  PR = model$outputs$eirpr$pr
+  lambda = model$outputs$eirpr$lambda
+  if(extend==TRUE){
+    PR = c(0, PR, 1)
+    lambda = c(0, lambda, 5*10^3/365)
+  }
+  ix = which(pr<=max(PR) & pr>=min(PR))
+  get_lambda = function(pr){
+    if(pr == min(PR)) return(min(lambda))
+    if(pr == max(PR)) return(max(lambda))
+    ix = max(which(PR<pr))
+    ff = (pr-PR[ix])/(PR[ix+1]-PR[ix])
+    lambda=lambda[ix] + ff*(lambda[ix+1]-lambda[ix])
+    return(lambda)
+  }
+  llambda = 0*pr-1
+  llambda[ix] = sapply(pr[ix], get_lambda)
+  pr2lambda = list(pr=pr[ix], lambda=llambda[ix])
+  if(length(ix)>0) pr2lambda$errors = c(pr=pr[-ix])
+  return(pr2lambda)
+}
