@@ -10,7 +10,7 @@
 
 
 
-<meta name="date" content="2023-12-15" />
+<meta name="date" content="2023-12-16" />
 
 <title>How to add a new model to the library: Human Infection</title>
 
@@ -375,7 +375,7 @@ display: none;
 
 <h1 class="title toc-ignore">How to add a new model to the library:
 Human Infection</h1>
-<h4 class="date">December 15, 2023</h4>
+<h4 class="date">December 16, 2023</h4>
 
 </div>
 
@@ -465,6 +465,8 @@ the initial values. By convention, the functions that get called are not
 
   return(pars)
 }</code></pre>
+<div id="make_xpar_..." class="section level3">
+<h3><code>make_Xpar_...</code></h3>
 <p>The function that makes parameters should assign</p>
 <pre class="r"><code>make_Xpar_SIS = function(pars, Xopts=list(),
                          b=0.55, r=1/180, c=0.15){
@@ -479,69 +481,115 @@ the initial values. By convention, the functions that get called are not
     pars$Xpar = Xpar
     return(pars)
 })}</code></pre>
+</div>
+<div id="make_xinits_..." class="section level3">
+<h3><code>make_Xinits_...</code></h3>
 <pre class="r"><code>make_Xinits_SIS = function(pars, Xopts = list(), X0=1){with(Xopts,{
   inits = list()
   inits$X0 = checkIt(X0, pars$nStrata)
   pars$Xinits = inits
   return(pars)
 })}</code></pre>
-<p>#’ <span class="citation">@title</span> Parse the output of deSolve
-and return variables for the SIS model #’ <span class="citation">@description</span> Implements [parse_deout_X] for the
-SIS model #’ <span class="citation">@inheritParams</span> parse_deout_X
-#’ <span class="citation">@return</span> none #’ <span class="citation">@export</span> parse_deout_X.SIS &lt;- function(deout,
-pars) { time = deout[,1] Hlist &lt;- parse_deout_H(deout, pars)
-with(Hlist,{ X = deout[,pars<span class="math inline">\(Xpar\)</span>X_ix+1] return(list(time=time, X=X,
-H=H)) })}</p>
-<p>#’ <span class="citation">@title</span> Compute the HTC for the SIS
-model #’ <span class="citation">@description</span> Implements [HTC] for
-the SIS model with demography. #’ <span class="citation">@inheritParams</span> HTC #’ <span class="citation">@return</span> a [numeric] vector #’ <span class="citation">@export</span> HTC.SIS &lt;- function(pars) {
-with(pars$Xpar, return(c/r) ) }</p>
-<p>#’ <span class="citation">@title</span> Add indices for human
-population to parameter list #’ <span class="citation">@description</span> Implements [make_indices_X] for the
-SIS model. #’ <span class="citation">@inheritParams</span>
-make_indices_X #’ <span class="citation">@return</span> none #’ <span class="citation">@importFrom</span> utils tail #’ <span class="citation">@export</span> make_indices_X.SIS &lt;- function(pars)
-{ pars<span class="math inline">\(Xpar\)</span>X_ix &lt;- seq(from =
-pars<span class="math inline">\(max_ix+1, length.out =
-pars\)</span>nStrata) pars<span class="math inline">\(max_ix &lt;-
-tail(pars\)</span>Xpar$X_ix, 1) return(pars) }</p>
-<p>#’ <span class="citation">@title</span> Make parameters for SIS human
-model #’ <span class="citation">@param</span> pars a [list] #’ <span class="citation">@param</span> b transmission probability (efficiency)
-from mosquito to human #’ <span class="citation">@param</span> c
-transmission probability (efficiency) from human to mosquito #’ <span class="citation">@param</span> r recovery rate #’ <span class="citation">@return</span> a [list] #’ <span class="citation">@export</span> make_parameters_X_SIS &lt;-
-function(pars, b, c, r) { stopifnot(is.numeric(b), is.numeric(c),
-is.numeric(r)) Xpar &lt;- list() class(Xpar) &lt;- c(‘SIS’, ‘SISdX’)
-Xpar<span class="math inline">\(b &lt;- b  Xpar\)</span>c &lt;- c
-Xpar<span class="math inline">\(r &lt;- r  pars\)</span>Xpar &lt;- Xpar
-return(pars) }</p>
-<p>#’ <span class="citation">@title</span> Make inits for SIS human
-model #’ <span class="citation">@param</span> pars a [list] #’ <span class="citation">@param</span> X0 size of infected population in each
-strata #’ <span class="citation">@return</span> none #’ <span class="citation">@export</span> make_inits_X_SIS &lt;- function(pars,
-X0) { stopifnot(is.numeric(X0)) pars$Xinits &lt;- list(X0=X0)
-return(pars) }</p>
-<p>#’ <span class="citation">@title</span> Update inits for the SIS
-human model from a vector of states #’ <span class="citation">@param</span> pars a [list] #’ <span class="citation">@param</span> y0 a vector of initial values #’ <span class="citation">@return</span> none #’ <span class="citation">@export</span> update_inits_X.SIS &lt;- function(pars,
-y0) { X0 = y0[pars<span class="math inline">\(Xpar\)</span>X_ix] pars =
-make_inits_X_SIS(pars, X0) return(pars) }</p>
-<p>#’ <span class="citation">@title</span> Return initial values as a
-vector #’ <span class="citation">@description</span> This method
-dispatches on the type of <code>pars$Xpar</code>. #’ <span class="citation">@param</span> pars a [list] #’ <span class="citation">@return</span> none #’ <span class="citation">@export</span> get_inits_X.SIS &lt;- function(pars){
-pars<span class="math inline">\(Xinits\)</span>X0 }</p>
-<p>#’ Plot the density of infected individuals for the SIS model #’ #’
-<span class="citation">@inheritParams</span> xde_plot_X #’ <span class="citation">@export</span> xde_plot_X.SIS = function(pars,
-clrs=“black”, llty=1, stable=FALSE, add_axes=TRUE){
-vars=with(pars$outputs,if(stable==TRUE){stable_orbits}else{orbits})</p>
-<p>if(add_axes==TRUE) with(vars$XH, plot(time, 0*time, type = “n”, ylim
-= c(0, max(H)), ylab = “# Infected”, xlab = “Time”))</p>
-<p>xde_lines_X(vars$XH, pars, clrs, llty) }</p>
-<p>#’ Add lines for the density of infected individuals for the SIS
-model #’ #’ <span class="citation">@inheritParams</span> xde_lines_X #’
-#’ <span class="citation">@export</span> xde_lines_X.SIS = function(XH,
-pars, clrs=“black”, llty=1){ with(XH,{ if(pars<span class="math inline">\(nStrata==1) lines(time, X, col=clrs[1], lty =
-llty[1])  if(pars\)</span>nStrata&gt;1){ if (length(clrs)==1)
-clrs=rep(clrs, pars<span class="math inline">\(nStrata)  if
-(length(llty)==1) llty=rep(llty, pars\)</span>nStrata) for(i in
-1:pars$nStrata){ lines(time, X[,i], col=clrs[i], lty = llty[i]) } }
-})}</p>
+</div>
+</div>
+<div id="parse_deout_x" class="section level2">
+<h2><code>parse_deout_X</code></h2>
+<pre class="r"><code>#&#39; @title Parse the output of deSolve and return variables for the SIS model
+#&#39; @description Implements [parse_deout_X] for the SIS model
+#&#39; @inheritParams parse_deout_X
+#&#39; @return none
+#&#39; @export
+parse_deout_X.SIS &lt;- function(deout, pars) {
+  time = deout[,1]
+  Hlist &lt;- parse_deout_H(deout, pars)
+  with(Hlist,{
+    X = deout[,pars$Xpar$X_ix+1]
+    return(list(time=time, X=X, H=H))
+})}</code></pre>
+</div>
+<div id="htc" class="section level2">
+<h2><code>HTC</code></h2>
+<pre class="r"><code>#&#39; @title Compute the HTC for the SIS model
+#&#39; @description Implements [HTC] for the SIS model with demography.
+#&#39; @inheritParams HTC
+#&#39; @return a [numeric] vector
+#&#39; @export
+HTC.SIS &lt;- function(pars) {
+  with(pars$Xpar,
+    return(c/r)
+  )
+}</code></pre>
+</div>
+<div id="make_indices_x" class="section level2">
+<h2><code>make_indices_X</code></h2>
+<pre class="r"><code>#&#39; @title Add indices for human population to parameter list
+#&#39; @description Implements [make_indices_X] for the SIS model.
+#&#39; @inheritParams make_indices_X
+#&#39; @return none
+#&#39; @importFrom utils tail
+#&#39; @export
+make_indices_X.SIS &lt;- function(pars) {
+  pars$Xpar$X_ix &lt;- seq(from = pars$max_ix+1, length.out = pars$nStrata)
+  pars$max_ix &lt;- tail(pars$Xpar$X_ix, 1)
+  return(pars)
+}</code></pre>
+</div>
+<div id="update_inits_x" class="section level2">
+<h2><code>update_inits_X</code></h2>
+<pre class="r"><code>#&#39; @title Update inits for the SIS human model from a vector of states
+#&#39; @param pars a [list]
+#&#39; @param y0 a vector of initial values
+#&#39; @return none
+#&#39; @export
+update_inits_X.SIS &lt;- function(pars, y0) {
+  X0 = y0[pars$Xpar$X_ix]
+  pars = make_inits_X_SIS(pars, X0)
+  return(pars)
+}</code></pre>
+</div>
+<div id="get_inits_x" class="section level2">
+<h2><code>get_inits_X</code></h2>
+<pre class="r"><code>#&#39; @title Return initial values as a vector
+#&#39; @description This method dispatches on the type of `pars$Xpar`.
+#&#39; @param pars a [list]
+#&#39; @return none
+#&#39; @export
+get_inits_X.SIS &lt;- function(pars){
+  pars$Xinits$X0
+}</code></pre>
+</div>
+<div id="xde_plot_x-and-xde_lines_x" class="section level2">
+<h2><code>xde_plot_X</code> and <code>xde_lines_X</code></h2>
+<pre class="r"><code>#&#39; Plot the density of infected individuals for the SIS model
+#&#39;
+#&#39; @inheritParams xde_plot_X
+#&#39; @export
+xde_plot_X.SIS = function(pars, clrs=&quot;black&quot;, llty=1, stable=FALSE, add_axes=TRUE){
+  vars=with(pars$outputs,if(stable==TRUE){stable_orbits}else{orbits})
+
+  if(add_axes==TRUE)
+    with(vars$XH,
+         plot(time, 0*time, type = &quot;n&quot;, ylim = c(0, max(H)),
+              ylab = &quot;# Infected&quot;, xlab = &quot;Time&quot;))
+
+  xde_lines_X(vars$XH, pars, clrs, llty)
+}</code></pre>
+<pre class="r"><code>#&#39; Add lines for the density of infected individuals for the SIS model
+#&#39;
+#&#39; @inheritParams xde_lines_X
+#&#39;
+#&#39; @export
+xde_lines_X.SIS = function(XH, pars, clrs=&quot;black&quot;, llty=1){
+  with(XH,{
+    if(pars$nStrata==1) lines(time, X, col=clrs[1], lty = llty[1])
+    if(pars$nStrata&gt;1){
+      if (length(clrs)==1) clrs=rep(clrs, pars$nStrata)
+      if (length(llty)==1) llty=rep(llty, pars$nStrata)
+      for(i in 1:pars$nStrata){
+        lines(time, X[,i], col=clrs[i], lty = llty[i])
+      }
+    }
+  })}</code></pre>
 </div>
 </div>
 <div class="footnotes footnotes-end-of-document">

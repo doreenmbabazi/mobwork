@@ -86,6 +86,8 @@ setup_X.SIS = function(pars, Xname, Xopts=list()){
 }
 ```
 
+### `make_Xpar_...` 
+
 The function that makes parameters should assign
 
 ```{r, eval=F}
@@ -104,8 +106,9 @@ make_Xpar_SIS = function(pars, Xopts=list(),
 })}
 ```
 
+### `make_Xinits_...` 
 
-```{r}
+```{r, eval=F}
 make_Xinits_SIS = function(pars, Xopts = list(), X0=1){with(Xopts,{
   inits = list()
   inits$X0 = checkIt(X0, pars$nStrata)
@@ -115,6 +118,9 @@ make_Xinits_SIS = function(pars, Xopts = list(), X0=1){with(Xopts,{
 
 ```
 
+## `parse_deout_X`
+
+```{r, eval=F}
 #' @title Parse the output of deSolve and return variables for the SIS model
 #' @description Implements [parse_deout_X] for the SIS model
 #' @inheritParams parse_deout_X
@@ -127,7 +133,11 @@ parse_deout_X.SIS <- function(deout, pars) {
     X = deout[,pars$Xpar$X_ix+1]
     return(list(time=time, X=X, H=H))
 })}
+```
 
+## `HTC` 
+
+```{r, eval=F}
 #' @title Compute the HTC for the SIS model
 #' @description Implements [HTC] for the SIS model with demography.
 #' @inheritParams HTC
@@ -138,7 +148,11 @@ HTC.SIS <- function(pars) {
     return(c/r)
   )
 }
+```
 
+## `make_indices_X` 
+
+```{r}
 #' @title Add indices for human population to parameter list
 #' @description Implements [make_indices_X] for the SIS model.
 #' @inheritParams make_indices_X
@@ -150,36 +164,11 @@ make_indices_X.SIS <- function(pars) {
   pars$max_ix <- tail(pars$Xpar$X_ix, 1)
   return(pars)
 }
+```
 
-#' @title Make parameters for SIS human model
-#' @param pars a [list]
-#' @param b transmission probability (efficiency) from mosquito to human
-#' @param c transmission probability (efficiency) from human to mosquito
-#' @param r recovery rate
-#' @return a [list]
-#' @export
-make_parameters_X_SIS <- function(pars, b, c, r) {
-  stopifnot(is.numeric(b), is.numeric(c), is.numeric(r))
-  Xpar <- list()
-  class(Xpar) <- c('SIS', 'SISdX')
-  Xpar$b <- b
-  Xpar$c <- c
-  Xpar$r <- r
-  pars$Xpar <- Xpar
-  return(pars)
-}
+## `update_inits_X` 
 
-#' @title Make inits for SIS human model
-#' @param pars a [list]
-#' @param X0 size of infected population in each strata
-#' @return none
-#' @export
-make_inits_X_SIS <- function(pars, X0) {
-  stopifnot(is.numeric(X0))
-  pars$Xinits <- list(X0=X0)
-  return(pars)
-}
-
+```{r, eval=F}
 #' @title Update inits for the SIS human model from a vector of states
 #' @param pars a [list]
 #' @param y0 a vector of initial values
@@ -190,8 +179,11 @@ update_inits_X.SIS <- function(pars, y0) {
   pars = make_inits_X_SIS(pars, X0)
   return(pars)
 }
+```
 
+## `get_inits_X` 
 
+```{r, eval=F}
 #' @title Return initial values as a vector
 #' @description This method dispatches on the type of `pars$Xpar`.
 #' @param pars a [list]
@@ -200,7 +192,11 @@ update_inits_X.SIS <- function(pars, y0) {
 get_inits_X.SIS <- function(pars){
   pars$Xinits$X0
 }
+```
 
+## `xde_plot_X` and `xde_lines_X` 
+
+```{r, eval=F}
 #' Plot the density of infected individuals for the SIS model
 #'
 #' @inheritParams xde_plot_X
@@ -215,8 +211,9 @@ xde_plot_X.SIS = function(pars, clrs="black", llty=1, stable=FALSE, add_axes=TRU
 
   xde_lines_X(vars$XH, pars, clrs, llty)
 }
+```
 
-
+```{r, eval=F}
 #' Add lines for the density of infected individuals for the SIS model
 #'
 #' @inheritParams xde_lines_X
@@ -233,3 +230,4 @@ xde_lines_X.SIS = function(XH, pars, clrs="black", llty=1){
       }
     }
   })}
+```

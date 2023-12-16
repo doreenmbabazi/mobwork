@@ -68,6 +68,23 @@ reference:
   - HTC.garki
   - xde_plot_X.garki
   - xde_lines_X.garki
+- title: The SIR model
+  contents:
+  - F_X.SIR
+  - F_pr.SIR
+  - F_b.SIR
+  - dXdt.SIRdX
+  - dXdt.SIRdXdH
+  - setup_X.SIR
+  - make_Xpar_SIR
+  - make_Xinits_SIR
+  - make_indices_X.SIR
+  - parse_deout_X.SIR
+  - get_inits_X.SIR
+  - update_inits_X.SIR
+  - HTC.SIR
+  - xde_plot_X.SIR
+  - xde_lines_X.SIR
 - title: Scaling Relationships
   contents: ssMYZ
 - subtitle: Compute Scaling Relationships
