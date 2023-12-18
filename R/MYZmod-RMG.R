@@ -32,8 +32,9 @@ F_fqZ.RMG <- function(t, y, pars) {
 #' @return a [numeric] vector of length `nPatches`
 #' @export
 F_eggs.RMG <- function(t, y, pars) {
+
+  G <- with(pars$ix$MYZ, y[Gu_ix] + y[Gy_ix] + y[Gz_ix])
   with(pars$MYZpar, {
-    G <- y[Gu_ix] + y[Gy_ix] + y[Gz_ix]
     return(G*nu*eggsPerBatch)
   })
 }
@@ -43,18 +44,17 @@ F_eggs.RMG <- function(t, y, pars) {
 #' @inheritParams exDE::dMYZdt
 #' @return a [numeric] vector
 #' @export
-dMYZdt.RMG <- function(t, y, pars, Lambda, kappa) {
+dMYZdt.RMG <- function(t, y, pars, Lambda, kappa) {with(pars{
 
-  nPatches <- pars$nPatches
+  U <- y[ix$MYZ$U_ix]
+  Gu <- y[ix$MYZ$Gu_ix]
+  Y <- y[ix$MYZ$Y_ix]
+  Gy <- y[ix$MYZ$Gy_ix]
+  Z <- y[ix$MYZ$Z_ix]
+  Gz <- y[ix$MYZ$Gz_ix]
 
-  with(pars$MYZpar,{
+  with(MYZpar,{
 
-    U <- y[U_ix]
-    Gu <- y[Gu_ix]
-    Y <- y[Y_ix]
-    Gy <- y[Gy_ix]
-    Z <- y[Z_ix]
-    Gz <- y[Gz_ix]
 
     Omega <- make_Omega(g, sigma, calK, nPatches)
 
@@ -67,7 +67,7 @@ dMYZdt.RMG <- function(t, y, pars, Lambda, kappa) {
 
     return(c(dUdt, dGudt, dYdt, dGydt, dZdt, dGzdt))
   })
-}
+})}
 
 #' @title Setup the RMG model
 #' @description Implements [setup_MYZ] for the RMG model
@@ -165,20 +165,20 @@ make_MYZinits_RMG = function(pars, MYZopts = list(),
 #' @export
 make_indices_MYZ.RMG <- function(pars) {
 
-  pars$MYZpar$U_ix <- seq(from = pars$max_ix+1, length.out = pars$nPatches)
-  pars$max_ix <- tail(pars$MYZpar$U_ix, 1)
+  pars$ix$MYZ$U_ix <- seq(from = pars$max_ix+1, length.out = pars$nPatches)
+  pars$max_ix <- tail(pars$ix$MYZ$U_ix, 1)
 
-  pars$MYZpar$Gu_ix <- seq(from = pars$max_ix+1, length.out = pars$nPatches)
-  pars$max_ix <- tail(pars$MYZpar$Gu_ix, 1)
+  pars$ix$MYZ$Gu_ix <- seq(from = pars$max_ix+1, length.out = pars$nPatches)
+  pars$max_ix <- tail(pars$ix$MYZ$Gu_ix, 1)
 
-  pars$MYZpar$Y_ix <- seq(from = pars$max_ix+1, length.out = pars$nPatches)
-  pars$max_ix <- tail(pars$MYZpar$Y_ix, 1)
+  pars$ix$MYZ$Y_ix <- seq(from = pars$max_ix+1, length.out = pars$nPatches)
+  pars$max_ix <- tail(pars$ix$MYZ$Y_ix, 1)
 
-  pars$MYZpar$Gy_ix <- seq(from = pars$max_ix+1, length.out = pars$nPatches)
-  pars$max_ix <- tail(pars$MYZpar$Gy_ix, 1)
+  pars$ix$MYZ$Gy_ix <- seq(from = pars$max_ix+1, length.out = pars$nPatches)
+  pars$max_ix <- tail(pars$ix$MYZ$Gy_ix, 1)
 
-  pars$MYZpar$Z_ix <- seq(from = pars$max_ix+1, length.out = pars$nPatches)
-  pars$max_ix <- tail(pars$MYZpar$Z_ix, 1)
+  pars$ix$MYZ$Z_ix <- seq(from = pars$max_ix+1, length.out = pars$nPatches)
+  pars$max_ix <- tail(pars$ix$MYZ$Z_ix, 1)
 
   pars$MYZpar$Gz_ix <- seq(from = pars$max_ix+1, length.out = pars$nPatches)
   pars$max_ix <- tail(pars$MYZpar$Gz_ix, 1)
@@ -226,17 +226,18 @@ make_parameters_MYZ_RMG <- function(pars, g, sigma, f, q, nu, eggsPerBatch, eip,
 #' @export
 parse_deout_MYZ.RMG <- function(deout, pars) {
   time = deout[,1]
-  U = deout[,pars$MYZpar$U_ix+1]
-  Gu = deout[,pars$MYZpar$Gu_ix+1]
-  Y = deout[,pars$MYZpar$Y_ix+1]
-  Gy = deout[,pars$MYZpar$Gy_ix+1]
-  Z = deout[,pars$MYZpar$Z_ix+1]
-  Gz = deout[,pars$MYZpar$Gz_ix+1]
+  with(pars$ix$MYZ,{
+  U = deout[,U_ix+1]
+  Gu = deout[,Gu_ix+1]
+  Y = deout[,Y_ix+1]
+  Gy = deout[,Gy_ix+1]
+  Z = deout[,Z_ix+1]
+  Gz = deout[,Gz_ix+1]
   M =  U+Y+Z+Gu+Gy+Gz
   y = (Y + Gy)/M
   z = (Z + Gz)/M
   return(list(time=time, U=U, Gu=Gu, Y=Y, Gy=Gy, Z=Z, Gz=Gz, M=M, y=y, z=z))
-}
+})}
 
 #' @title Make inits for RMG adult mosquito model
 #' @param pars a [list]
@@ -244,12 +245,12 @@ parse_deout_MYZ.RMG <- function(deout, pars) {
 #' @return none
 #' @export
 update_inits_MYZ.RMG <- function(pars, y0) {
-  U0 = y0[pars$MYZpar$U_ix]
-  Gu0 = y0[pars$MYZpar$Gu_ix]
-  Y0 = y0[pars$MYZpar$Y_ix]
-  Gy0 = y0[pars$MYZpar$Gy_ix]
-  Z0 = y0[pars$MYZpar$Z_ix]
-  Gz0 = y0[pars$MYZpar$Gz_ix]
+  U0 = y0[pars$ix$MYZ$U_ix]
+  Gu0 = y0[pars$ix$MYZ$Gu_ix]
+  Y0 = y0[pars$ix$MYZ$Y_ix]
+  Gy0 = y0[pars$ix$MYZ$Gy_ix]
+  Z0 = y0[pars$ix$MYZ$Z_ix]
+  Gz0 = y0[pars$ix$MYZ$Gz_ix]
   pars = make_inits_MYZ_RMG(pars, U0, Gu0, Y0, Gy0, Z0, Gz0)
   return(pars)
 }

@@ -9,6 +9,8 @@ navbar:
     menu:
     - text: The SIS model
       href: articles/Xmod-SIS.html
+    - text: How to add a new X model
+      href: articles/X-How_To_Add_Model.html
   right:
   - icon: fa-github
     href: https://github.com/dd-harp/exDE/

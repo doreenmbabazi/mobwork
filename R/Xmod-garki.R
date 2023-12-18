@@ -26,7 +26,8 @@ F_b.garki <- function(y, pars) {
 #' @return a [numeric] vector of length `nStrata`
 #' @export
 F_pr.garki <- function(varslist, pars) {
-  pr = with(pars$Xpar,with(varslist$XH, (q1*y1+q2*y2+q3*y3)/H))
+#  pr = with(pars$Xpar,with(varslist$XH, (q1*y1+q2*y2+q3*y3)/H))
+  pr = with(pars$Xpar,with(varslist$XH, (y1+y2+y3)/H))
   return(pr)
 }
 #' @title Derivatives for human population
@@ -35,13 +36,13 @@ F_pr.garki <- function(varslist, pars) {
 #' @return a [numeric] vector
 #' @export
 dXdt.garki = function(t, y, pars, FoI){
-  x1 <- y[pars$Xpar$x1_ix]
-  x2 <- y[pars$Xpar$x2_ix]
-  x3 <- y[pars$Xpar$x3_ix]
-  x4 <- y[pars$Xpar$x4_ix]
-  y1 <- y[pars$Xpar$y1_ix]
-  y2 <- y[pars$Xpar$y2_ix]
-  y3 <- y[pars$Xpar$y3_ix]
+  x1 <- y[pars$ix$X$x1_ix]
+  x2 <- y[pars$ix$X$x2_ix]
+  x3 <- y[pars$ix$X$x3_ix]
+  x4 <- y[pars$ix$X$x4_ix]
+  y1 <- y[pars$ix$X$y1_ix]
+  y2 <- y[pars$ix$X$y2_ix]
+  y3 <- y[pars$ix$X$y3_ix]
   H  <- y[pars$H_ix]
 
   with(pars$Xpar,{
@@ -82,26 +83,26 @@ setup_X.garki = function(pars, Xname, Xopts=list()){
 #' @importFrom utils tail
 #' @export
 make_indices_X.garki <- function(pars) {
-  pars$Xpar$x1_ix <- seq(from = pars$max_ix+1, length.out = pars$nStrata)
-  pars$max_ix <- tail(pars$Xpar$x1_ix, 1)
+  pars$ix$X$x1_ix <- seq(from = pars$max_ix+1, length.out = pars$nStrata)
+  pars$max_ix <- tail(pars$ix$X$x1_ix, 1)
 
-  pars$Xpar$x2_ix <- seq(from = pars$max_ix+1, length.out = pars$nStrata)
-  pars$max_ix <- tail(pars$Xpar$x2_ix, 1)
+  pars$ix$X$x2_ix <- seq(from = pars$max_ix+1, length.out = pars$nStrata)
+  pars$max_ix <- tail(pars$ix$X$x2_ix, 1)
 
-  pars$Xpar$y1_ix <- seq(from = pars$max_ix+1, length.out = pars$nStrata)
-  pars$max_ix <- tail(pars$Xpar$y1_ix, 1)
+  pars$ix$X$y1_ix <- seq(from = pars$max_ix+1, length.out = pars$nStrata)
+  pars$max_ix <- tail(pars$ix$X$y1_ix, 1)
 
-  pars$Xpar$y2_ix <- seq(from = pars$max_ix+1, length.out = pars$nStrata)
-  pars$max_ix <- tail(pars$Xpar$y2_ix, 1)
+  pars$ix$X$y2_ix <- seq(from = pars$max_ix+1, length.out = pars$nStrata)
+  pars$max_ix <- tail(pars$ix$X$y2_ix, 1)
 
-  pars$Xpar$y3_ix <- seq(from = pars$max_ix+1, length.out = pars$nStrata)
-  pars$max_ix <- tail(pars$Xpar$y3_ix, 1)
+  pars$ix$X$y3_ix <- seq(from = pars$max_ix+1, length.out = pars$nStrata)
+  pars$max_ix <- tail(pars$ix$X$y3_ix, 1)
 
-  pars$Xpar$x3_ix <- seq(from = pars$max_ix+1, length.out = pars$nStrata)
-  pars$max_ix <- tail(pars$Xpar$x3_ix, 1)
+  pars$ix$X$x3_ix <- seq(from = pars$max_ix+1, length.out = pars$nStrata)
+  pars$max_ix <- tail(pars$ix$X$x3_ix, 1)
 
-  pars$Xpar$x4_ix <- seq(from = pars$max_ix+1, length.out = pars$nStrata)
-  pars$max_ix <- tail(pars$Xpar$x4_ix, 1)
+  pars$ix$X$x4_ix <- seq(from = pars$max_ix+1, length.out = pars$nStrata)
+  pars$max_ix <- tail(pars$ix$X$x4_ix, 1)
   return(pars)
 }
 
@@ -195,13 +196,13 @@ get_inits_X.garki <- function(pars){
 #' @return none
 #' @export
 update_inits_X.garki <- function(pars, y0){
-  x1 <- y0[pars$Xpar$x1_ix]
-  x2 <- y0[pars$Xpar$x2_ix]
-  x3 <- y0[pars$Xpar$x3_ix]
-  x4 <- y0[pars$Xpar$x4_ix]
-  y1 <- y0[pars$Xpar$y1_ix]
-  y2 <- y0[pars$Xpar$y2_ix]
-  y3 <- y0[pars$Xpar$y3_ix]
+  x1 <- y0[pars$ix$X$x1_ix]
+  x2 <- y0[pars$ix$X$x2_ix]
+  x3 <- y0[pars$ix$X$x3_ix]
+  x4 <- y0[pars$ix$X$x4_ix]
+  y1 <- y0[pars$ix$X$y1_ix]
+  y2 <- y0[pars$ix$X$y2_ix]
+  y3 <- y0[pars$ix$X$y3_ix]
   pars = make_Xinits_garki(pars, x1=x1, x2=x2, y1=y1, y2=y2, y3=y3, x3=x3, x4=x4)
   return(pars)
 }
@@ -261,13 +262,13 @@ parse_deout_X.garki <- function(deout, pars) {
   time = deout[,1]
   Hlist <- parse_deout_H(deout, pars)
   with(Hlist,{
-    x1 = deout[,pars$Xpar$x1_ix+1]
-    x2 = deout[,pars$Xpar$x2_ix+1]
-    y1 = deout[,pars$Xpar$y1_ix+1]
-    y2 = deout[,pars$Xpar$y2_ix+1]
-    y3 = deout[,pars$Xpar$y3_ix+1]
-    x3 = deout[,pars$Xpar$x3_ix+1]
-    x4 = deout[,pars$Xpar$x4_ix+1]
+    x1 = deout[,pars$ix$X$x1_ix+1]
+    x2 = deout[,pars$ix$X$x2_ix+1]
+    y1 = deout[,pars$ix$X$y1_ix+1]
+    y2 = deout[,pars$ix$X$y2_ix+1]
+    y3 = deout[,pars$ix$X$y3_ix+1]
+    x3 = deout[,pars$ix$X$x3_ix+1]
+    x4 = deout[,pars$ix$X$x4_ix+1]
     return(list(time=time, x1=x1, x2=x2, y1=y1, y2=y2, y3=y3, x3=x3, x4=x4, H=H))
   })}
 

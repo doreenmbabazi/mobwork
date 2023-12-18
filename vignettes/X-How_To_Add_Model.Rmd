@@ -18,19 +18,50 @@ Adding a new model to the dynamical component of class $\cal X$ -- human infecti
 The underlying mathematics has been explained in [Spatial Dynamics of Malaria Transmission](https://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1010684){target="_blank"}
 ^[Wu SL, Henry JM, Citron DT, Mbabazi Ssebuliba D, Nakakawa Nsumba J, Sánchez C. HM, et al. (2023) Spatial dynamics of malaria transmission. PLoS Comput Biol 19(6): e1010684. https://doi.org/10.1371/journal.pcbi.1010684]
 
-## `F_X` 
+## Terms, *etcetera*
+
+### `F_X` 
 
 The function `F_X` returns the effective density of infectious humans for each stratum. In the `SIS` model, the returned value is $cX$ where prevalence is $X/H$. The constant $c$ is the probability a mosquito would become infected after blood feeding on an infected human. If there are multiple infectious classes, then this
 
-## `F_pr`
+```{r, eval=F, purl=F}
+#' @title Size of effective infectious human population
+#' @description Implements [F_X] for the SIS model.
+#' @inheritParams F_X
+#' @return a [numeric] vector of length `nStrata`
+#' @export
+F_X.SIS <- function(t, y, pars) {
+  with(pars$Xpar, y[X_ix]*c)
+}
+```
 
-The function `F_pr` computes the models *true* prevalence using the variable names. It is passed the `varslist` that is created by `parse_deout` (see below). 
+The following is a template for a model: 
 
-## `F_b`
+```{r, eval=F, purl=F}
+#' @title Size of effective infectious human population
+#' @description Implements [F_X] for the NEW model.
+#' @inheritParams F_X
+#' @return a [numeric] vector of length `nStrata`
+#' @export
+F_X.NEW <- function(t, y, pars) {
+  with(pars$Xpar, 
+       ...  
+  )
+}
+```
+
+
+
+
+
+### `F_b`
 
 The function `F_b` returns the model-defined probability an infective bite by a mosquito would cause an infection. This could include the combined effects of inefficient transmission, pre-erytrocytic immunity, and perhaps some effects of blood stage immunity. In a model with no effect, the return value would be $1$.  
 
-## `dXdt` 
+## Dynamics
+
+
+### `dXdt` 
 
 The function must compute and return the derivatives. The style guidelines are to:
 
@@ -55,6 +86,8 @@ dXdt.SIS <- function(t, y, pars, FoI) {
 }
 ```
 
+### `dXHdt` 
+
 If the model will have human demography, then each variable's derivative must be transformed by the same matrix as the human population density, `H`.  Any disease induced mortality should be included in the derivative describing changes in human population density, `dH`. 
 
 ```{r, eval=F}
@@ -72,7 +105,9 @@ dXdt.SISdH <- function(t, y, pars, FoI) {
 }
 ```
 
-## `setup_X`
+## Setup 
+
+### `setup_X`
 
 This function must set up `Xpar` and it must also set up the initial values. By convention, the functions that get called are not `S3` class functions.   
 
@@ -106,6 +141,7 @@ make_Xpar_SIS = function(pars, Xopts=list(),
 })}
 ```
 
+
 ### `make_Xinits_...` 
 
 ```{r, eval=F}
@@ -118,7 +154,54 @@ make_Xinits_SIS = function(pars, Xopts = list(), X0=1){with(Xopts,{
 
 ```
 
-## `parse_deout_X`
+### `make_indices_X` 
+
+```{r}
+#' @title Add indices for human population to parameter list
+#' @description Implements [make_indices_X] for the SIS model.
+#' @inheritParams make_indices_X
+#' @return none
+#' @importFrom utils tail
+#' @export
+make_indices_X.SIS <- function(pars) {
+  pars$Xpar$X_ix <- seq(from = pars$max_ix+1, length.out = pars$nStrata)
+  pars$max_ix <- tail(pars$Xpar$X_ix, 1)
+  return(pars)
+}
+```
+
+## Initial Values
+
+### `update_inits_X` 
+
+```{r, eval=F}
+#' @title Update inits for the SIS human model from a vector of states
+#' @param pars a [list]
+#' @param y0 a vector of initial values
+#' @return none
+#' @export
+update_inits_X.SIS <- function(pars, y0) {
+  X0 = y0[pars$Xpar$X_ix]
+  pars = make_inits_X_SIS(pars, X0)
+  return(pars)
+}
+```
+
+### `get_inits_X` 
+
+```{r, eval=F}
+#' @title Return initial values as a vector
+#' @description This method dispatches on the type of `pars$Xpar`.
+#' @param pars a [list]
+#' @return none
+#' @export
+get_inits_X.SIS <- function(pars){
+  pars$Xinits$X0
+}
+```
+
+## Outputs
+### `parse_deout_X`
 
 ```{r, eval=F}
 #' @title Parse the output of deSolve and return variables for the SIS model
@@ -135,7 +218,23 @@ parse_deout_X.SIS <- function(deout, pars) {
 })}
 ```
 
-## `HTC` 
+### `F_pr`
+
+The function `F_pr` computes the models *true* prevalence using the variable names. It is passed the `varslist` that is created by `parse_deout` (see below). 
+
+```{r}
+#' @title Compute the "true" prevalence of infection / parasite rate
+#' @description Implements [F_pr] for the SIS model.
+#' @inheritParams F_pr
+#' @return a [numeric] vector of length `nStrata`
+#' @export
+F_pr.SIS <- function(varslist, pars) {
+  pr = with(varslist$XH, X/H)
+  return(pr)
+}
+```
+
+### `HTC` 
 
 ```{r, eval=F}
 #' @title Compute the HTC for the SIS model
@@ -150,51 +249,9 @@ HTC.SIS <- function(pars) {
 }
 ```
 
-## `make_indices_X` 
+## Plotting 
 
-```{r}
-#' @title Add indices for human population to parameter list
-#' @description Implements [make_indices_X] for the SIS model.
-#' @inheritParams make_indices_X
-#' @return none
-#' @importFrom utils tail
-#' @export
-make_indices_X.SIS <- function(pars) {
-  pars$Xpar$X_ix <- seq(from = pars$max_ix+1, length.out = pars$nStrata)
-  pars$max_ix <- tail(pars$Xpar$X_ix, 1)
-  return(pars)
-}
-```
-
-## `update_inits_X` 
-
-```{r, eval=F}
-#' @title Update inits for the SIS human model from a vector of states
-#' @param pars a [list]
-#' @param y0 a vector of initial values
-#' @return none
-#' @export
-update_inits_X.SIS <- function(pars, y0) {
-  X0 = y0[pars$Xpar$X_ix]
-  pars = make_inits_X_SIS(pars, X0)
-  return(pars)
-}
-```
-
-## `get_inits_X` 
-
-```{r, eval=F}
-#' @title Return initial values as a vector
-#' @description This method dispatches on the type of `pars$Xpar`.
-#' @param pars a [list]
-#' @return none
-#' @export
-get_inits_X.SIS <- function(pars){
-  pars$Xinits$X0
-}
-```
-
-## `xde_plot_X` and `xde_lines_X` 
+### `xde_plot_X` 
 
 ```{r, eval=F}
 #' Plot the density of infected individuals for the SIS model
@@ -212,6 +269,8 @@ xde_plot_X.SIS = function(pars, clrs="black", llty=1, stable=FALSE, add_axes=TRU
   xde_lines_X(vars$XH, pars, clrs, llty)
 }
 ```
+
+### `xde_lines_X` 
 
 ```{r, eval=F}
 #' Add lines for the density of infected individuals for the SIS model
