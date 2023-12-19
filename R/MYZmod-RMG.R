@@ -23,7 +23,7 @@ MBionomics.RMG <- function(t, y, pars) {
 #' @return a [numeric] vector of length `nPatches`
 #' @export
 F_fqZ.RMG <- function(t, y, pars) {
-  with(pars$MYZpar, f*q)*y[pars$MYZpar$Z_ix]
+  with(pars$MYZpar, f*q)*y[pars$ix$MYZ$Z_ix]
 }
 
 #' @title Number of eggs laid by adult mosquitoes

@@ -19,10 +19,16 @@
     <loc>https://dd-harp.github.io/mobwork/index.html</loc>
   </url>
   <url>
+    <loc>https://dd-harp.github.io/mobwork/reference/F_X.SEIR.html</loc>
+  </url>
+  <url>
     <loc>https://dd-harp.github.io/mobwork/reference/F_X.SIR.html</loc>
   </url>
   <url>
     <loc>https://dd-harp.github.io/mobwork/reference/F_X.garki.html</loc>
+  </url>
+  <url>
+    <loc>https://dd-harp.github.io/mobwork/reference/F_b.SEIR.html</loc>
   </url>
   <url>
     <loc>https://dd-harp.github.io/mobwork/reference/F_b.SIR.html</loc>
@@ -37,10 +43,16 @@
     <loc>https://dd-harp.github.io/mobwork/reference/F_fqZ.RMG.html</loc>
   </url>
   <url>
+    <loc>https://dd-harp.github.io/mobwork/reference/F_pr.SEIR.html</loc>
+  </url>
+  <url>
     <loc>https://dd-harp.github.io/mobwork/reference/F_pr.SIR.html</loc>
   </url>
   <url>
     <loc>https://dd-harp.github.io/mobwork/reference/F_pr.garki.html</loc>
+  </url>
+  <url>
+    <loc>https://dd-harp.github.io/mobwork/reference/HTC.SEIR.html</loc>
   </url>
   <url>
     <loc>https://dd-harp.github.io/mobwork/reference/HTC.SIR.html</loc>
@@ -55,6 +67,12 @@
     <loc>https://dd-harp.github.io/mobwork/reference/dMYZdt.RMG.html</loc>
   </url>
   <url>
+    <loc>https://dd-harp.github.io/mobwork/reference/dXdt.SEIRdX.html</loc>
+  </url>
+  <url>
+    <loc>https://dd-harp.github.io/mobwork/reference/dXdt.SEIRdXdH.html</loc>
+  </url>
+  <url>
     <loc>https://dd-harp.github.io/mobwork/reference/dXdt.SIRdX.html</loc>
   </url>
   <url>
@@ -65,6 +83,9 @@
   </url>
   <url>
     <loc>https://dd-harp.github.io/mobwork/reference/get_inits_MYZ.RMG.html</loc>
+  </url>
+  <url>
+    <loc>https://dd-harp.github.io/mobwork/reference/get_inits_X.SEIR.html</loc>
   </url>
   <url>
     <loc>https://dd-harp.github.io/mobwork/reference/get_inits_X.SIR.html</loc>
@@ -130,10 +151,16 @@
     <loc>https://dd-harp.github.io/mobwork/reference/make_MYZpar_RMG.html</loc>
   </url>
   <url>
+    <loc>https://dd-harp.github.io/mobwork/reference/make_Xinits_SEIR.html</loc>
+  </url>
+  <url>
     <loc>https://dd-harp.github.io/mobwork/reference/make_Xinits_SIR.html</loc>
   </url>
   <url>
     <loc>https://dd-harp.github.io/mobwork/reference/make_Xinits_garki.html</loc>
+  </url>
+  <url>
+    <loc>https://dd-harp.github.io/mobwork/reference/make_Xpar_SEIR.html</loc>
   </url>
   <url>
     <loc>https://dd-harp.github.io/mobwork/reference/make_Xpar_SIR.html</loc>
@@ -143,6 +170,9 @@
   </url>
   <url>
     <loc>https://dd-harp.github.io/mobwork/reference/make_indices_MYZ.RMG.html</loc>
+  </url>
+  <url>
+    <loc>https://dd-harp.github.io/mobwork/reference/make_indices_X.SEIR.html</loc>
   </url>
   <url>
     <loc>https://dd-harp.github.io/mobwork/reference/make_indices_X.SIR.html</loc>
@@ -161,6 +191,9 @@
   </url>
   <url>
     <loc>https://dd-harp.github.io/mobwork/reference/parse_deout_MYZ.RMG.html</loc>
+  </url>
+  <url>
+    <loc>https://dd-harp.github.io/mobwork/reference/parse_deout_X.SEIR.html</loc>
   </url>
   <url>
     <loc>https://dd-harp.github.io/mobwork/reference/parse_deout_X.SIR.html</loc>
@@ -223,6 +256,9 @@
     <loc>https://dd-harp.github.io/mobwork/reference/setup_MYZ.RMG.html</loc>
   </url>
   <url>
+    <loc>https://dd-harp.github.io/mobwork/reference/setup_X.SEIR.html</loc>
+  </url>
+  <url>
     <loc>https://dd-harp.github.io/mobwork/reference/setup_X.SIR.html</loc>
   </url>
   <url>
@@ -241,6 +277,9 @@
     <loc>https://dd-harp.github.io/mobwork/reference/update_inits_MYZ.RMG.html</loc>
   </url>
   <url>
+    <loc>https://dd-harp.github.io/mobwork/reference/update_inits_X.SEIR.html</loc>
+  </url>
+  <url>
     <loc>https://dd-harp.github.io/mobwork/reference/update_inits_X.SIR.html</loc>
   </url>
   <url>
@@ -253,10 +292,16 @@
     <loc>https://dd-harp.github.io/mobwork/reference/xde_eir2pr.html</loc>
   </url>
   <url>
+    <loc>https://dd-harp.github.io/mobwork/reference/xde_lines_X.SEIR.html</loc>
+  </url>
+  <url>
     <loc>https://dd-harp.github.io/mobwork/reference/xde_lines_X.SIR.html</loc>
   </url>
   <url>
     <loc>https://dd-harp.github.io/mobwork/reference/xde_lines_X.garki.html</loc>
+  </url>
+  <url>
+    <loc>https://dd-harp.github.io/mobwork/reference/xde_plot_X.SEIR.html</loc>
   </url>
   <url>
     <loc>https://dd-harp.github.io/mobwork/reference/xde_plot_X.SIR.html</loc>

@@ -71,7 +71,7 @@
   <main id="main" class="col-md-9"><div class="page-header">
       <img src="" class="logo" alt=""><h1>The `SIS` model for malaria</h1>
             
-            <h4 data-toc-skip class="date">December 18, 2023</h4>
+            <h4 data-toc-skip class="date">December 19, 2023</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/dd-harp/mobwork/blob/HEAD/vignettes/Xmod-SIS.Rmd" class="external-link"><code>vignettes/Xmod-SIS.Rmd</code></a></small>
       <div class="d-none name"><code>Xmod-SIS.Rmd</code></div>
@@ -79,10 +79,24 @@
 
     
     
+<div class="section level2">
+<h2 id="section"></h2>
 <p>The SIS model, as it is now called, is a simple compartmental model,
 first introduced by Ross. It is included in <code>exDE</code> as a base
 model.</p>
-<p><strong>Parameters</strong></p>
+<div class="section level4">
+<h4 id="variables">Variables<a class="anchor" aria-label="anchor" href="#variables"></a>
+</h4>
+<ul>
+<li><p><span class="math inline">\(X\)</span> is the density of infected
+humans</p></li>
+<li><p><span class="math inline">\(H\)</span> is the density of
+humans</p></li>
+</ul>
+</div>
+<div class="section level4">
+<h4 id="parameters">Parameters<a class="anchor" aria-label="anchor" href="#parameters"></a>
+</h4>
 <ul>
 <li><p><span class="math inline">\(r\)</span> is the rate infections
 clear</p></li>
@@ -92,25 +106,37 @@ infection.</p></li>
 <li><p><span class="math inline">\(c\)</span> is the fraction of bites
 on an infectious human that would infect a mosquito.</p></li>
 </ul>
-<p><strong>Dynamics</strong></p>
+</div>
+<div class="section level4">
+<h4 id="dynamics">Dynamics<a class="anchor" aria-label="anchor" href="#dynamics"></a>
+</h4>
 <p>The model defined herein is defined in two parts. To model exposure
 and infection (<em>i.e.</em> the conversion of eir into foi), we assume
 that the fraction of infective bites that cause an infection is <span class="math inline">\(b\)</span>. The dynamics are given by:</p>
 <p><span class="math display">\[
 \frac{dX}{dt} = h (H-X)-rX
 \]</span></p>
+</div>
+<div class="section level4">
+<h4 id="terms">Terms<a class="anchor" aria-label="anchor" href="#terms"></a>
+</h4>
 <p><strong>Net Infectiousness</strong></p>
 <p>True prevalence is:</p>
 <p><span class="math display">\[x = \frac{X}{H}.\]</span></p>
-<p>In our implementation, net infectiousness is linearly proportional to
-prevalence:</p>
+<p>In our implementation, net infectiousness (NI) is linearly
+proportional to prevalence:</p>
 <p><span class="math display">\[c x.\]</span></p>
-<p><em>Exposure and Infection</em></p>
+<p><strong>Human Transmitting Capacity</strong></p>
+<p>After exposure, a human would remain infected for <span class="math inline">\(1/r\)</span> days, transmitting with probability
+<span class="math inline">\(c\)</span> so:</p>
+<p><span class="math display">\[c/r\]</span></p>
+<p><strong>Exposure and Infection</strong></p>
 <p>In this model family, there is no immunity. The model assumes that a
 constant fraction of all infectious bites, <span class="math inline">\(b\)</span>, cause an infection.</p>
-<div class="section level2">
-<h2 id="references">References<a class="anchor" aria-label="anchor" href="#references"></a>
-</h2>
+</div>
+<div class="section level3">
+<h3 id="references">References<a class="anchor" aria-label="anchor" href="#references"></a>
+</h3>
 <ol style="list-style-type: decimal">
 <li>Ross R. Report on the Prevention of Malaria in Mauritius. London:
 Waterlow; 1908.</li>
@@ -121,6 +147,7 @@ Macdonald, and a theory for the dynamics and control of
 mosquito-transmitted pathogens. PLoS Pathog. 2012;8: e1002588. <a href="doi:10.1371/journal.ppat.1002588" class="uri">doi:10.1371/journal.ppat.1002588</a>
 </li>
 </ol>
+</div>
 </div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
     </nav></aside>
