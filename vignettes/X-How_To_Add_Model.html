@@ -10,7 +10,7 @@
 
 
 
-<meta name="date" content="2023-12-16" />
+<meta name="date" content="2023-12-19" />
 
 <title>How to add a new model to the library: Human Infection</title>
 
@@ -375,48 +375,129 @@ display: none;
 
 <h1 class="title toc-ignore">How to add a new model to the library:
 Human Infection</h1>
-<h4 class="date">December 16, 2023</h4>
+<h4 class="date">December 19, 2023</h4>
 
 </div>
 
 
 <div id="required-functions" class="section level1">
 <h1>Required Functions</h1>
+<p>The package <code>motrap</code> extends the package <a href="https://github.com/dd-harp/exDE" target="_blank"><code>exDE,</code></a> which implements a modular,
+flexible, and extensible framework for building ordinary and delay
+differential equations models for malaria and other mosquito-transmitted
+pathogens. The underlying mathematics has been explained in <a href="https://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1010684" target="_blank">Spatial Dynamics of Malaria Transmission</a> <a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a> One of the
+most important functions of <code>motrap</code> is to host the <em>model
+families</em> in the <em>model libraries</em> for the main dynamical
+components. This vignette discusses how to add a new model family
+describing human infection dynamics and immunity.</p>
 <p>Adding a new model to the dynamical component of class <span class="math inline">\(\cal X\)</span> – human infection dynamics,
 including immunity – follows a standard template. The <code>S3</code>
 class functions are defined in <a href="https://github.com/dd-harp/exDE/blob/main/R/human-interface.R" target="_blank">human-interface.R</a>, and several examples are posted
 in the <code>exDE</code> github repository, including the
 <code>SIS</code> model <a href="https://github.com/dd-harp/exDE/blob/main/R/human-SIS.R" target="_blank">human-SIS.R</a>.</p>
-<p>The underlying mathematics has been explained in <a href="https://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1010684" target="_blank">Spatial Dynamics of Malaria Transmission</a> <a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a></p>
-<div id="f_x" class="section level2">
-<h2><code>F_X</code></h2>
+<p>This code can serve as a template for a new model. Simply execute the
+following command, and start editing <code>Xmod-NEW.R</code></p>
+<pre class="r"><code>knitr::purl(&quot;X-How_To_Add_Model.Rmd&quot;, output = &quot;Xmod-NEW.R&quot;, documentation = 0, quiet=TRUE)</code></pre>
+<div id="terms-etcetera" class="section level2">
+<h2>Terms, <em>etcetera</em></h2>
+<div id="f_x" class="section level3">
+<h3><code>F_X</code></h3>
 <p>The function <code>F_X</code> returns the effective density of
-infectious humans for each stratum. In the <code>SIS</code> model, the
-returned value is <span class="math inline">\(cX\)</span> where
-prevalence is <span class="math inline">\(X/H\)</span>. The constant
-<span class="math inline">\(c\)</span> is the probability a mosquito
-would become infected after blood feeding on an infected human. If there
-are multiple infectious classes, then this</p>
+infectious humans for each stratum. The following is a template for a
+model:</p>
+<pre class="r"><code>#&#39; @title Size of effective infectious human population
+#&#39; @description Implements [F_X] for the NEW model.
+#&#39; @inheritParams exDE::F_X
+#&#39; @return a [numeric] vector of length `nStrata`
+#&#39; @export
+F_X.NEW &lt;- function(t, y, pars) {
+  ########################
+  # extract: 
+  # VAR &lt;- y[pars$ix$X$...] 
+  ########################
+  with(pars$Xpar, 
+       ########################
+       # compute: 
+       # X &lt;- ... F(VAR) 
+       ########################
+  )
+  return(X)
+}</code></pre>
+<p>The commented code relevant code that must be changed is commented
+out. The preferred style is to <em>extract</em> the relevant variables
+by name, then <em>compute</em> the effective infectious density,or
+individuals in this stratum, then return the value. In the
+manuscript<span class="math inline">\(^1\)</span>, this quantity was
+called <strong>X.</strong></p>
+<p><strong>Example</strong></p>
+<p>As an example, we include the <span class="math inline">\(SIS\)</span> model from <code>exDE.</code> In the
+<code>SIS</code> model, the returned value is <span class="math inline">\(cX\)</span> where prevalence is <span class="math inline">\(X/H\)</span>. The constant <span class="math inline">\(c\)</span> is the probability a mosquito would
+become infected after blood feeding on an infected human. Two things to
+note:</p>
+<ul>
+<li><p>First, <code>exDE</code> holds the indices by component under
+<code>pars$ix,</code> so <code>pars$ix$X</code> holds the index names
+for all the variable names. Putting them under <code>X</code> helps to
+avoid conflicts if, for example, another dynamical component happened to
+use the same variable name.</p></li>
+<li><p>The declaration of <code>inheritParams</code> from the
+<code>SIS</code> model in <code>exDE</code> works naturally. The
+namespace from <code>exDE</code> is needed, so our NEW function (above)
+has <code>exDE::F_X</code></p></li>
+</ul>
+<pre class="r"><code>#&#39; @title Size of effective infectious human population
+#&#39; @description Implements [F_X] for the SIS model.
+#&#39; @inheritParams F_X
+#&#39; @return a [numeric] vector of length `nStrata`
+#&#39; @export
+F_X.SIS &lt;- function(t, y, pars) {
+  X = y[pars$ix$X$X_ix]
+  with(pars$Xpar, c*X)
+}</code></pre>
 </div>
-<div id="f_pr" class="section level2">
-<h2><code>F_pr</code></h2>
-<p>The function <code>F_pr</code> computes the models <em>true</em>
-prevalence using the variable names. It is passed the
-<code>varslist</code> that is created by <code>parse_deout</code> (see
-below).</p>
-</div>
-<div id="f_b" class="section level2">
-<h2><code>F_b</code></h2>
+<div id="f_b" class="section level3">
+<h3><code>F_b</code></h3>
+<p>In <code>exDE,</code> we recognize the problem of translating the
+local EIR into the FoI. The local EIR is computed as one of the core
+model terms for each one of the model strata.</p>
 <p>The function <code>F_b</code> returns the model-defined probability
 an infective bite by a mosquito would cause an infection. This could
 include the combined effects of inefficient transmission,
 pre-erytrocytic immunity, and perhaps some effects of blood stage
 immunity. In a model with no effect, the return value would be <span class="math inline">\(1\)</span>.</p>
+<pre class="r"><code>#&#39; @title Infection blocking pre-erythrocytic immunity
+#&#39; @description Implements [F_b] for the SIS model.
+#&#39; @inheritParams exDE::F_b
+#&#39; @return a [numeric] vector of length `nStrata`
+#&#39; @export
+F_b.NEW &lt;- function(t, y, pars) {
+  with(pars$Xpar, 
+       ########################
+       # retrieve it: 
+       # ...  
+       ########################
+  )
+  
+  #######################
+  # return it: 
+  # return(...)
+  ########################
+}</code></pre>
+<p>Once again, we provide the <code>SIS</code> model from
+<code>exDE</code> as our example:</p>
+<pre class="r"><code>#&#39; @title Infection blocking pre-erythrocytic immunity
+#&#39; @description Implements [F_b] for the SIS model.
+#&#39; @inheritParams F_b
+#&#39; @return a [numeric] vector of length `nStrata`
+#&#39; @export
+F_b.SIS &lt;- function(y, pars) {
+  with(pars$Xpar, b)
+}</code></pre>
 </div>
-<div id="dxdt" class="section level2">
-<h2><code>dXdt</code></h2>
-<p>The function must compute and return the derivatives. The style
-guidelines are to:</p>
+</div>
+<div id="dynamics" class="section level2">
+<h2>Dynamics</h2>
+<p>The style guidelines are to:</p>
 <ul>
 <li><p>Extract the variables by name using the indices attached to
 <code>Xpar</code></p></li>
@@ -425,7 +506,43 @@ by name</p></li>
 <li><p>Compute the derivatives using human readable formulas.</p></li>
 <li><p>Return the derivatives as a concatenated vector</p></li>
 </ul>
-<pre class="r"><code>dXdt.SIS &lt;- function(t, y, pars, FoI) {
+<p>This <em>should</em> be straightforward, but there’s one very
+important wrinkle. If you want to be able to use the <code>exDE</code>
+capabilities for cohort dynamics and vital dynamics, then the dynamics
+must be extended carefully to call the demographic matrix function
+<code>dHdt.</code></p>
+<pre class="r"><code>#&#39; @title Derivatives for human population
+#&#39; @description Implements [dXdt] for the NEW model, no demography.
+#&#39; @inheritParams exDE::dXdt
+#&#39; @return a [numeric] vector
+#&#39; @export
+dXdt.NEW &lt;- function(t, y, pars, FoI) {
+
+  ###############################
+  # get variables by name from y 
+  # ...  
+  ###############################
+
+  with(pars$Xpar, {
+    ###############################
+    # Compute the derivatives 
+    # 
+    # dX &lt;- FoI*(H - X) - r*X + dHdt(t, X, pars)
+    # dH &lt;- Births(t, H, pars) + dHdt(t, H, pars) 
+    ###############################
+    
+    ###############################
+    # Return the derivatives 
+    # ...  
+    ###############################
+    return(c(dX1, dX2, dX3, dH))
+  })
+}</code></pre>
+<div id="dxdt" class="section level3">
+<h3><code>dXdt</code></h3>
+<p>In <code>exDE</code>, we write two versions of the derivatives
+function, to make it easy for the average user to scale up.</p>
+<pre class="r"><code>dXdt.SISdx &lt;- function(t, y, pars, FoI) {
   with(pars$Xpar, {
     X &lt;- y[X_ix]
     H &lt;- F_H(t, y, pars)
@@ -435,6 +552,9 @@ by name</p></li>
     return(c(dX))
   })
 }</code></pre>
+</div>
+<div id="dxhdt" class="section level3">
+<h3><code>dXHdt</code></h3>
 <p>If the model will have human demography, then each variable’s
 derivative must be transformed by the same matrix as the human
 population density, <code>H</code>. Any disease induced mortality should
@@ -453,11 +573,27 @@ density, <code>dH</code>.</p>
   })
 }</code></pre>
 </div>
-<div id="setup_x" class="section level2">
-<h2><code>setup_X</code></h2>
+</div>
+<div id="setup" class="section level2">
+<h2>Setup</h2>
+<div id="setup_x" class="section level3">
+<h3><code>setup_X</code></h3>
 <p>This function must set up <code>Xpar</code> and it must also set up
 the initial values. By convention, the functions that get called are not
 <code>S3</code> class functions.</p>
+<pre class="r"><code>#&#39; @title Setup Xpar.NEW
+#&#39; @description Implements [setup_X] for the NEW model
+#&#39; @inheritParams exDE::setup_X
+#&#39; @return a [list] vector
+#&#39; @export
+setup_X.NEW = function(pars, Xname, Xopts=list()){
+
+  pars$Xname = &quot;NEW&quot;
+  pars = make_Xpar_NEW(pars, Xopts)
+  pars = make_Xinits_NEW(pars, Xopts)
+
+  return(pars)
+}</code></pre>
 <pre class="r"><code>setup_X.SIS = function(pars, Xname, Xopts=list()){
   pars$Xname = &quot;SIS&quot;
   pars = make_Xpar_SIS(pars, Xopts)
@@ -465,14 +601,36 @@ the initial values. By convention, the functions that get called are not
 
   return(pars)
 }</code></pre>
+</div>
 <div id="make_xpar_..." class="section level3">
 <h3><code>make_Xpar_...</code></h3>
+<pre class="r"><code>#&#39; @title Make parameters for NEW human model, with defaults
+#&#39; @param pars a [list]
+#&#39; @param Xopts a [list] that could overwrite defaults
+#&#39; @param p1 the first parameter 
+#&#39; @param p2 the second parameter 
+#&#39; @param p3 the third parameter 
+#&#39; @return a [list]
+#&#39; @export
+make_Xpar_NEW = function(pars, Xopts=list(),
+                         p1=1, p2=2, p3=3){
+  with(Xopts,{
+    Xpar = list()
+    class(Xpar) &lt;- c(&quot;NEW&quot;)
+
+    Xpar$p1 = checkIt(p1, pars$nStrata)
+    Xpar$p2 = checkIt(p2, pars$nStrata)
+    Xpar$p3 = checkIt(p3, pars$nStrata)
+
+    pars$Xpar = Xpar
+    return(pars)
+  })}</code></pre>
 <p>The function that makes parameters should assign</p>
 <pre class="r"><code>make_Xpar_SIS = function(pars, Xopts=list(),
                          b=0.55, r=1/180, c=0.15){
   with(Xopts,{
     Xpar = list()
-    class(Xpar) &lt;- c(&quot;SIS&quot;, &quot;SISdX&quot;)
+    class(Xpar) &lt;- c(&quot;SISdX&quot;, &quot;SISdXdH&quot;)
 
     Xpar$b = checkIt(b, pars$nStrata)
     Xpar$c = checkIt(c, pars$nStrata)
@@ -484,6 +642,22 @@ the initial values. By convention, the functions that get called are not
 </div>
 <div id="make_xinits_..." class="section level3">
 <h3><code>make_Xinits_...</code></h3>
+<pre class="r"><code>#&#39; @title Make initial values for the NEW human model, with defaults
+#&#39; @param pars a [list]
+#&#39; @param Xopts a [list] to overwrite defaults
+#&#39; @param X10 the initial values of the parameter X1
+#&#39; @param X20 the initial values of the parameter X2
+#&#39; @param X30 the initial values of the parameter X3
+#&#39; @return a [list]
+#&#39; @export
+make_Xinits_NEW = function(pars, Xopts = list(), X10=1, X20=2, X30=3){with(Xopts,{
+  inits = list()
+  inits$X10 = checkIt(X10, pars$nStrata)
+  inits$X20 = checkIt(X20, pars$nStrata)
+  inits$X30 = checkIt(X30, pars$nStrata)
+  pars$Xinits = inits
+  return(pars)
+})}</code></pre>
 <pre class="r"><code>make_Xinits_SIS = function(pars, Xopts = list(), X0=1){with(Xopts,{
   inits = list()
   inits$X0 = checkIt(X0, pars$nStrata)
@@ -491,37 +665,27 @@ the initial values. By convention, the functions that get called are not
   return(pars)
 })}</code></pre>
 </div>
-</div>
-<div id="parse_deout_x" class="section level2">
-<h2><code>parse_deout_X</code></h2>
-<pre class="r"><code>#&#39; @title Parse the output of deSolve and return variables for the SIS model
-#&#39; @description Implements [parse_deout_X] for the SIS model
-#&#39; @inheritParams parse_deout_X
+<div id="make_indices_x" class="section level3">
+<h3><code>make_indices_X</code></h3>
+<pre class="r"><code>#&#39; @title Add indices for human population to parameter list
+#&#39; @description Implements [make_indices_X] for the NEW model.
+#&#39; @inheritParams exDE::make_indices_X
 #&#39; @return none
+#&#39; @importFrom utils tail
 #&#39; @export
-parse_deout_X.SIS &lt;- function(deout, pars) {
-  time = deout[,1]
-  Hlist &lt;- parse_deout_H(deout, pars)
-  with(Hlist,{
-    X = deout[,pars$Xpar$X_ix+1]
-    return(list(time=time, X=X, H=H))
-})}</code></pre>
-</div>
-<div id="htc" class="section level2">
-<h2><code>HTC</code></h2>
-<pre class="r"><code>#&#39; @title Compute the HTC for the SIS model
-#&#39; @description Implements [HTC] for the SIS model with demography.
-#&#39; @inheritParams HTC
-#&#39; @return a [numeric] vector
-#&#39; @export
-HTC.SIS &lt;- function(pars) {
-  with(pars$Xpar,
-    return(c/r)
-  )
+make_indices_X.NEW &lt;- function(pars) {
+  
+  pars$Xpar$X1_ix &lt;- seq(from = pars$max_ix+1, length.out = pars$nStrata)
+  pars$max_ix &lt;- tail(pars$Xpar$X1_ix, 1)
+  
+  pars$Xpar$X2_ix &lt;- seq(from = pars$max_ix+1, length.out = pars$nStrata)
+  pars$max_ix &lt;- tail(pars$Xpar$X2_ix, 1)
+  
+  pars$Xpar$X3_ix &lt;- seq(from = pars$max_ix+1, length.out = pars$nStrata)
+  pars$max_ix &lt;- tail(pars$Xpar$X3_ix, 1)
+  
+  return(pars)
 }</code></pre>
-</div>
-<div id="make_indices_x" class="section level2">
-<h2><code>make_indices_X</code></h2>
 <pre class="r"><code>#&#39; @title Add indices for human population to parameter list
 #&#39; @description Implements [make_indices_X] for the SIS model.
 #&#39; @inheritParams make_indices_X
@@ -534,21 +698,41 @@ make_indices_X.SIS &lt;- function(pars) {
   return(pars)
 }</code></pre>
 </div>
-<div id="update_inits_x" class="section level2">
-<h2><code>update_inits_X</code></h2>
+</div>
+<div id="initial-values" class="section level2">
+<h2>Initial Values</h2>
+<div id="update_inits_x" class="section level3">
+<h3><code>update_inits_X</code></h3>
 <pre class="r"><code>#&#39; @title Update inits for the SIS human model from a vector of states
-#&#39; @param pars a [list]
-#&#39; @param y0 a vector of initial values
+#&#39; @inheritParams exDE::update_inits_X 
 #&#39; @return none
 #&#39; @export
-update_inits_X.SIS &lt;- function(pars, y0) {
-  X0 = y0[pars$Xpar$X_ix]
-  pars = make_inits_X_SIS(pars, X0)
+update_inits_X.NEW &lt;- function(pars, y0) {
+  with(pars$ix$X,{
+    X10 = y0[X1_ix]
+    X20 = y0[X2_ix]
+    X30 = y0[X3_ix]
+    pars = make_Xinits_SIS(pars, list(), X10, X20, X30)
+    return(pars)
+})}</code></pre>
+<pre class="r"><code>update_inits_X.SIS &lt;- function(pars, y0) {
+  X0 = y0[pars$ix$X$X_ix]
+  make_Xinits_SIS(pars, list(), X0)
   return(pars)
 }</code></pre>
 </div>
-<div id="get_inits_x" class="section level2">
-<h2><code>get_inits_X</code></h2>
+<div id="get_inits_x" class="section level3">
+<h3><code>get_inits_X</code></h3>
+<pre class="r"><code>#&#39; @title Return initial values as a vector
+#&#39; @description This method dispatches on the type of `pars$Xpar`.
+#&#39; @param pars a [list]
+#&#39; @return none
+#&#39; @export
+get_inits_X.NEW &lt;- function(pars){
+  with(pars$Xinits,{
+    return(c(X1, X2, X3)) 
+  })
+}</code></pre>
 <pre class="r"><code>#&#39; @title Return initial values as a vector
 #&#39; @description This method dispatches on the type of `pars$Xpar`.
 #&#39; @param pars a [list]
@@ -558,13 +742,77 @@ get_inits_X.SIS &lt;- function(pars){
   pars$Xinits$X0
 }</code></pre>
 </div>
-<div id="xde_plot_x-and-xde_lines_x" class="section level2">
-<h2><code>xde_plot_X</code> and <code>xde_lines_X</code></h2>
-<pre class="r"><code>#&#39; Plot the density of infected individuals for the SIS model
+</div>
+<div id="outputs" class="section level2">
+<h2>Outputs</h2>
+<div id="parse_deout_x" class="section level3">
+<h3><code>parse_deout_X</code></h3>
+<pre class="r"><code>#&#39; @title Parse the output of deSolve and return variables for the NEW model
+#&#39; @description Implements [parse_deout_X] for the NEW model
+#&#39; @inheritParams exDE::parse_deout_X
+#&#39; @return none
+#&#39; @export
+parse_deout_X.NEW &lt;- function(deout, pars) {
+  time = deout[,1]
+  Hlist &lt;- parse_deout_H(deout, pars)
+  with(Hlist,{
+    X1= deout[,pars$ix$X$X1_ix+1]
+    X2= deout[,pars$ix$X$X1_ix+1]
+    X3= deout[,pars$ix$X$X3_ix+1]
+    return(list(time=time, X1=X1, X2=X2, X3=X3, H=H))
+})}</code></pre>
+<pre class="r"><code>#&#39; @title Parse the output of deSolve and return variables for the SIS model
+#&#39; @description Implements [parse_deout_X] for the SIS model
+#&#39; @inheritParams parse_deout_X
+#&#39; @return none
+#&#39; @export
+parse_deout_X.SIS &lt;- function(deout, pars) {
+  time = deout[,1]
+  Hlist &lt;- parse_deout_H(deout, pars)
+  with(Hlist,{
+    X = deout[,pars$ix$X$X_ix+1]
+    return(list(time=time, X=X, H=H))
+})}</code></pre>
+</div>
+<div id="f_pr" class="section level3">
+<h3><code>F_pr</code></h3>
+<p>The function <code>F_pr</code> computes the models <em>true</em>
+prevalence using the variable names. It is passed the
+<code>varslist</code> that is created by <code>parse_deout</code> (see
+above).</p>
+<pre class="r"><code>#&#39; @title Compute the &quot;true&quot; prevalence of infection / parasite rate
+#&#39; @description Implements [F_pr] for the NEW model.
+#&#39; @inheritParams exDE::F_pr
+#&#39; @return a [numeric] vector of length `nStrata`
+#&#39; @export
+F_pr.NEW&lt;- function(varslist, pars) {
+  pr = with(varslist$XH, X1/H)
+  return(pr)
+}</code></pre>
+</div>
+<div id="htc" class="section level3">
+<h3><code>HTC</code></h3>
+<pre class="r"><code>#&#39; @title Compute the HTC for the NEW model
+#&#39; @description Implements [HTC] for the NEW model with demography.
+#&#39; @inheritParams exDE::HTC
+#&#39; @return a [numeric] vector
+#&#39; @export
+HTC.NEW &lt;- function(pars) {
+  with(pars$Xpar,
+    return(c/r)
+  )
+}</code></pre>
+</div>
+</div>
+<div id="plotting" class="section level2">
+<h2>Plotting</h2>
+<div id="xde_plot_x" class="section level3">
+<h3><code>xde_plot_X</code></h3>
+<pre class="r"><code>#&#39; Plot the density of infected individuals for the NEW model
 #&#39;
 #&#39; @inheritParams xde_plot_X
 #&#39; @export
-xde_plot_X.SIS = function(pars, clrs=&quot;black&quot;, llty=1, stable=FALSE, add_axes=TRUE){
+xde_plot_X.NEW = function(pars, clrs=&quot;black&quot;, llty=1, stable=FALSE, add_axes=TRUE){
   vars=with(pars$outputs,if(stable==TRUE){stable_orbits}else{orbits})
 
   if(add_axes==TRUE)
@@ -574,22 +822,26 @@ xde_plot_X.SIS = function(pars, clrs=&quot;black&quot;, llty=1, stable=FALSE, ad
 
   xde_lines_X(vars$XH, pars, clrs, llty)
 }</code></pre>
-<pre class="r"><code>#&#39; Add lines for the density of infected individuals for the SIS model
+</div>
+<div id="xde_lines_x" class="section level3">
+<h3><code>xde_lines_X</code></h3>
+<pre class="r"><code>#&#39; Add lines for the density of infected individuals for the NEW model
 #&#39;
 #&#39; @inheritParams xde_lines_X
 #&#39;
 #&#39; @export
-xde_lines_X.SIS = function(XH, pars, clrs=&quot;black&quot;, llty=1){
+xde_lines_X.NEW = function(XH, pars, clrs=&quot;black&quot;, llty=1){
   with(XH,{
-    if(pars$nStrata==1) lines(time, X, col=clrs[1], lty = llty[1])
+    if(pars$nStrata==1) lines(time, X1, col=clrs[1], lty = llty[1])
     if(pars$nStrata&gt;1){
       if (length(clrs)==1) clrs=rep(clrs, pars$nStrata)
       if (length(llty)==1) llty=rep(llty, pars$nStrata)
       for(i in 1:pars$nStrata){
-        lines(time, X[,i], col=clrs[i], lty = llty[i])
+        lines(time, X1[,i], col=clrs[i], lty = llty[i])
       }
     }
   })}</code></pre>
+</div>
 </div>
 </div>
 <div class="footnotes footnotes-end-of-document">

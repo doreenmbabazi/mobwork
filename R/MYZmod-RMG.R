@@ -44,7 +44,7 @@ F_eggs.RMG <- function(t, y, pars) {
 #' @inheritParams exDE::dMYZdt
 #' @return a [numeric] vector
 #' @export
-dMYZdt.RMG <- function(t, y, pars, Lambda, kappa) {with(pars{
+dMYZdt.RMG <- function(t, y, pars, Lambda, kappa) {with(pars,{
 
   U <- y[ix$MYZ$U_ix]
   Gu <- y[ix$MYZ$Gu_ix]

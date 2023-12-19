@@ -4,14 +4,14 @@
 \alias{make_Xinits_SIR}
 \title{Make initial values for the SIR human model, with defaults}
 \usage{
-make_Xinits_SIR(pars, Xopts = list(), X0 = 1, R0 = 1)
+make_Xinits_SIR(pars, Xopts = list(), I0 = 1, R0 = 1)
 }
 \arguments{
 \item{pars}{a \link{list}}
 
 \item{Xopts}{a \link{list} to overwrite defaults}
 
-\item{X0}{the initial values of the parameter X}
+\item{I0}{the initial values of the parameter I}
 
 \item{R0}{the initial values of the parameter R}
 }

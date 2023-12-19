@@ -196,16 +196,17 @@ get_inits_X.garki <- function(pars){
 #' @return none
 #' @export
 update_inits_X.garki <- function(pars, y0){
-  x1 <- y0[pars$ix$X$x1_ix]
-  x2 <- y0[pars$ix$X$x2_ix]
-  x3 <- y0[pars$ix$X$x3_ix]
-  x4 <- y0[pars$ix$X$x4_ix]
-  y1 <- y0[pars$ix$X$y1_ix]
-  y2 <- y0[pars$ix$X$y2_ix]
-  y3 <- y0[pars$ix$X$y3_ix]
-  pars = make_Xinits_garki(pars, x1=x1, x2=x2, y1=y1, y2=y2, y3=y3, x3=x3, x4=x4)
+  with(pars$ix$X,{
+    x1 <- y0[x1_ix]
+    x2 <- y0[x2_ix]
+    x3 <- y0[x3_ix]
+    x4 <- y0[x4_ix]
+    y1 <- y0[y1_ix]
+    y2 <- y0[y2_ix]
+    y3 <- y0[y3_ix]
+    pars = make_Xinits_garki(pars, x1=x1, x2=x2, y1=y1, y2=y2, y3=y3, x3=x3, x4=x4)
   return(pars)
-}
+})}
 
 #' Plot the density of infected individuals for the Garki model
 #'

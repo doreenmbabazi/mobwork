@@ -87,6 +87,23 @@ reference:
   - HTC.SIR
   - xde_plot_X.SIR
   - xde_lines_X.SIR
+- title: The SEIR model
+  contents:
+  - F_X.SEIR
+  - F_pr.SEIR
+  - F_b.SEIR
+  - dXdt.SEIRdX
+  - dXdt.SEIRdXdH
+  - setup_X.SEIR
+  - make_Xpar_SEIR
+  - make_Xinits_SEIR
+  - make_indices_X.SEIR
+  - parse_deout_X.SEIR
+  - get_inits_X.SEIR
+  - update_inits_X.SEIR
+  - HTC.SEIR
+  - xde_plot_X.SEIR
+  - xde_lines_X.SEIR
 - title: Scaling Relationships
   contents: ssMYZ
 - subtitle: Compute Scaling Relationships

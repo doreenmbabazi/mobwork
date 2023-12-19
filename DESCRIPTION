@@ -14,12 +14,12 @@ URL: https://dd-harp.github.io/mobwork/
 BugReports: https://github.com/dd-harp/mobwork/issues
 Roxygen: list(markdown = TRUE)
 Depends:
+  knitr,
   exDE
 Imports:
   stats,
   viridisLite
 Suggests:
-    knitr,
     viridis,
     rmarkdown 
 VignetteBuilder: knitr

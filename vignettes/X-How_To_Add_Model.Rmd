@@ -12,17 +12,55 @@ vignette: >
 
 # Required Functions
 
+The package `motrap` extends the package [`exDE,`](https://github.com/dd-harp/exDE){target="_blank"} which implements a modular, flexible, and extensible framework for building ordinary and delay differential equations models for malaria and other mosquito-transmitted pathogens. The underlying mathematics has been explained in [Spatial Dynamics of Malaria Transmission](https://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1010684){target="_blank"}
+^[Wu SL, Henry JM, Citron DT, Mbabazi Ssebuliba D, Nakakawa Nsumba J, Sánchez C. HM, et al. (2023) Spatial dynamics of malaria transmission. PLoS Comput Biol 19(6): e1010684. https://doi.org/10.1371/journal.pcbi.1010684] 
+One of the most important functions of `motrap` is to host the *model families* in the *model libraries*  for the main dynamical components. This vignette discusses how to add a new model family describing human infection dynamics and immunity.  
+
 Adding a new model to the dynamical component of class $\cal X$ -- human infection dynamics, including immunity -- follows a standard template. The `S3` class functions are defined in [human-interface.R](https://github.com/dd-harp/exDE/blob/main/R/human-interface.R){target="_blank"}, and several examples are posted in the `exDE` github repository, including the `SIS` model [human-SIS.R](https://github.com/dd-harp/exDE/blob/main/R/human-SIS.R){target="_blank"}. 
 
+This code can serve as a template for a new model. Simply execute the following command, and start editing `Xmod-NEW.R` 
 
-The underlying mathematics has been explained in [Spatial Dynamics of Malaria Transmission](https://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1010684){target="_blank"}
-^[Wu SL, Henry JM, Citron DT, Mbabazi Ssebuliba D, Nakakawa Nsumba J, Sánchez C. HM, et al. (2023) Spatial dynamics of malaria transmission. PLoS Comput Biol 19(6): e1010684. https://doi.org/10.1371/journal.pcbi.1010684]
-
+```{r, purl=F, eval=F}
+knitr::purl("X-How_To_Add_Model.Rmd", output = "Xmod-NEW.R", documentation = 0, quiet=TRUE)
+```
+  
 ## Terms, *etcetera*
 
 ### `F_X` 
 
-The function `F_X` returns the effective density of infectious humans for each stratum. In the `SIS` model, the returned value is $cX$ where prevalence is $X/H$. The constant $c$ is the probability a mosquito would become infected after blood feeding on an infected human. If there are multiple infectious classes, then this
+The function `F_X` returns the effective density of infectious humans for each stratum. 
+The following is a template for a model: 
+
+```{r}
+#' @title Size of effective infectious human population
+#' @description Implements [F_X] for the NEW model.
+#' @inheritParams exDE::F_X
+#' @return a [numeric] vector of length `nStrata`
+#' @export
+F_X.NEW <- function(t, y, pars) {
+  ########################
+  # extract: 
+  # VAR <- y[pars$ix$X$...] 
+  ########################
+  with(pars$Xpar, 
+       ########################
+       # compute: 
+       # X <- ... F(VAR) 
+       ########################
+  )
+  return(X)
+}
+```
+
+The commented code relevant code that must be changed is commented out. The preferred style is to *extract* the relevant variables by name, then *compute* the effective infectious density,or individuals in this stratum, then return the value. In the manuscript$^1$, this quantity was called **X.** 
+
+**Example** 
+
+As an example, we include the $SIS$ model from `exDE.` In the `SIS` model, the returned value is $cX$ where prevalence is $X/H$. The constant $c$ is the probability a mosquito would become infected after blood feeding on an infected human. Two things to note: 
+
++ First, `exDE` holds the indices by component under `pars$ix,` so `pars$ix$X` holds the index names for all the variable names. Putting them under `X` helps to avoid conflicts if, for example, another dynamical component happened to use the same variable name.  
+
++ The declaration of `inheritParams` from the `SIS` model in `exDE` works naturally. The namespace from `exDE` is needed, so our NEW function (above) has `exDE::F_X` 
 
 ```{r, eval=F, purl=F}
 #' @title Size of effective infectious human population
@@ -31,39 +69,55 @@ The function `F_X` returns the effective density of infectious humans for each s
 #' @return a [numeric] vector of length `nStrata`
 #' @export
 F_X.SIS <- function(t, y, pars) {
-  with(pars$Xpar, y[X_ix]*c)
+  X = y[pars$ix$X$X_ix]
+  with(pars$Xpar, c*X)
 }
 ```
-
-The following is a template for a model: 
-
-```{r, eval=F, purl=F}
-#' @title Size of effective infectious human population
-#' @description Implements [F_X] for the NEW model.
-#' @inheritParams F_X
-#' @return a [numeric] vector of length `nStrata`
-#' @export
-F_X.NEW <- function(t, y, pars) {
-  with(pars$Xpar, 
-       ...  
-  )
-}
-```
-
-
-
-
 
 ### `F_b`
 
+In `exDE,` we recognize the problem of translating the local EIR into the FoI. The local EIR is computed as one of the core model terms for each one of the model strata. 
+
 The function `F_b` returns the model-defined probability an infective bite by a mosquito would cause an infection. This could include the combined effects of inefficient transmission, pre-erytrocytic immunity, and perhaps some effects of blood stage immunity. In a model with no effect, the return value would be $1$.  
+
+```{r}
+#' @title Infection blocking pre-erythrocytic immunity
+#' @description Implements [F_b] for the SIS model.
+#' @inheritParams exDE::F_b
+#' @return a [numeric] vector of length `nStrata`
+#' @export
+F_b.NEW <- function(t, y, pars) {
+  with(pars$Xpar, 
+       ########################
+       # retrieve it: 
+       # ...  
+       ########################
+  )
+  
+  #######################
+  # return it: 
+  # return(...)
+  ########################
+}
+```
+
+Once again, we provide the `SIS` model from `exDE` as our example: 
+
+```{r, purl=F, eval=F}
+#' @title Infection blocking pre-erythrocytic immunity
+#' @description Implements [F_b] for the SIS model.
+#' @inheritParams F_b
+#' @return a [numeric] vector of length `nStrata`
+#' @export
+F_b.SIS <- function(y, pars) {
+  with(pars$Xpar, b)
+}
+```
+
 
 ## Dynamics
 
-
-### `dXdt` 
-
-The function must compute and return the derivatives. The style guidelines are to:
+The style guidelines are to:
 
 + Extract the variables by name using the indices attached to `Xpar` 
 
@@ -73,8 +127,45 @@ The function must compute and return the derivatives. The style guidelines are t
 
 + Return the derivatives as a concatenated vector  
 
-```{r, eval=F}
-dXdt.SIS <- function(t, y, pars, FoI) {
+This *should* be straightforward, but there's one very important wrinkle. If you want to be able to use the `exDE` capabilities for cohort dynamics and vital dynamics, then the dynamics must be extended carefully to call the demographic matrix function `dHdt.` 
+
+```{r}
+#' @title Derivatives for human population
+#' @description Implements [dXdt] for the NEW model, no demography.
+#' @inheritParams exDE::dXdt
+#' @return a [numeric] vector
+#' @export
+dXdt.NEW <- function(t, y, pars, FoI) {
+
+  ###############################
+  # get variables by name from y 
+  # ...  
+  ###############################
+
+  with(pars$Xpar, {
+    ###############################
+    # Compute the derivatives 
+    # 
+    # dX <- FoI*(H - X) - r*X + dHdt(t, X, pars)
+    # dH <- Births(t, H, pars) + dHdt(t, H, pars) 
+    ###############################
+    
+    ###############################
+    # Return the derivatives 
+    # ...  
+    ###############################
+    return(c(dX1, dX2, dX3, dH))
+  })
+}
+```
+
+
+### `dXdt` 
+
+In `exDE`, we write two versions of the derivatives function, to make it easy for the average user to scale up.  
+
+```{r, purl=F}
+dXdt.SISdx <- function(t, y, pars, FoI) {
   with(pars$Xpar, {
     X <- y[X_ix]
     H <- F_H(t, y, pars)
@@ -111,7 +202,23 @@ dXdt.SISdH <- function(t, y, pars, FoI) {
 
 This function must set up `Xpar` and it must also set up the initial values. By convention, the functions that get called are not `S3` class functions.   
 
-```{r, eval=F}
+```{r}
+#' @title Setup Xpar.NEW
+#' @description Implements [setup_X] for the NEW model
+#' @inheritParams exDE::setup_X
+#' @return a [list] vector
+#' @export
+setup_X.NEW = function(pars, Xname, Xopts=list()){
+
+  pars$Xname = "NEW"
+  pars = make_Xpar_NEW(pars, Xopts)
+  pars = make_Xinits_NEW(pars, Xopts)
+
+  return(pars)
+}
+```
+
+```{r, purl=F}
 setup_X.SIS = function(pars, Xname, Xopts=list()){
   pars$Xname = "SIS"
   pars = make_Xpar_SIS(pars, Xopts)
@@ -123,14 +230,38 @@ setup_X.SIS = function(pars, Xname, Xopts=list()){
 
 ### `make_Xpar_...` 
 
+```{r}
+#' @title Make parameters for NEW human model, with defaults
+#' @param pars a [list]
+#' @param Xopts a [list] that could overwrite defaults
+#' @param p1 the first parameter 
+#' @param p2 the second parameter 
+#' @param p3 the third parameter 
+#' @return a [list]
+#' @export
+make_Xpar_NEW = function(pars, Xopts=list(),
+                         p1=1, p2=2, p3=3){
+  with(Xopts,{
+    Xpar = list()
+    class(Xpar) <- c("NEW")
+
+    Xpar$p1 = checkIt(p1, pars$nStrata)
+    Xpar$p2 = checkIt(p2, pars$nStrata)
+    Xpar$p3 = checkIt(p3, pars$nStrata)
+
+    pars$Xpar = Xpar
+    return(pars)
+  })}
+```
+
 The function that makes parameters should assign
 
-```{r, eval=F}
+```{r, purl=F}
 make_Xpar_SIS = function(pars, Xopts=list(),
                          b=0.55, r=1/180, c=0.15){
   with(Xopts,{
     Xpar = list()
-    class(Xpar) <- c("SIS", "SISdX")
+    class(Xpar) <- c("SISdX", "SISdXdH")
 
     Xpar$b = checkIt(b, pars$nStrata)
     Xpar$c = checkIt(c, pars$nStrata)
@@ -144,7 +275,26 @@ make_Xpar_SIS = function(pars, Xopts=list(),
 
 ### `make_Xinits_...` 
 
-```{r, eval=F}
+```{r}
+#' @title Make initial values for the NEW human model, with defaults
+#' @param pars a [list]
+#' @param Xopts a [list] to overwrite defaults
+#' @param X10 the initial values of the parameter X1
+#' @param X20 the initial values of the parameter X2
+#' @param X30 the initial values of the parameter X3
+#' @return a [list]
+#' @export
+make_Xinits_NEW = function(pars, Xopts = list(), X10=1, X20=2, X30=3){with(Xopts,{
+  inits = list()
+  inits$X10 = checkIt(X10, pars$nStrata)
+  inits$X20 = checkIt(X20, pars$nStrata)
+  inits$X30 = checkIt(X30, pars$nStrata)
+  pars$Xinits = inits
+  return(pars)
+})}
+```
+
+```{r, purl=F}
 make_Xinits_SIS = function(pars, Xopts = list(), X0=1){with(Xopts,{
   inits = list()
   inits$X0 = checkIt(X0, pars$nStrata)
@@ -157,6 +307,28 @@ make_Xinits_SIS = function(pars, Xopts = list(), X0=1){with(Xopts,{
 ### `make_indices_X` 
 
 ```{r}
+#' @title Add indices for human population to parameter list
+#' @description Implements [make_indices_X] for the NEW model.
+#' @inheritParams exDE::make_indices_X
+#' @return none
+#' @importFrom utils tail
+#' @export
+make_indices_X.NEW <- function(pars) {
+  
+  pars$Xpar$X1_ix <- seq(from = pars$max_ix+1, length.out = pars$nStrata)
+  pars$max_ix <- tail(pars$Xpar$X1_ix, 1)
+  
+  pars$Xpar$X2_ix <- seq(from = pars$max_ix+1, length.out = pars$nStrata)
+  pars$max_ix <- tail(pars$Xpar$X2_ix, 1)
+  
+  pars$Xpar$X3_ix <- seq(from = pars$max_ix+1, length.out = pars$nStrata)
+  pars$max_ix <- tail(pars$Xpar$X3_ix, 1)
+  
+  return(pars)
+}
+```
+
+```{r, eval=F, purl=F}
 #' @title Add indices for human population to parameter list
 #' @description Implements [make_indices_X] for the SIS model.
 #' @inheritParams make_indices_X
@@ -174,22 +346,45 @@ make_indices_X.SIS <- function(pars) {
 
 ### `update_inits_X` 
 
-```{r, eval=F}
+```{r}
 #' @title Update inits for the SIS human model from a vector of states
-#' @param pars a [list]
-#' @param y0 a vector of initial values
+#' @inheritParams exDE::update_inits_X 
 #' @return none
 #' @export
+update_inits_X.NEW <- function(pars, y0) {
+  with(pars$ix$X,{
+    X10 = y0[X1_ix]
+    X20 = y0[X2_ix]
+    X30 = y0[X3_ix]
+    pars = make_Xinits_SIS(pars, list(), X10, X20, X30)
+    return(pars)
+})}
+```
+
+```{r, purl=F, eval=F}
 update_inits_X.SIS <- function(pars, y0) {
-  X0 = y0[pars$Xpar$X_ix]
-  pars = make_inits_X_SIS(pars, X0)
+  X0 = y0[pars$ix$X$X_ix]
+  make_Xinits_SIS(pars, list(), X0)
   return(pars)
 }
 ```
 
 ### `get_inits_X` 
 
-```{r, eval=F}
+```{r}
+#' @title Return initial values as a vector
+#' @description This method dispatches on the type of `pars$Xpar`.
+#' @param pars a [list]
+#' @return none
+#' @export
+get_inits_X.NEW <- function(pars){
+  with(pars$Xinits,{
+    return(c(X1, X2, X3)) 
+  })
+}
+```
+
+```{r, eval=F, purl=F}
 #' @title Return initial values as a vector
 #' @description This method dispatches on the type of `pars$Xpar`.
 #' @param pars a [list]
@@ -201,9 +396,27 @@ get_inits_X.SIS <- function(pars){
 ```
 
 ## Outputs
+
 ### `parse_deout_X`
 
-```{r, eval=F}
+```{r}
+#' @title Parse the output of deSolve and return variables for the NEW model
+#' @description Implements [parse_deout_X] for the NEW model
+#' @inheritParams exDE::parse_deout_X
+#' @return none
+#' @export
+parse_deout_X.NEW <- function(deout, pars) {
+  time = deout[,1]
+  Hlist <- parse_deout_H(deout, pars)
+  with(Hlist,{
+    X1= deout[,pars$ix$X$X1_ix+1]
+    X2= deout[,pars$ix$X$X1_ix+1]
+    X3= deout[,pars$ix$X$X3_ix+1]
+    return(list(time=time, X1=X1, X2=X2, X3=X3, H=H))
+})}
+```
+
+```{r, eval=F, purl=F}
 #' @title Parse the output of deSolve and return variables for the SIS model
 #' @description Implements [parse_deout_X] for the SIS model
 #' @inheritParams parse_deout_X
@@ -213,36 +426,36 @@ parse_deout_X.SIS <- function(deout, pars) {
   time = deout[,1]
   Hlist <- parse_deout_H(deout, pars)
   with(Hlist,{
-    X = deout[,pars$Xpar$X_ix+1]
+    X = deout[,pars$ix$X$X_ix+1]
     return(list(time=time, X=X, H=H))
 })}
 ```
 
 ### `F_pr`
 
-The function `F_pr` computes the models *true* prevalence using the variable names. It is passed the `varslist` that is created by `parse_deout` (see below). 
+The function `F_pr` computes the models *true* prevalence using the variable names. It is passed the `varslist` that is created by `parse_deout` (see above). 
 
 ```{r}
 #' @title Compute the "true" prevalence of infection / parasite rate
-#' @description Implements [F_pr] for the SIS model.
-#' @inheritParams F_pr
+#' @description Implements [F_pr] for the NEW model.
+#' @inheritParams exDE::F_pr
 #' @return a [numeric] vector of length `nStrata`
 #' @export
-F_pr.SIS <- function(varslist, pars) {
-  pr = with(varslist$XH, X/H)
+F_pr.NEW<- function(varslist, pars) {
+  pr = with(varslist$XH, X1/H)
   return(pr)
 }
 ```
 
 ### `HTC` 
 
-```{r, eval=F}
-#' @title Compute the HTC for the SIS model
-#' @description Implements [HTC] for the SIS model with demography.
-#' @inheritParams HTC
+```{r}
+#' @title Compute the HTC for the NEW model
+#' @description Implements [HTC] for the NEW model with demography.
+#' @inheritParams exDE::HTC
 #' @return a [numeric] vector
 #' @export
-HTC.SIS <- function(pars) {
+HTC.NEW <- function(pars) {
   with(pars$Xpar,
     return(c/r)
   )
@@ -253,12 +466,12 @@ HTC.SIS <- function(pars) {
 
 ### `xde_plot_X` 
 
-```{r, eval=F}
-#' Plot the density of infected individuals for the SIS model
+```{r}
+#' Plot the density of infected individuals for the NEW model
 #'
 #' @inheritParams xde_plot_X
 #' @export
-xde_plot_X.SIS = function(pars, clrs="black", llty=1, stable=FALSE, add_axes=TRUE){
+xde_plot_X.NEW = function(pars, clrs="black", llty=1, stable=FALSE, add_axes=TRUE){
   vars=with(pars$outputs,if(stable==TRUE){stable_orbits}else{orbits})
 
   if(add_axes==TRUE)
@@ -272,20 +485,20 @@ xde_plot_X.SIS = function(pars, clrs="black", llty=1, stable=FALSE, add_axes=TRU
 
 ### `xde_lines_X` 
 
-```{r, eval=F}
-#' Add lines for the density of infected individuals for the SIS model
+```{r}
+#' Add lines for the density of infected individuals for the NEW model
 #'
 #' @inheritParams xde_lines_X
 #'
 #' @export
-xde_lines_X.SIS = function(XH, pars, clrs="black", llty=1){
+xde_lines_X.NEW = function(XH, pars, clrs="black", llty=1){
   with(XH,{
-    if(pars$nStrata==1) lines(time, X, col=clrs[1], lty = llty[1])
+    if(pars$nStrata==1) lines(time, X1, col=clrs[1], lty = llty[1])
     if(pars$nStrata>1){
       if (length(clrs)==1) clrs=rep(clrs, pars$nStrata)
       if (length(llty)==1) llty=rep(llty, pars$nStrata)
       for(i in 1:pars$nStrata){
-        lines(time, X[,i], col=clrs[i], lty = llty[i])
+        lines(time, X1[,i], col=clrs[i], lty = llty[i])
       }
     }
   })}
