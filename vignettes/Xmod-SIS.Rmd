@@ -11,16 +11,23 @@ vignette: >
 ---
   
 ```{r, echo=FALSE, warning=FALSE, messages=FALSE, purl=F}
+suppressMessages(library(knitr))
 library(exDE) 
 library(mobwork) 
 library(deSolve) 
-suppressMessages(require(knitr))
 ```
 
+# 
 
 The SIS model, as it is now called, is a simple compartmental model, first introduced by Ross. It is included in `exDE` as a base model. 
 
-**Parameters**
+### Variables
+
++ $X$ is the density of infected humans
+
++ $H$ is the density of humans
+
+### Parameters
 
 + $r$ is the rate infections clear
 
@@ -28,7 +35,7 @@ The SIS model, as it is now called, is a simple compartmental model, first intro
 
 + $c$ is the fraction of bites on an infectious human that would infect a mosquito. 
 
-**Dynamics**
+### Dynamics
 
 The model defined herein is defined in two parts. To model exposure and infection (*i.e.* the conversion of eir into foi), we assume that the fraction of infective bites that cause an infection is $b$. The dynamics are given by: 
 
@@ -36,19 +43,28 @@ $$
 \frac{dX}{dt} = h (H-X)-rX
 $$
 
+### Terms 
+
 **Net Infectiousness**
 
 True prevalence is:
 
 $$x = \frac{X}{H}.$$ 
 
-In our implementation, net infectiousness is linearly proportional to prevalence:
+In our implementation, net infectiousness (NI) is linearly proportional to prevalence:
 
 $$c x.$$
 
-*Exposure and Infection*
+**Human Transmitting Capacity**
+
+After exposure, a human would remain infected for $1/r$ days, transmitting with probability $c$ so:
+
+$$c/r$$
+
+**Exposure and Infection**
 
 In this model family, there is no immunity. The model assumes that a constant fraction of all infectious bites, $b$, cause an infection. 
+
 
 
 ## References
