@@ -180,7 +180,7 @@ make_indices_MYZ.RMG <- function(pars) {
   pars$ix$MYZ$Z_ix <- seq(from = pars$max_ix+1, length.out = pars$nPatches)
   pars$max_ix <- tail(pars$ix$MYZ$Z_ix, 1)
 
-  pars$MYZpar$Gz_ix <- seq(from = pars$max_ix+1, length.out = pars$nPatches)
+  pars$ix$MYZ$Gz_ix <- seq(from = pars$max_ix+1, length.out = pars$nPatches)
   pars$max_ix <- tail(pars$ix$MYZ$Gz_ix, 1)
 
   return(pars)
