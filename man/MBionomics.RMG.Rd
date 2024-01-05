@@ -4,7 +4,7 @@
 \alias{MBionomics.RMG}
 \title{Reset bloodfeeding and mortality rates to baseline}
 \usage{
-\method{MBionomics}{RMG}(t, y, pars)
+\method{MBionomics}{RMG}(t, y, pars, s)
 }
 \arguments{
 \item{t}{current simulation time}
@@ -12,6 +12,8 @@
 \item{y}{state vector}
 
 \item{pars}{a \link{list}}
+
+\item{s}{the species index}
 }
 \value{
 a named \link{list}

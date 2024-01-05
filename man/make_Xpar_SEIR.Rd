@@ -4,10 +4,10 @@
 \alias{make_Xpar_SEIR}
 \title{Make parameters for SEIR human model, with defaults}
 \usage{
-make_Xpar_SEIR(pars, Xopts = list(), b = 0.55, r = 1/180, c = 0.15, tau = 1/5)
+make_Xpar_SEIR(nStrata, Xopts = list(), b = 0.55, r = 1/180, c = 0.15)
 }
 \arguments{
-\item{pars}{a \link{list}}
+\item{nStrata}{is the number of population strata}
 
 \item{Xopts}{a \link{list} that could overwrite defaults}
 
@@ -16,8 +16,6 @@ make_Xpar_SEIR(pars, Xopts = list(), b = 0.55, r = 1/180, c = 0.15, tau = 1/5)
 \item{r}{recovery rate}
 
 \item{c}{transmission probability (efficiency) from human to mosquito}
-
-\item{tau}{the latent period is 1/tau}
 }
 \value{
 a \link{list}

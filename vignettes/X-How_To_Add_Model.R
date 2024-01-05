@@ -19,6 +19,26 @@ F_X.NEW <- function(t, y, pars) {
 }
 
 ## -----------------------------------------------------------------------------
+#' @title Size of effective infectious human population
+#' @description Implements [F_H] for the NEW model.
+#' @inheritParams exDE::F_H
+#' @return a [numeric] vector of length `nStrata`
+#' @export
+F_H.NEW <- function(t, y, pars) {
+  ########################
+  # extract: 
+  # VAR <- y[pars$ix$X$...] 
+  ########################
+  with(pars$Xpar, 
+       ########################
+       # compute: 
+       # X <- ... F(VAR) 
+       ########################
+    )
+  return(H)
+}
+
+## -----------------------------------------------------------------------------
 #' @title Infection blocking pre-erythrocytic immunity
 #' @description Implements [F_b] for the SIS model.
 #' @inheritParams exDE::F_b

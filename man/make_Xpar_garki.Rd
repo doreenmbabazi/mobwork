@@ -5,7 +5,7 @@
 \title{Make parameters for Garki human model}
 \usage{
 make_Xpar_garki(
-  pars,
+  nStrata,
   Xopts = list(),
   b = 0.55,
   r1 = 0.0023,
@@ -20,7 +20,7 @@ make_Xpar_garki(
 )
 }
 \arguments{
-\item{pars}{an \link{list}}
+\item{nStrata}{is the number of population strata}
 
 \item{Xopts}{an \link{list}}
 

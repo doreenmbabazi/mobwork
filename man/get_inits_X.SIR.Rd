@@ -4,14 +4,16 @@
 \alias{get_inits_X.SIR}
 \title{Return initial values as a vector}
 \usage{
-\method{get_inits_X}{SIR}(pars)
+\method{get_inits_X}{SIR}(pars, i)
 }
 \arguments{
 \item{pars}{a \link{list}}
+
+\item{i}{the host species index}
 }
 \value{
 none
 }
 \description{
-This method dispatches on the type of \code{pars$Xpar}.
+This method dispatches on the type of \code{pars$Xpar}
 }

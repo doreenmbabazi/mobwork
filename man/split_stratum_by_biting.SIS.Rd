@@ -11,18 +11,14 @@
 
 \item{i}{the stratum to split}
 
-\item{p}{the fraction in the higher exposure stratum}
+\item{p}{the fraction that gets multiplied by \code{fac}}
 
-\item{fac}{the factor increase}
+\item{fac}{a factor}
 }
 \value{
 pars a list
 
-i \link{integer} -- the stratum to split
-
-p \link{numeric} -- the fraction that gets multiplied by \code{fac}
-
-fac \link{numeric} -- the factor
+a \link{list}
 }
 \description{
 Split a stratum into two strata, assigning a fraction \code{p} a new biting weight that is multiplied by a factor \code{fac} compared with the old one. The biting weight for the remaining \code{1-p} gets a new factor \code{1/fac}

@@ -18,6 +18,7 @@ Depends:
   exDE
 Imports:
   stats,
+  expm,
   viridisLite
 Suggests:
     viridis,

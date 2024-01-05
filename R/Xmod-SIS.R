@@ -3,9 +3,10 @@
 #' @inheritParams split_stratum_by_biting
 #'
 #' @return pars a list
-#' @return i [integer] -- the stratum to split
-#' @return p [numeric] -- the fraction that gets multiplied by `fac`
-#' @return fac [numeric] -- the factor
+#' @param i the stratum to split
+#' @param p the fraction that gets multiplied by `fac`
+#' @param fac a factor
+#' @return a [list]
 #' @export
 split_stratum_by_biting.SIS = function(pars, i, p, fac){
   stopifnot(i <= pars$nStrata)

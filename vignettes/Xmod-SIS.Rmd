@@ -23,7 +23,7 @@ The SIS model, as it is now called, is a simple compartmental model, first intro
 
 ### Variables
 
-+ $X$ is the density of infected humans
++ $I$ is the density of infected humans
 
 + $H$ is the density of humans
 
@@ -40,7 +40,7 @@ The SIS model, as it is now called, is a simple compartmental model, first intro
 The model defined herein is defined in two parts. To model exposure and infection (*i.e.* the conversion of eir into foi), we assume that the fraction of infective bites that cause an infection is $b$. The dynamics are given by: 
 
 $$
-\frac{dX}{dt} = h (H-X)-rX
+\frac{dI}{dt} = h (H-I)-rI
 $$
 
 ### Terms 

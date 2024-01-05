@@ -4,10 +4,12 @@
 \alias{HTC.garki}
 \title{Compute the HTC for the garki model}
 \usage{
-\method{HTC}{garki}(pars)
+\method{HTC}{garki}(pars, i)
 }
 \arguments{
 \item{pars}{a \link{list}}
+
+\item{i}{the host species index}
 }
 \value{
 a \link{numeric} vector

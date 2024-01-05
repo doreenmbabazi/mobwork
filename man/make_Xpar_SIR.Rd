@@ -4,10 +4,10 @@
 \alias{make_Xpar_SIR}
 \title{Make parameters for SIR human model, with defaults}
 \usage{
-make_Xpar_SIR(pars, Xopts = list(), b = 0.55, r = 1/180, c = 0.15)
+make_Xpar_SIR(nStrata, Xopts = list(), b = 0.55, r = 1/180, c = 0.15)
 }
 \arguments{
-\item{pars}{a \link{list}}
+\item{nStrata}{is the number of population strata}
 
 \item{Xopts}{a \link{list} that could overwrite defaults}
 

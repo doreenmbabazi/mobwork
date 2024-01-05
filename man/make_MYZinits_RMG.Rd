@@ -5,7 +5,7 @@
 \title{Make inits for RMG adult mosquito model}
 \usage{
 make_MYZinits_RMG(
-  pars,
+  nPatches,
   MYZopts = list(),
   U0 = 5,
   Gu0 = 1,
@@ -16,7 +16,7 @@ make_MYZinits_RMG(
 )
 }
 \arguments{
-\item{pars}{a \link{list}}
+\item{nPatches}{the number of patches in the model}
 
 \item{MYZopts}{a \link{list} of values that overwrites the defaults}
 

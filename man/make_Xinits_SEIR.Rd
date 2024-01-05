@@ -4,12 +4,24 @@
 \alias{make_Xinits_SEIR}
 \title{Make initial values for the SEIR human model, with defaults}
 \usage{
-make_Xinits_SEIR(pars, Xopts = list(), E0 = 1, I0 = 0, R0 = 1)
+make_Xinits_SEIR(
+  nStrata,
+  Xopts = list(),
+  H0 = NULL,
+  S0 = NULL,
+  E0 = 0,
+  I0 = 1,
+  R0 = 0
+)
 }
 \arguments{
-\item{pars}{a \link{list}}
+\item{nStrata}{the number of strata in the model}
 
 \item{Xopts}{a \link{list} to overwrite defaults}
+
+\item{H0}{the initial human population density}
+
+\item{S0}{the initial values of the parameter S}
 
 \item{E0}{the initial values of the parameter E}
 

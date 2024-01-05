@@ -74,6 +74,32 @@ F_X.SIS <- function(t, y, pars) {
 }
 ```
 
+### `F_X` 
+
+The function `F_X` returns the effective density of infectious humans for each stratum. 
+The following is a template for a model: 
+
+```{r}
+#' @title Size of effective infectious human population
+#' @description Implements [F_H] for the NEW model.
+#' @inheritParams exDE::F_H
+#' @return a [numeric] vector of length `nStrata`
+#' @export
+F_H.NEW <- function(t, y, pars) {
+  ########################
+  # extract: 
+  # VAR <- y[pars$ix$X$...] 
+  ########################
+  with(pars$Xpar, 
+       ########################
+       # compute: 
+       # X <- ... F(VAR) 
+       ########################
+    )
+  return(H)
+}
+```
+
 ### `F_b`
 
 In `exDE,` we recognize the problem of translating the local EIR into the FoI. The local EIR is computed as one of the core model terms for each one of the model strata. 

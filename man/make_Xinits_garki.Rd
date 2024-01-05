@@ -5,8 +5,9 @@
 \title{Make inits for Garki human model. Note that the variables should sum up to H, so the initial value of x1 is not set. The values are passed in the same order as they are presented in the original paper.}
 \usage{
 make_Xinits_garki(
-  pars,
+  nStrata,
   Xopts = list(),
+  H0 = NULL,
   x1 = NULL,
   x2 = 0,
   y1 = 0,
@@ -17,9 +18,11 @@ make_Xinits_garki(
 )
 }
 \arguments{
-\item{pars}{an \link{environment}}
+\item{nStrata}{is the number of population strata}
 
 \item{Xopts}{a \link{list} with values to override default values}
+
+\item{H0}{a \link{numeric} initial value for total human population density}
 
 \item{x1}{a \link{numeric} initial value for the variable x1}
 

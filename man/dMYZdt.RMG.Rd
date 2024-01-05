@@ -4,7 +4,7 @@
 \alias{dMYZdt.RMG}
 \title{Derivatives for adult mosquitoes}
 \usage{
-\method{dMYZdt}{RMG}(t, y, pars, Lambda, kappa)
+\method{dMYZdt}{RMG}(t, y, pars, s)
 }
 \arguments{
 \item{t}{current simulation time}
@@ -13,9 +13,7 @@
 
 \item{pars}{a \link{list}}
 
-\item{Lambda}{emergence rate of adult mosquitoes}
-
-\item{kappa}{net infectiousness of human population}
+\item{s}{the species index}
 }
 \value{
 a \link{numeric} vector

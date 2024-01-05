@@ -10,7 +10,7 @@
 
 
 
-<meta name="date" content="2023-12-19" />
+<meta name="date" content="2024-01-03" />
 
 <title>How to add a new model to the library: Human Infection</title>
 
@@ -375,7 +375,7 @@ display: none;
 
 <h1 class="title toc-ignore">How to add a new model to the library:
 Human Infection</h1>
-<h4 class="date">December 19, 2023</h4>
+<h4 class="date">January 03, 2024</h4>
 
 </div>
 
@@ -453,6 +453,30 @@ has <code>exDE::F_X</code></p></li>
 F_X.SIS &lt;- function(t, y, pars) {
   X = y[pars$ix$X$X_ix]
   with(pars$Xpar, c*X)
+}</code></pre>
+</div>
+<div id="f_x-1" class="section level3">
+<h3><code>F_X</code></h3>
+<p>The function <code>F_X</code> returns the effective density of
+infectious humans for each stratum. The following is a template for a
+model:</p>
+<pre class="r"><code>#&#39; @title Size of effective infectious human population
+#&#39; @description Implements [F_H] for the NEW model.
+#&#39; @inheritParams exDE::F_H
+#&#39; @return a [numeric] vector of length `nStrata`
+#&#39; @export
+F_H.NEW &lt;- function(t, y, pars) {
+  ########################
+  # extract: 
+  # VAR &lt;- y[pars$ix$X$...] 
+  ########################
+  with(pars$Xpar, 
+       ########################
+       # compute: 
+       # X &lt;- ... F(VAR) 
+       ########################
+    )
+  return(H)
 }</code></pre>
 </div>
 <div id="f_b" class="section level3">

@@ -4,16 +4,16 @@
 \alias{dXdt.garki}
 \title{Derivatives for human population}
 \usage{
-\method{dXdt}{garki}(t, y, pars, FoI)
+\method{dXdt}{garki}(t, y, pars, i)
 }
 \arguments{
 \item{t}{current simulation time}
 
 \item{y}{state vector}
 
-\item{pars}{a \link{list}}
+\item{pars}{a list}
 
-\item{FoI}{vector giving the per-capita force of infection for each strata}
+\item{i}{the host species index}
 }
 \value{
 a \link{numeric} vector

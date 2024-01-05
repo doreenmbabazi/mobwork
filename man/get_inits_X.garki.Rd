@@ -4,10 +4,12 @@
 \alias{get_inits_X.garki}
 \title{Return initial values as a vector for the Garki model}
 \usage{
-\method{get_inits_X}{garki}(pars)
+\method{get_inits_X}{garki}(pars, i)
 }
 \arguments{
-\item{pars}{a named \link{list}}
+\item{pars}{a \link{list}}
+
+\item{i}{the host species index}
 }
 \value{
 a named \link{list}
