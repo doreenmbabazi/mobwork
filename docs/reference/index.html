@@ -133,6 +133,11 @@
         <dd>Blood feeding rate of the infective mosquito population</dd>
       </dl><dl><dt>
           
+          <code><a href="F_fqM.RMG.html">F_fqM(<i>&lt;RMG&gt;</i>)</a></code> 
+        </dt>
+        <dd>Blood feeding rate of the infective mosquito population</dd>
+      </dl><dl><dt>
+          
           <code><a href="MBionomics.RMG.html">MBionomics(<i>&lt;RMG&gt;</i>)</a></code> 
         </dt>
         <dd>Reset bloodfeeding and mortality rates to baseline</dd>
@@ -155,7 +160,7 @@
           
           <code><a href="make_MYZpar_RMG.html">make_MYZpar_RMG()</a></code> 
         </dt>
-        <dd>Make parameters for RMG ODE adult mosquito model</dd>
+        <dd>Make parameters for RM ODE adult mosquito model</dd>
       </dl><dl><dt>
           
           <code><a href="make_indices_MYZ.RMG.html">make_indices_MYZ(<i>&lt;RMG&gt;</i>)</a></code> 
@@ -178,9 +183,14 @@
         <dd>Parse the output of deSolve and return variables for the RMG model</dd>
       </dl><dl><dt>
           
-          <code><a href="setup_MYZ.RMG.html">setup_MYZ(<i>&lt;RMG&gt;</i>)</a></code> 
+          <code><a href="setup_MYZpar.RMG.html">setup_MYZpar(<i>&lt;RMG&gt;</i>)</a></code> 
         </dt>
-        <dd>Setup the RMG model</dd>
+        <dd>Setup MYZpar for the RMG model</dd>
+      </dl><dl><dt>
+          
+          <code><a href="setup_MYZinits.RMG.html">setup_MYZinits(<i>&lt;RMG&gt;</i>)</a></code> 
+        </dt>
+        <dd>Setup initial values for the RMG model</dd>
       </dl><dl><dt>
           
           <code><a href="update_inits_MYZ.RMG.html">update_inits_MYZ(<i>&lt;RMG&gt;</i>)</a></code> 
@@ -204,6 +214,11 @@
         <dd>Size of effective infectious human population</dd>
       </dl><dl><dt>
           
+          <code><a href="F_H.garki.html">F_H(<i>&lt;garki&gt;</i>)</a></code> 
+        </dt>
+        <dd>Size of effective infectious human population</dd>
+      </dl><dl><dt>
+          
           <code><a href="F_pr.garki.html">F_pr(<i>&lt;garki&gt;</i>)</a></code> 
         </dt>
         <dd>Compute the "true" prevalence of infection / parasite rate</dd>
@@ -219,9 +234,14 @@
         <dd>Derivatives for human population</dd>
       </dl><dl><dt>
           
-          <code><a href="setup_X.garki.html">setup_X(<i>&lt;garki&gt;</i>)</a></code> 
+          <code><a href="setup_Xpar.garki.html">setup_Xpar(<i>&lt;garki&gt;</i>)</a></code> 
         </dt>
-        <dd>Setup Xpar.Garki</dd>
+        <dd>Setup Xpar.garki</dd>
+      </dl><dl><dt>
+          
+          <code><a href="setup_Xinits.garki.html">setup_Xinits(<i>&lt;garki&gt;</i>)</a></code> 
+        </dt>
+        <dd>Setup Xinits.garki</dd>
       </dl><dl><dt>
           
           <code><a href="make_Xpar_garki.html">make_Xpar_garki()</a></code> 
@@ -264,7 +284,7 @@
         <dd>Plot the density of infected individuals for the Garki model</dd>
       </dl><dl><dt>
           
-          <code><a href="xde_lines_X.garki.html">xde_lines_X(<i>&lt;garki&gt;</i>)</a></code> 
+          <code><a href="xde_lines_X_garki.html">xde_lines_X_garki()</a></code> 
         </dt>
         <dd>Add lines for the density of infected individuals for the Garki model</dd>
       </dl></div><div class="section level2">
@@ -285,6 +305,11 @@
         <dd>Size of effective infectious human population</dd>
       </dl><dl><dt>
           
+          <code><a href="F_H.SIR.html">F_H(<i>&lt;SIR&gt;</i>)</a></code> 
+        </dt>
+        <dd>Size of human population</dd>
+      </dl><dl><dt>
+          
           <code><a href="F_pr.SIR.html">F_pr(<i>&lt;SIR&gt;</i>)</a></code> 
         </dt>
         <dd>Compute the "true" prevalence of infection / parasite rate</dd>
@@ -295,17 +320,17 @@
         <dd>Infection blocking pre-erythrocytic immunity</dd>
       </dl><dl><dt>
           
-          <code><a href="dXdt.SIRdX.html">dXdt(<i>&lt;SIRdX&gt;</i>)</a></code> 
+          <code><a href="dXdt.SIR.html">dXdt(<i>&lt;SIR&gt;</i>)</a></code> 
         </dt>
         <dd>Derivatives for human population</dd>
       </dl><dl><dt>
           
-          <code><a href="dXdt.SIRdXdH.html">dXdt(<i>&lt;SIRdXdH&gt;</i>)</a></code> 
+          <code><a href="setup_Xinits.SIR.html">setup_Xinits(<i>&lt;SIR&gt;</i>)</a></code> 
         </dt>
-        <dd>Derivatives for human population</dd>
+        <dd>Setup Xinits.SIR</dd>
       </dl><dl><dt>
           
-          <code><a href="setup_X.SIR.html">setup_X(<i>&lt;SIR&gt;</i>)</a></code> 
+          <code><a href="setup_Xpar.SIR.html">setup_Xpar(<i>&lt;SIR&gt;</i>)</a></code> 
         </dt>
         <dd>Setup Xpar.SIR</dd>
       </dl><dl><dt>
@@ -350,7 +375,7 @@
         <dd>Plot the density of infected individuals for the SIR model</dd>
       </dl><dl><dt>
           
-          <code><a href="xde_lines_X.SIR.html">xde_lines_X(<i>&lt;SIR&gt;</i>)</a></code> 
+          <code><a href="xde_lines_X_SIR.html">xde_lines_X_SIR()</a></code> 
         </dt>
         <dd>Add lines for the density of infected individuals for the SIR model</dd>
       </dl></div><div class="section level2">
@@ -371,6 +396,11 @@
         <dd>Size of effective infectious human population</dd>
       </dl><dl><dt>
           
+          <code><a href="F_H.SEIR.html">F_H(<i>&lt;SEIR&gt;</i>)</a></code> 
+        </dt>
+        <dd>Size of human population</dd>
+      </dl><dl><dt>
+          
           <code><a href="F_pr.SEIR.html">F_pr(<i>&lt;SEIR&gt;</i>)</a></code> 
         </dt>
         <dd>Compute the "true" prevalence of infection / parasite rate</dd>
@@ -381,19 +411,19 @@
         <dd>Infection blocking pre-erythrocytic immunity</dd>
       </dl><dl><dt>
           
-          <code><a href="dXdt.SEIRdX.html">dXdt(<i>&lt;SEIRdX&gt;</i>)</a></code> 
+          <code><a href="dXdt.SEIR.html">dXdt(<i>&lt;SEIR&gt;</i>)</a></code> 
         </dt>
         <dd>Derivatives for human population</dd>
       </dl><dl><dt>
           
-          <code><a href="dXdt.SEIRdXdH.html">dXdt(<i>&lt;SEIRdXdH&gt;</i>)</a></code> 
-        </dt>
-        <dd>Derivatives for human population</dd>
-      </dl><dl><dt>
-          
-          <code><a href="setup_X.SEIR.html">setup_X(<i>&lt;SEIR&gt;</i>)</a></code> 
+          <code><a href="setup_Xpar.SEIR.html">setup_Xpar(<i>&lt;SEIR&gt;</i>)</a></code> 
         </dt>
         <dd>Setup Xpar.SEIR</dd>
+      </dl><dl><dt>
+          
+          <code><a href="setup_Xinits.SEIR.html">setup_Xinits(<i>&lt;SEIR&gt;</i>)</a></code> 
+        </dt>
+        <dd>Setup Xinits.SEIR</dd>
       </dl><dl><dt>
           
           <code><a href="make_Xpar_SEIR.html">make_Xpar_SEIR()</a></code> 
@@ -436,7 +466,7 @@
         <dd>Plot the density of infected individuals for the SEIR model</dd>
       </dl><dl><dt>
           
-          <code><a href="xde_lines_X.SEIR.html">xde_lines_X(<i>&lt;SEIR&gt;</i>)</a></code> 
+          <code><a href="xde_lines_X_SEIR.html">xde_lines_X_SEIR()</a></code> 
         </dt>
         <dd>Add lines for the density of infected individuals for the SEIR model</dd>
       </dl></div><div class="section level2">

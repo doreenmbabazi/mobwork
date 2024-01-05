@@ -43,6 +43,7 @@ reference:
   contents:
   - F_eggs.RMG
   - F_fqZ.RMG
+  - F_fqM.RMG
   - MBionomics.RMG
   - dMYZdt.RMG
   - get_inits_MYZ.RMG
@@ -52,15 +53,18 @@ reference:
   - make_inits_MYZ_RMG
   - make_parameters_MYZ_RMG
   - parse_deout_MYZ.RMG
-  - setup_MYZ.RMG
+  - setup_MYZpar.RMG
+  - setup_MYZinits.RMG
   - update_inits_MYZ.RMG
 - title: The Garki model
   contents:
   - F_X.garki
+  - F_H.garki
   - F_pr.garki
   - F_b.garki
   - dXdt.garki
-  - setup_X.garki
+  - setup_Xpar.garki
+  - setup_Xinits.garki
   - make_Xpar_garki
   - make_Xinits_garki
   - make_indices_X.garki
@@ -69,15 +73,16 @@ reference:
   - update_inits_X.garki
   - HTC.garki
   - xde_plot_X.garki
-  - xde_lines_X.garki
+  - xde_lines_X_garki
 - title: The SIR model
   contents:
   - F_X.SIR
+  - F_H.SIR
   - F_pr.SIR
   - F_b.SIR
-  - dXdt.SIRdX
-  - dXdt.SIRdXdH
-  - setup_X.SIR
+  - dXdt.SIR
+  - setup_Xinits.SIR
+  - setup_Xpar.SIR
   - make_Xpar_SIR
   - make_Xinits_SIR
   - make_indices_X.SIR
@@ -86,15 +91,16 @@ reference:
   - update_inits_X.SIR
   - HTC.SIR
   - xde_plot_X.SIR
-  - xde_lines_X.SIR
+  - xde_lines_X_SIR
 - title: The SEIR model
   contents:
   - F_X.SEIR
+  - F_H.SEIR
   - F_pr.SEIR
   - F_b.SEIR
-  - dXdt.SEIRdX
-  - dXdt.SEIRdXdH
-  - setup_X.SEIR
+  - dXdt.SEIR
+  - setup_Xpar.SEIR
+  - setup_Xinits.SEIR
   - make_Xpar_SEIR
   - make_Xinits_SEIR
   - make_indices_X.SEIR
@@ -103,7 +109,7 @@ reference:
   - update_inits_X.SEIR
   - HTC.SEIR
   - xde_plot_X.SEIR
-  - xde_lines_X.SEIR
+  - xde_lines_X_SEIR
 - title: Scaling Relationships
   contents: ssMYZ
 - subtitle: Compute Scaling Relationships
