@@ -156,7 +156,7 @@ make_MYZpar_RMG = function(nPatches, MYZopts=list(), EIPmod, calK,
 #' @return a [list]
 #' @export
 setup_MYZinits.RMG = function(pars, s, MYZopts=list()){
-  pars$MYZinits[[s]] = with(pars$MYZpar[[s]], make_MYZinits_RMG_dde(nPatches, Upsilon, MYZopts))
+  pars$MYZinits[[s]] = with(pars$MYZpar[[s]], make_MYZinits_RMG(nPatches, Upsilon, MYZopts))
   return(pars)
 }
 
