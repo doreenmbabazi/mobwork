@@ -68,7 +68,7 @@ dMYZdt.RMG <- function(t, y, pars, s){
     Y <- y[Y_ix]
     Gy <- y[Gy_ix]
     Z <- y[Z_ix]
-    Gz <- z[Gz_ix]
+    Gz <- y[Gz_ix]
 
     with(pars$MYZpar[[s]],{
 
