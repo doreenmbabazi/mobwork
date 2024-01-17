@@ -12,13 +12,15 @@ split_stratum_by_biting.SIS = function(pars, i, p, fac){
   stopifnot(i <= pars$nStrata)
   pars$nStrata = pars$nStrata + 1
 
-  pars$Xpar$b <- c(pars$Xpar$b, pars$Xpar$b[i])
-  pars$Xpar$r <- c(pars$Xpar$r, pars$Xpar$r[i])
-  pars$Xpar$c <- c(pars$Xpar$c, pars$Xpar$c[i])
+  Xpar = pars$Xpar[[1]]
+  Xpar$b <- c(Xpar$b, Xpar$b[i])
+  Xpar$r <- c(Xpar$r, Xpar$r[i])
+  Xpar$c <- c(Xpar$c, Xpar$c[i])
 
-  pars$Xinits$X0 <- c(pars$Xinits$X0, pars$Xinits$X0[i])
-  pars$Xinits$X0[i] <- pars$Xinits$X0[i]*p
-  pars$Xinits$X0[pars$nStrata] <- pars$Xinits$X0[i]*(1-p)
+  Xinits = pars$inits[[1]]
+  Xinits$X0 <- c(Xinits$X0, Xinits$X0[i])
+  Xinits$X0[i] <- Xinits$X0[i]*p
+  Xinits$X0[pars$nStrata] <- Xinits$X0[i]*(1-p)
 
   pars$Hpar$residence = c(pars$Hpar$residence, pars$Hpar$residence[i])
   pars$Hpar$wts_f = c(pars$Hpar$wts_f, pars$Hpar$wts_f[i])

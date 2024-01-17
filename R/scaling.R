@@ -13,7 +13,9 @@ xde_scaling_eir = function(model, N=25){
 
   # Get the
   F_eir_base = model$F_eir
-  scl_a = with(model$Hpar,sum(wts_f*H)/sum(H))
+  wts_f = as.vector(model$BFpar$searchWts[[1]][[1]])
+  H = F_H(0, get_inits(model), model, 1)
+  scl_a = sum(wts_f*H)/sum(H)
   scl_b = stats::integrate(F_eir_base, 0, 365, pars=model)$value
   model$scl = 1/scl_a/scl_b
   model$F_eir = function(t, model){with(model,aeir*scl*F_eir_base(t, model))}
@@ -27,10 +29,10 @@ xde_scaling_eir = function(model, N=25){
     model$aeir = eir[i]
     xde_tmp <- exDE::xde_stable_orbit(model)
     tmp <- xde_tmp$outputs$stable_orbit
-    H = tmp$XH$H
-    tot_pr <- rowSums(tmp$terms$pr*H)/rowSums(H)
-    wts_f = model$Hpar$wts_f
-    mean_ni <- with(tmp$terms, rowSums(ni*wts_f*H)/rowSums(wts_f*H))
+    H = tmp$XH[[1]]$H
+    ni = tmp$terms$ni
+    tot_pr <- rowSums(as.matrix(tmp$terms$pr[[1]]*H))/rowSums(as.matrix(H))
+    mean_ni <- rowSums(as.matrix(ni*wts_f*H))/rowSums(as.matrix(wts_f*H))
     scaling[[i]] = with(tmp$terms, list(aeir=365*eir, eir=eir, pr=tot_pr, ni=mean_ni, pr_t = pr, ni_t = ni))
     pr[i] = mean(tot_pr)
     ni[i] = mean(mean_ni)
@@ -57,8 +59,11 @@ xde_scaling_Z = function(model, N=25){
 
   # Get the
   F_Z_base = model$MYZpar$Zf
-  scl_a = with(model$Hpar,sum(wts_f*H)/sum(H))
-  beta = with(model$Hpar, compute_beta(H, wts_f, TaR))
+  wts_f = as.vector(model$BFpar$searchWts[[1]][[1]])
+  H = F_H(0, get_inits(model), model, 1)
+  TaR = model$BFpar$TaR[[1]][[1]]
+  scl_a = sum(wts_f*H)/sum(H)
+  beta = compute_beta(H, wts_f, TaR)
   scl_b = stats::integrate(model$F_EIR, 0, 365, pars=model, y=y0, beta=beta)$value
   model$MYZpar$scl = 1/scl_a/scl_b
   model$MYZpar$Zf = function(t, pars){with(pars$MYZpar,aeir*scl*F_Z_base(t, pars$MYZpar))}
@@ -72,10 +77,11 @@ xde_scaling_Z = function(model, N=25){
     model$MYZpar$aeir = eir[i]
     xde_tmp <- exDE::xde_stable_orbit(model)
     tmp <- xde_tmp$outputs$stable_orbit
-    H = tmp$XH$H
-    tot_pr <- rowSums(tmp$terms$pr*H)/rowSums(H)
-    wts_f = model$Hpar$wts_f
-    mean_ni <- with(tmp$terms, rowSums(ni*wts_f*H)/rowSums(wts_f*H))
+    H = tmp$XH[[1]]$H
+    ni = tmp$terms$ni
+    pr = tmp$terms$pr
+    tot_pr <- rowSums(pr*H)/rowSums(H)
+    mean_ni <- rowSums(ni*wts_f*H)/rowSums(wts_f*H)
     scaling[[i]] = with(tmp$terms, list(aeir=365*eir, eir=eir, pr=tot_pr, ni=mean_ni, pr_t = pr, ni_t = ni))
     pr[i] = mean(tot_pr)
     ni[i] = mean(mean_ni)
@@ -119,7 +125,7 @@ ssMYZ = function(model){with(model$MYZpar,{
   MYZss$OmegaInv = solve(Omega)
   MYZss$Upsilon = expm(-Omega*eip)
   MYZss$UpsilonInv = expm(Omega*eip)
-  beta = with(model$Hpar, compute_beta(H, wts_f, TaR))
+  beta = with(model$Hpar[[1]], compute_beta(H, wts_f, TaR))
   MYZss$beta = beta
   MYZss$betaInv = solve(beta)
   MYZss$f = f

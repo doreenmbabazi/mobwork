@@ -23,7 +23,8 @@ MBionomics.RMG <- function(t, y, pars, s) {
 #' @return a [numeric] vector of length `nPatches`
 #' @export
 F_fqZ.RMG <- function(t, y, pars, s) {
-  with(pars$MYZpar[[s]], f*q)*y[pars$ix$MYZ[[s]]$Z_ix]
+  fqZ = with(pars$MYZpar[[s]], f*q)*y[pars$ix$MYZ[[s]]$Z_ix]
+  return(fqZ)
 }
 
 #' @title Blood feeding rate of the infective mosquito population
@@ -33,7 +34,8 @@ F_fqZ.RMG <- function(t, y, pars, s) {
 #' @export
 F_fqM.RMG <- function(t, y, pars, s) {
   M = with(pars$ix$MYZ[[s]], y[U_ix] + y[Y_ix] + y[Z_ix])
-  with(pars$MYZpar[[s]], f*q)*M
+  fqM = with(pars$MYZpar[[s]], f*q)*M
+  return(fqM)
 }
 
 #' @title Number of eggs laid by adult mosquitoes
@@ -44,9 +46,10 @@ F_fqM.RMG <- function(t, y, pars, s) {
 F_eggs.RMG <- function(t, y, pars, s) {
 
   G <- with(pars$ix$MYZ[[s]], y[Gu_ix] + y[Gy_ix] + y[Gz_ix])
-  with(pars$MYZpar[[s]], {
+  eggs = with(pars$MYZpar[[s]], {
     return(G*nu*eggsPerBatch)
   })
+  return(eggs)
 }
 
 #' @title Derivatives for adult mosquitoes
@@ -57,7 +60,7 @@ F_eggs.RMG <- function(t, y, pars, s) {
 dMYZdt.RMG <- function(t, y, pars, s){
 
   Lambda = pars$Lambda[[s]]
-  kappa = pars$kappa [[s]]
+  kappa = pars$kappa[[s]]
 
   with(pars$ix$MYZ[[s]],{
     U <- y[U_ix]
@@ -117,6 +120,7 @@ make_MYZpar_RMG = function(nPatches, MYZopts=list(), EIPmod, calK,
     MYZpar <- list()
     MYZpar$xde <- "ode"
     class(MYZpar$xde) <- "ode"
+    class(MYZpar) <- "RMG"
 
     MYZpar$nPatches <- nPatches
 
@@ -228,21 +232,29 @@ make_indices_MYZ.RMG <- function(pars, s) {with(pars,{
 make_parameters_MYZ_RMG <- function(pars, g, sigma, f, q, nu, eggsPerBatch, eip, calK) {
   stopifnot(is.numeric(g), is.numeric(sigma), is.numeric(f), is.numeric(q), is.numeric(nu), is.numeric(eggsPerBatch))
 
+   nPatches = pars$nPatches
+
   MYZpar <- list()
   MYZpar$xde = 'ode'
   class(MYZpar$xde) <- 'ode'
+  class(MYZpar) <- "RMG"
 
-  MYZpar$g0 <- g
-  MYZpar$sigma0 <- sigma
-  MYZpar$f0 <- f
-  MYZpar$q0 <- q
-  MYZpar$nu0 <- nu
+  MYZpar$g      <- checkIt(g, nPatches)
+  MYZpar$sigma  <- checkIt(sigma, nPatches)
+  MYZpar$f      <- checkIt(f, nPatches)
+  MYZpar$q      <- checkIt(q, nPatches)
+  MYZpar$nu     <- checkIt(nu, nPatches)
   MYZpar$eggsPerBatch <- eggsPerBatch
-  MYZpar$eip <- eip
-  MYZpar$calK <- calK
 
-  pars$MYZpar <- MYZpar
-  pars = MBionomics.RMG(0, 0, pars)
+  # Store as baseline values
+  MYZpar$g0      <- MYZpar$g
+  MYZpar$sigma0  <- MYZpar$sigma
+  MYZpar$f0      <- MYZpar$f
+  MYZpar$q0      <- MYZpar$q
+  MYZpar$nu0     <- MYZpar$nu
+
+  pars$MYZpar[[1]] <- MYZpar
+
   return(pars)
 }
 
@@ -278,7 +290,7 @@ update_inits_MYZ.RMG <- function(pars, y0, s) {
     Gy = y[Gy_ix]
     Z = y[Z_ix]
     Gz = y[Gz_ix]
-    pars = make_inits_MYZ_RMG(pars, U, Gu, Y, Gy, Z, Gz)
+    pars = make_MYZinits_RMG(pars$nPatches, U0=U, Gu0=Gu, Y0=Y, Gy0=Gy, Z0=Z, Gz0=Gz)
     return(pars)
 })}
 
