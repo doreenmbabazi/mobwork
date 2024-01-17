@@ -141,6 +141,7 @@ make_MYZpar_RMG = function(nPatches, MYZopts=list(), EIPmod, calK,
     # The EIP model and the eip
     MYZpar$EIPmod <- EIPmod
     MYZpar$eip <- EIP(0, EIPmod)
+    MYZpar$phi0 <- 1/MYZpar$eip
 
     MYZpar$calK <- calK
 
