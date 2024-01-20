@@ -19,6 +19,15 @@
     <loc>https://dd-harp.github.io/mobwork/index.html</loc>
   </url>
   <url>
+    <loc>https://dd-harp.github.io/mobwork/reference/F_H.SEIR.html</loc>
+  </url>
+  <url>
+    <loc>https://dd-harp.github.io/mobwork/reference/F_H.SIR.html</loc>
+  </url>
+  <url>
+    <loc>https://dd-harp.github.io/mobwork/reference/F_H.garki.html</loc>
+  </url>
+  <url>
     <loc>https://dd-harp.github.io/mobwork/reference/F_X.SEIR.html</loc>
   </url>
   <url>
@@ -38,6 +47,9 @@
   </url>
   <url>
     <loc>https://dd-harp.github.io/mobwork/reference/F_eggs.RMG.html</loc>
+  </url>
+  <url>
+    <loc>https://dd-harp.github.io/mobwork/reference/F_fqM.RMG.html</loc>
   </url>
   <url>
     <loc>https://dd-harp.github.io/mobwork/reference/F_fqZ.RMG.html</loc>
@@ -67,10 +79,16 @@
     <loc>https://dd-harp.github.io/mobwork/reference/dMYZdt.RMG.html</loc>
   </url>
   <url>
+    <loc>https://dd-harp.github.io/mobwork/reference/dXdt.SEIR.html</loc>
+  </url>
+  <url>
     <loc>https://dd-harp.github.io/mobwork/reference/dXdt.SEIRdX.html</loc>
   </url>
   <url>
     <loc>https://dd-harp.github.io/mobwork/reference/dXdt.SEIRdXdH.html</loc>
+  </url>
+  <url>
+    <loc>https://dd-harp.github.io/mobwork/reference/dXdt.SIR.html</loc>
   </url>
   <url>
     <loc>https://dd-harp.github.io/mobwork/reference/dXdt.SIRdX.html</loc>
@@ -256,6 +274,12 @@
     <loc>https://dd-harp.github.io/mobwork/reference/setup_MYZ.RMG.html</loc>
   </url>
   <url>
+    <loc>https://dd-harp.github.io/mobwork/reference/setup_MYZinits.RMG.html</loc>
+  </url>
+  <url>
+    <loc>https://dd-harp.github.io/mobwork/reference/setup_MYZpar.RMG.html</loc>
+  </url>
+  <url>
     <loc>https://dd-harp.github.io/mobwork/reference/setup_X.SEIR.html</loc>
   </url>
   <url>
@@ -263,6 +287,24 @@
   </url>
   <url>
     <loc>https://dd-harp.github.io/mobwork/reference/setup_X.garki.html</loc>
+  </url>
+  <url>
+    <loc>https://dd-harp.github.io/mobwork/reference/setup_Xinits.SEIR.html</loc>
+  </url>
+  <url>
+    <loc>https://dd-harp.github.io/mobwork/reference/setup_Xinits.SIR.html</loc>
+  </url>
+  <url>
+    <loc>https://dd-harp.github.io/mobwork/reference/setup_Xinits.garki.html</loc>
+  </url>
+  <url>
+    <loc>https://dd-harp.github.io/mobwork/reference/setup_Xpar.SEIR.html</loc>
+  </url>
+  <url>
+    <loc>https://dd-harp.github.io/mobwork/reference/setup_Xpar.SIR.html</loc>
+  </url>
+  <url>
+    <loc>https://dd-harp.github.io/mobwork/reference/setup_Xpar.garki.html</loc>
   </url>
   <url>
     <loc>https://dd-harp.github.io/mobwork/reference/split_stratum_by_biting.SIS.html</loc>
@@ -299,6 +341,15 @@
   </url>
   <url>
     <loc>https://dd-harp.github.io/mobwork/reference/xde_lines_X.garki.html</loc>
+  </url>
+  <url>
+    <loc>https://dd-harp.github.io/mobwork/reference/xde_lines_X_SEIR.html</loc>
+  </url>
+  <url>
+    <loc>https://dd-harp.github.io/mobwork/reference/xde_lines_X_SIR.html</loc>
+  </url>
+  <url>
+    <loc>https://dd-harp.github.io/mobwork/reference/xde_lines_X_garki.html</loc>
   </url>
   <url>
     <loc>https://dd-harp.github.io/mobwork/reference/xde_plot_X.SEIR.html</loc>

@@ -4,12 +4,14 @@
 \alias{split_stratum_by_biting}
 \title{Split a stratum into two strata, assigning}
 \usage{
-split_stratum_by_biting(pars, i, p, fac)
+split_stratum_by_biting(pars, i, j, p, fac)
 }
 \arguments{
 \item{pars}{a \link{list} defining a model}
 
-\item{i}{the stratum to split}
+\item{i}{the host species index}
+
+\item{j}{the stratum to split}
 
 \item{p}{the fraction in the higher exposure stratum}
 

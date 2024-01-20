@@ -4,12 +4,14 @@
 \alias{split_stratum_by_biting.SIS}
 \title{Split a stratum into two strata, assigning a fraction \code{p} a new biting weight that is multiplied by a factor \code{fac} compared with the old one. The biting weight for the remaining \code{1-p} gets a new factor \code{1/fac}}
 \usage{
-\method{split_stratum_by_biting}{SIS}(pars, i, p, fac)
+\method{split_stratum_by_biting}{SIS}(pars, i, j, p, fac)
 }
 \arguments{
 \item{pars}{a \link{list} defining a model}
 
-\item{i}{the stratum to split}
+\item{i}{the host species index}
+
+\item{j}{the stratum to split}
 
 \item{p}{the fraction that gets multiplied by \code{fac}}
 

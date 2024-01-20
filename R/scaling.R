@@ -8,38 +8,32 @@ xde_scaling_eir = function(model, N=25){
   stopifnot(model$nPatches == 1)
   stopifnot(class(model$xde) == "cohort")
 
-  # make sure that eir & ni are output
-  model <- exDE::make_indices(model)
+  scale_base = model$EIRpar$scale
 
   # Get the
-  F_eir_base = model$F_eir
-  wts_f = as.vector(model$BFpar$searchWts[[1]][[1]])
-  H = F_H(0, get_inits(model), model, 1)
-  scl_a = sum(wts_f*H)/sum(H)
-  scl_b = stats::integrate(F_eir_base, 0, 365, pars=model)$value
-  model$scl = 1/scl_a/scl_b
-  model$F_eir = function(t, model){with(model,aeir*scl*F_eir_base(t, model))}
+  scl = with(model$EIRpar, stats::integrate(model$F_eir, 0, 365, scale=scale)$value)
 
   eir = 10^seq(-1,3, length.out=N)
   pr = 0*eir
   ni = 0*eir
   scaling = list()
-
   for(i in 1:N){
-    model$aeir = eir[i]
+    model$EIRpar$scale = eir[i]/scl
     xde_tmp <- exDE::xde_stable_orbit(model)
     tmp <- xde_tmp$outputs$stable_orbit
     H = tmp$XH[[1]]$H
-    ni = tmp$terms$ni
-    tot_pr <- rowSums(as.matrix(tmp$terms$pr[[1]]*H))/rowSums(as.matrix(H))
-    mean_ni <- rowSums(as.matrix(ni*wts_f*H))/rowSums(as.matrix(wts_f*H))
+    wts_f = as.vector(model$BFpar$searchWts[[1]][[1]])
+    pr_t = tmp$terms$pr
+    ni_t = tmp$terms$ni
+    tot_pr <- rowSums(as.matrix(pr_t*H))/rowSums(as.matrix(H))
+    mean_ni <- rowSums(as.matrix(ni_t*wts_f*H))/rowSums(as.matrix(wts_f*H))
     scaling[[i]] = with(tmp$terms, list(aeir=365*eir, eir=eir, pr=tot_pr, ni=mean_ni, pr_t = pr, ni_t = ni))
     pr[i] = mean(tot_pr)
     ni[i] = mean(mean_ni)
   }
 
   model$outputs$eirpr <- list(aeir=eir, eir=eir/365, pr=pr, ni=ni, scaling=scaling)
-  model$F_eir = F_eir_base
+  model$EIRPar$scale = scale_base
 
   return(model)
 }

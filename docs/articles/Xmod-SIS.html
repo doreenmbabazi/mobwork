@@ -71,7 +71,7 @@
   <main id="main" class="col-md-9"><div class="page-header">
       <img src="" class="logo" alt=""><h1>The `SIS` model for malaria</h1>
             
-            <h4 data-toc-skip class="date">December 19, 2023</h4>
+            <h4 data-toc-skip class="date">January 18, 2024</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/dd-harp/mobwork/blob/HEAD/vignettes/Xmod-SIS.Rmd" class="external-link"><code>vignettes/Xmod-SIS.Rmd</code></a></small>
       <div class="d-none name"><code>Xmod-SIS.Rmd</code></div>
@@ -88,7 +88,7 @@ model.</p>
 <h4 id="variables">Variables<a class="anchor" aria-label="anchor" href="#variables"></a>
 </h4>
 <ul>
-<li><p><span class="math inline">\(X\)</span> is the density of infected
+<li><p><span class="math inline">\(I\)</span> is the density of infected
 humans</p></li>
 <li><p><span class="math inline">\(H\)</span> is the density of
 humans</p></li>
@@ -114,7 +114,7 @@ on an infectious human that would infect a mosquito.</p></li>
 and infection (<em>i.e.</em> the conversion of eir into foi), we assume
 that the fraction of infective bites that cause an infection is <span class="math inline">\(b\)</span>. The dynamics are given by:</p>
 <p><span class="math display">\[
-\frac{dX}{dt} = h (H-X)-rX
+\frac{dI}{dt} = h (H-I)-rI
 \]</span></p>
 </div>
 <div class="section level4">

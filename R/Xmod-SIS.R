@@ -3,34 +3,46 @@
 #' @inheritParams split_stratum_by_biting
 #'
 #' @return pars a list
-#' @param i the stratum to split
+#' @param i the host species index
+#' @param j the stratum to split
 #' @param p the fraction that gets multiplied by `fac`
 #' @param fac a factor
 #' @return a [list]
 #' @export
-split_stratum_by_biting.SIS = function(pars, i, p, fac){
-  stopifnot(i <= pars$nStrata)
-  pars$nStrata = pars$nStrata + 1
+split_stratum_by_biting.SIS = function(pars, i, j, p, fac){
+  stopifnot(i <= pars$Hpar[[i]]$nStrata)
+  nj_ix = pars$Hpar[[i]]$nStrata + 1
+  pars$Hpar[[i]]$nStrata = nj_ix
+
 
   Xpar = pars$Xpar[[1]]
-  Xpar$b <- c(Xpar$b, Xpar$b[i])
-  Xpar$r <- c(Xpar$r, Xpar$r[i])
-  Xpar$c <- c(Xpar$c, Xpar$c[i])
+  Xpar$b <- c(Xpar$b, Xpar$b[j])
+  Xpar$r <- c(Xpar$r, Xpar$r[j])
+  Xpar$c <- c(Xpar$c, Xpar$c[j])
+  pars$Xpar[[1]] = Xpar
 
-  Xinits = pars$inits[[1]]
-  Xinits$X0 <- c(Xinits$X0, Xinits$X0[i])
-  Xinits$X0[i] <- Xinits$X0[i]*p
-  Xinits$X0[pars$nStrata] <- Xinits$X0[i]*(1-p)
+  Xinits = pars$Xinits[[1]]
+  Xinits$S <- c(Xinits$S, p*Xinits$S[j])
+  Xinits$S[j] <- Xinits$S[j]*(1-p)
+  Xinits$I <- c(Xinits$I, p*Xinits$I[j])
+  Xinits$I[j] <- Xinits$I[j]*(1-p)
+  pars$Xinits[[1]] = Xinits
 
-  pars$Hpar$residence = c(pars$Hpar$residence, pars$Hpar$residence[i])
-  pars$Hpar$wts_f = c(pars$Hpar$wts_f, pars$Hpar$wts_f[i])
-  pars$Hpar$wts_f[pars$nStrata] = pars$Hpar$wts_f[i]*fac
-  pars$Hpar$wts_f[i] = pars$Hpar$wts_f[i]/fac
-  pars$Hpar$rbr = with(pars$Hpar, wts_f*sum(H)/sum(wts_f*H))
-  pars$Hpar$H = c(pars$Hpar$H, pars$Hpar$H[i])
-  pars$Hpar$H[pars$nStrata] = pars$Hpar$H[i]*p
-  pars$Hpar$H[i] = pars$Hpar$H[i]*(1-p)
-  pars$Hpar$TaR = cbind(pars$Hpar$TaR, pars$Hpar$TaR[,i])
+  residence = pars$BFpar$residence[[i]]
+  pars$BFpar$residence[[i]] = c(residence, residence[j])
+  for(s in 1:pars$nVectors){
+    wts_f = pars$BFpar$searchWts[[i]][[s]]
+    pars$BFpar$searchWts[[i]][[s]] = c(wts_f, fac*wts_f[j])
+  }
+
+  H =  pars$Hpar[[i]]$H
+  pars$Hpar[[i]]$H = c(H, p*H[j])
+  pars$Hpar[[i]]$H[j] = H[j]*(1-p)
+
+  TimeSpent = pars$BFpar$TimeSpent[[i]]
+  TimeSpent = cbind(TimeSpent, TimeSpent[,j])
+
+  for(s in 1:pars$nVectors) pars = make_TaR(0, pars, i, 1)
 
   pars <- exDE::make_indices(pars)
 
