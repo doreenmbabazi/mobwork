@@ -1,0 +1,88 @@
+---
+title: "Behavioral States"
+subtitle: "The adult mosquito model RMG"
+date: "`r format(Sys.time(), '%B %d, %Y')`"
+output:
+  html_document: 
+    theme: paper 
+vignette: >
+  %\VignetteIndexEntry{The SIS Model for Human Infection}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+  
+```{r, echo=FALSE, warning=FALSE, messages=FALSE, purl=F}
+suppressMessages(library(knitr))
+library(exDE) 
+library(mobwork) 
+library(deSolve) 
+#devtools::load_all()
+```
+
+## The Model
+
+This is a patch-based model with $p$ patches, and we assume that all the parameters, variables, and terms are of length $p$ except for $\Omega_b$ and $\Omega_q$, which are $p \times p$ matrices. 
+
+### Variables
+
++ $U_b$ - uninfected, blood feeding mosquitoes
+
++ $U_q$ - uninfected, egg laying mosquitoes
+
++ $Y_b$ - infected but not infective, blood feeding mosquitoes
+
++ $Y_q$ - infected but not infective, egg laying mosquitoes
+
++ $Z_b$ - infective, blood feeding mosquitoes
+
++ $Z_q$ - infective, egg laying mosquitoes
+
+### Terms 
+
++ $\Lambda$ -  the emergence rate of adult mosquitoes from aquatic habitats in each patch
+
++ $\kappa$ - the net infectiousness of humans, the probability a mosquito becomes infected after blood feeding on a human  
+
+### Parameters
+
+
++ $f$ - the blood feeding rate 
+
++ $q$ - the human blood feeding fraction 
+
++ $\nu$ - the egg laying rate 
+
++ $g$ - the mosquito death rate, per mosquito
+
++ $\varphi$ - the rate that infected mosquitoes become infective, the inverse of the EIP
+
++ $\sigma_b$ - the patch emigration rate for blood-feeding mosquitoes
+
++ $\sigma_q$ - the patch emigration rate for egg-laying mosquitoes 
+
++ ${\cal K}_b$ - the dispersal matrix for blood-feeding mosquitoes 
+
++ ${\cal K}_q$ - the dispersal matrix for egg-laying mosquitoes
+
++ $\Omega_b$ - the demographic matrix:  $\mbox{diag}\left(g\right) - \mbox{diag}\left(\sigma_b\right) \left(I - \cal K_b \right)$
+
++ $\Omega_q$ - - the demographic matrix $\mbox{diag} \left(g\right) - \mbox{diag} \left(\sigma_q\right) \left(I - \cal K_q \right)$
+
+### Equations 
+
+$$
+\begin{array}{rl}
+\dfrac{dU_b}{dt} &= \Lambda  + \nu U_g - f U_b - \Omega_b \cdot U_b \\
+\dfrac{dU_g}{dt} &= f (1- f q \kappa) U_b - \nu U_g  - \Omega_g \cdot U_g \\
+\dfrac{dY_b}{dt} &= \nu Y_g + \phi Y_g - (f+\varphi) Y_g - \Omega_b \cdot Y_b \\
+\dfrac{dY_g}{dt} &= f q \kappa U_b + f Y_b - (\nu + \varphi) Y_g - \Omega_g \cdot Y_g  \\
+\dfrac{dZ_b}{dt} &= \varphi Y_b + \nu Z_g - f Z - \Omega_b \cdot Z_b \\
+\dfrac{dZ_g}{dt} &= \varphi Y_g + f Z  - \nu Z  - \Omega_q \cdot Z_q 
+\end{array}
+$$
+
+```{r}
+model <- xde_setup(MYZname="RMG", nPatches=4)
+```
+
+

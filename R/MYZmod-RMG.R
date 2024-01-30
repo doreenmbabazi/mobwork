@@ -72,14 +72,15 @@ dMYZdt.RMG <- function(t, y, pars, s){
 
     with(pars$MYZpar[[s]],{
 
-      Omega <- make_Omega(g, sigma, calK, nPatches)
+      Omega_b <- make_Omega(g, sigma, calKb, nPatches)
+      Omega_q <- make_Omega(g, sigma, calKq, nPatches)
 
-      dUdt <- Lambda + nu*Gu - f*U - (Omega %*% U)
-      dGudt <- f*(1-q*kappa)*U - nu*Gu - (Omega %*% Gu)
-      dYdt <- nu*Gy - f*Y - phi*Y - (Omega %*% Y)
-      dGydt <- f*q*kappa*U + f*Y - nu*Gy - phi*Gy - (Omega %*% Gy)
-      dZdt <- phi*Y + nu*Gz - f*Z - (Omega %*% Z)
-      dGzdt <- phi*Gy + f*Z - nu*Gz - (Omega %*% Gz)
+      dUdt <- Lambda + nu*Gu - f*U - (Omega_b %*% U)
+      dGudt <- f*(1-q*kappa)*U - nu*Gu - (Omega_q %*% Gu)
+      dYdt <- nu*Gy - f*Y - phi*Y - (Omega_b %*% Y)
+      dGydt <- f*q*kappa*U + f*Y - nu*Gy - phi*Gy - (Omega_q %*% Gy)
+      dZdt <- phi*Y + nu*Gz - f*Z - (Omega_b %*% Z)
+      dGzdt <- phi*Gy + f*Z - nu*Gz - (Omega_q %*% Gz)
 
       return(c(dUdt, dGudt, dYdt, dGydt, dZdt, dGzdt))
     })
@@ -143,10 +144,11 @@ make_MYZpar_RMG = function(nPatches, MYZopts=list(), EIPmod, calK,
     MYZpar$eip <- EIP(0, EIPmod)
     MYZpar$phi0 <- 1/MYZpar$eip
 
-    MYZpar$calK <- calK
+    MYZpar$calKb <- calK
+    MYZpar$calKq <- calK
 
-    MYZpar$Omega <- make_Omega(g, sigma, calK, nPatches)
-    MYZpar$Upsilon <- with(MYZpar, expm::expm(-Omega*eip))
+    MYZpar$Omega_b <- make_Omega(g, sigma, calK, nPatches)
+    MYZpar$Omega_q <- make_Omega(g, sigma, calK, nPatches)
 
     return(MYZpar)
 })}
