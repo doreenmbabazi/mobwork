@@ -1,12 +1,12 @@
 ---
-title: "Behavioral States"
-subtitle: "The adult mosquito model RMG"
+title: "The adult mosquito model RMG"
+subtitle: "A Behavioral State Model"
 date: "`r format(Sys.time(), '%B %d, %Y')`"
 output:
   html_document: 
     theme: paper 
 vignette: >
-  %\VignetteIndexEntry{The SIS Model for Human Infection}
+  %\VignetteIndexEntry{The adult mosquito model RMG}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
@@ -64,10 +64,11 @@ This is a patch-based model with $p$ patches, and we assume that all the paramet
 
 + ${\cal K}_q$ - the dispersal matrix for egg-laying mosquitoes
 
-+ $\Omega_b$ - the demographic matrix for blood feeding mosquitoes:  
++ $\Omega_b$ - the demographic matrix for blood feeding mosquitoes; letting $I$ denote the identity matrix, 
 $$\Omega_b = \mbox{diag}\left(g\right) - \mbox{diag}\left(\sigma_b\right) \left(I - \cal K_b \right)$$
 
-+ $\Omega_q$ - the demographic matrix for egg laying mosquitoes: $$\mbox{diag} \left(g\right) - \mbox{diag} \left(\sigma_q\right) \left(I - \cal K_q \right)$$
++ $\Omega_q$ - the demographic matrix for egg laying mosquitoes; letting $I$ denote the identity matrix,  
+$$\mbox{diag} \left(g\right) - \mbox{diag} \left(\sigma_q\right) \left(I - \cal K_q \right)$$
 
 ### Equations 
 
@@ -84,12 +85,7 @@ $$
 
 ## Implementation
 
-The `xde_setup()` utilities allow the user to pass a single version of the dispersal matrix $\cal K.$ After using `xde_setup()`
- 
-```{r, eval=F, echo=F}
-devtools::load_all("../../exDE")
-devtools::load_all()
-```
+The `xde_setup()` utilities allow the user to pass a single version of the dispersal matrix $\cal K.$ During `xde_setup()`, `Omega_b` and `Omega_q` are identical.  
 
 ```{r}
 model <- xde_setup(MYZname="RMG", Lname="trace", Xname = "trace", HPop = rep(1, 4), residence = 1:4, nPatches=4)

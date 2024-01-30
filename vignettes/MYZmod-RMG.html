@@ -12,7 +12,7 @@
 
 <meta name="date" content="2024-01-30" />
 
-<title>Behavioral States</title>
+<title>The adult mosquito model RMG</title>
 
 <script>// Pandoc 2.9 adds attributes on both header and div. We remove the former (to
 // be compatible with the behavior of Pandoc < 2.8).
@@ -373,14 +373,13 @@ display: none;
 
 
 
-<h1 class="title toc-ignore">Behavioral States</h1>
-<h3 class="subtitle">The adult mosquito model RMG</h3>
+<h1 class="title toc-ignore">The adult mosquito model RMG</h1>
+<h3 class="subtitle">A Behavioral State Model</h3>
 <h4 class="date">January 30, 2024</h4>
 
 </div>
 
 
-<pre><code>## ℹ Loading mobwork</code></pre>
 <div id="the-model" class="section level2">
 <h2>The Model</h2>
 <p>This is a patch-based model with <span class="math inline">\(p\)</span> patches, and we assume that all the
@@ -434,12 +433,12 @@ matrix for blood-feeding mosquitoes</p></li>
 <li><p><span class="math inline">\({\cal K}_q\)</span> - the dispersal
 matrix for egg-laying mosquitoes</p></li>
 <li><p><span class="math inline">\(\Omega_b\)</span> - the demographic
-matrix for blood feeding mosquitoes:<br />
-<span class="math display">\[\Omega_b = \mbox{diag}\left(g\right) -
+matrix for blood feeding mosquitoes; letting <span class="math inline">\(I\)</span> denote the identity matrix, <span class="math display">\[\Omega_b = \mbox{diag}\left(g\right) -
 \mbox{diag}\left(\sigma_b\right) \left(I - \cal K_b
 \right)\]</span></p></li>
 <li><p><span class="math inline">\(\Omega_q\)</span> - the demographic
-matrix for egg laying mosquitoes: <span class="math display">\[\mbox{diag} \left(g\right) - \mbox{diag}
+matrix for egg laying mosquitoes; letting <span class="math inline">\(I\)</span> denote the identity matrix,<br />
+<span class="math display">\[\mbox{diag} \left(g\right) - \mbox{diag}
 \left(\sigma_q\right) \left(I - \cal K_q \right)\]</span></p></li>
 </ul>
 </div>
@@ -466,7 +465,8 @@ matrix for egg laying mosquitoes: <span class="math display">\[\mbox{diag} \left
 <h2>Implementation</h2>
 <p>The <code>xde_setup()</code> utilities allow the user to pass a
 single version of the dispersal matrix <span class="math inline">\(\cal
-K.\)</span> After using <code>xde_setup()</code></p>
+K.\)</span> During <code>xde_setup()</code>, <code>Omega_b</code> and
+<code>Omega_q</code> are identical.</p>
 <pre class="r"><code>model &lt;- xde_setup(MYZname=&quot;RMG&quot;, Lname=&quot;trace&quot;, Xname = &quot;trace&quot;, HPop = rep(1, 4), residence = 1:4, nPatches=4)</code></pre>
 <pre class="r"><code>model &lt;- xde_solve(model)</code></pre>
 <pre class="r"><code>par(mfrow = c(2,1))

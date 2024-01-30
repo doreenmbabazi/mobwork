@@ -19,7 +19,7 @@ plot_eirVpr <- function(pars, i=1, clrs="black", llty=1, stable=FALSE, add_axes=
     plot(aeir, pr, type = "n", xaxt="n", lty = llty,
            xlab = "aEIR", ylab = "PR",
            xlim = range(0, aeir), ylim = c(0,1), col = clrs)
-      axis(1, 10^c(-1:3), c(".1", "1", "10", "100","1000"))
+      graphics::axis(1, 10^c(-1:3), c(".1", "1", "10", "100","1000"))
   }
   lines_eirVpr(eir, pr, pars$Hpar[[i]]$nStrata, clrs, llty)
 }
@@ -36,12 +36,12 @@ plot_eirVpr <- function(pars, i=1, clrs="black", llty=1, stable=FALSE, add_axes=
 lines_eirVpr <- function(eir, pr, nStrata, clrs= "black", llty = 1){
     aeir = 365*eir
     if(nStrata==1)
-      lines(aeir, pr, col=clrs[1], lty = llty[1])
+      graphics::lines(aeir, pr, col=clrs[1], lty = llty[1])
     if(nStrata>1){
       if(length(clrs)==1) clrs=rep(clrs, nStrata)
       if(length(llty)==1) llty=rep(llty, nStrata)
       for(i in 1:nStrata)
-        lines(aeir[,i], pr[,i], col=clrs[i], lty = llty[i])
+        graphics::lines(aeir[,i], pr[,i], col=clrs[i], lty = llty[i])
   }
 }
 
@@ -58,7 +58,7 @@ plot_eirpr <- function(pars, clrs= "black", llty = 1){
          xlab = "aEIR", ylab = "PR", log="x",
          xlim = range(aeir), ylim = c(0,1),
          col = clrs)
-    axis(1, 10^c(-1:3), c(".1", "1", "10", "100","1000"))
+    graphics::axis(1, 10^c(-1:3), c(".1", "1", "10", "100","1000"))
   })
 }
 
@@ -70,5 +70,5 @@ plot_eirpr <- function(pars, clrs= "black", llty = 1){
 #'
 #' @export
 lines_eirpr <- function(pars, clrs= "black", llty = 1){
-  with(pars$outputs$eirpr, lines(aeir, pr, col = clrs, lty = llty))
+  with(pars$outputs$eirpr, graphics::lines(aeir, pr, col = clrs, lty = llty))
 }

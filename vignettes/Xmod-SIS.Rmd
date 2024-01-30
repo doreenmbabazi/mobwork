@@ -1,5 +1,5 @@
 ---
-title: "The `SIS` model for malaria"
+title: "The SIS Model for Human Infection"
 date: "`r format(Sys.time(), '%B %d, %Y')`"
 output:
   html_document: 
