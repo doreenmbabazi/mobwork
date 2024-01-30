@@ -7,12 +7,12 @@
 make_MYZinits_RMG(
   nPatches,
   MYZopts = list(),
-  U0 = 5,
-  Gu0 = 1,
-  Y0 = 1,
-  Gy0 = 1,
-  Z0 = 1,
-  Gz0 = 1
+  U_b0 = 5,
+  U_g0 = 1,
+  Y_b0 = 1,
+  Y_g0 = 1,
+  Z_b0 = 1,
+  Z_g0 = 1
 )
 }
 \arguments{
@@ -20,17 +20,17 @@ make_MYZinits_RMG(
 
 \item{MYZopts}{a \link{list} of values that overwrites the defaults}
 
-\item{U0}{total uninfected, not gravid mosquito density at each patch}
+\item{U_b0}{total uninfected, not gravid mosquito density at each patch}
 
-\item{Gu0}{total uninfected, gravid mosquito density at each patch}
+\item{U_g0}{total uninfected, gravid mosquito density at each patch}
 
-\item{Y0}{infected, not gravid mosquito density at each patch}
+\item{Y_b0}{infected, not gravid mosquito density at each patch}
 
-\item{Gy0}{infected, gravid mosquito density at each patch}
+\item{Y_g0}{infected, gravid mosquito density at each patch}
 
-\item{Z0}{infectious, not gravid mosquito density at each patch}
+\item{Z_b0}{infectious, not gravid mosquito density at each patch}
 
-\item{Gz0}{infectious, gravid mosquito density at each patch}
+\item{Z_g0}{infectious, gravid mosquito density at each patch}
 }
 \value{
 a \link{list}

@@ -4,22 +4,22 @@
 \alias{make_inits_MYZ_RMG}
 \title{Make inits for RMG adult mosquito model}
 \usage{
-make_inits_MYZ_RMG(pars, U0, Gu0, Y0, Gy0, Z0, Gz0)
+make_inits_MYZ_RMG(pars, U_b0, U_g0, Y_b0, Y_g0, Z_b0, Z_g0)
 }
 \arguments{
 \item{pars}{a \link{list}}
 
-\item{U0}{total mosquito density at each patch}
+\item{U_b0}{total mosquito density at each patch}
 
-\item{Gu0}{total gravid uninfected mosquito density at each patch}
+\item{U_g0}{total gravid uninfected mosquito density at each patch}
 
-\item{Y0}{infected mosquito density at each patch}
+\item{Y_b0}{infected mosquito density at each patch}
 
-\item{Gy0}{total gravid infected mosquito density at each patch}
+\item{Y_g0}{total gravid infected mosquito density at each patch}
 
-\item{Z0}{infectious mosquito density at each patch}
+\item{Z_b0}{infectious mosquito density at each patch}
 
-\item{Gz0}{total gravid infectious mosquito density at each patch}
+\item{Z_g0}{total gravid infectious mosquito density at each patch}
 }
 \value{
 none
