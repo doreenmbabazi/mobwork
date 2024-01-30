@@ -10,7 +10,7 @@
 
 
 
-<meta name="date" content="2024-01-29" />
+<meta name="date" content="2024-01-30" />
 
 <title>Behavioral States</title>
 
@@ -375,15 +375,93 @@ display: none;
 
 <h1 class="title toc-ignore">Behavioral States</h1>
 <h3 class="subtitle">The adult mosquito model RMG</h3>
-<h4 class="date">January 29, 2024</h4>
+<h4 class="date">January 30, 2024</h4>
 
 </div>
 
 
-<pre><code>## ℹ Loading mobwork</code></pre>
-<pre class="r"><code>model &lt;- xde_setup(&quot;RMG&quot;, nPatches=4)</code></pre>
-<pre class="r"><code>model$MYZpar[[1]]$calKq</code></pre>
-<pre><code>## NULL</code></pre>
+<div id="the-model" class="section level2">
+<h2>The Model</h2>
+<p>This is a patch-based model with <span class="math inline">\(p\)</span> patches, and we assume that all the
+parameters, variables, and terms are of length <span class="math inline">\(p\)</span> except for <span class="math inline">\(\Omega_b\)</span> and <span class="math inline">\(\Omega_q\)</span>, which are <span class="math inline">\(p \times p\)</span> matrices.</p>
+<div id="variables" class="section level3">
+<h3>Variables</h3>
+<ul>
+<li><p><span class="math inline">\(U_b\)</span> - uninfected, blood
+feeding mosquitoes</p></li>
+<li><p><span class="math inline">\(U_q\)</span> - uninfected, egg laying
+mosquitoes</p></li>
+<li><p><span class="math inline">\(Y_b\)</span> - infected but not
+infective, blood feeding mosquitoes</p></li>
+<li><p><span class="math inline">\(Y_q\)</span> - infected but not
+infective, egg laying mosquitoes</p></li>
+<li><p><span class="math inline">\(Z_b\)</span> - infective, blood
+feeding mosquitoes</p></li>
+<li><p><span class="math inline">\(Z_q\)</span> - infective, egg laying
+mosquitoes</p></li>
+</ul>
+</div>
+<div id="terms" class="section level3">
+<h3>Terms</h3>
+<ul>
+<li><p><span class="math inline">\(\Lambda\)</span> - the emergence rate
+of adult mosquitoes from aquatic habitats in each patch</p></li>
+<li><p><span class="math inline">\(\kappa\)</span> - the net
+infectiousness of humans, the probability a mosquito becomes infected
+after blood feeding on a human</p></li>
+</ul>
+</div>
+<div id="parameters" class="section level3">
+<h3>Parameters</h3>
+<ul>
+<li><p><span class="math inline">\(f\)</span> - the blood feeding
+rate</p></li>
+<li><p><span class="math inline">\(q\)</span> - the human blood feeding
+fraction</p></li>
+<li><p><span class="math inline">\(\nu\)</span> - the egg laying
+rate</p></li>
+<li><p><span class="math inline">\(g\)</span> - the mosquito death rate,
+per mosquito</p></li>
+<li><p><span class="math inline">\(\varphi\)</span> - the rate that
+infected mosquitoes become infective, the inverse of the EIP</p></li>
+<li><p><span class="math inline">\(\sigma_b\)</span> - the patch
+emigration rate for blood-feeding mosquitoes</p></li>
+<li><p><span class="math inline">\(\sigma_q\)</span> - the patch
+emigration rate for egg-laying mosquitoes</p></li>
+<li><p><span class="math inline">\({\cal K}_b\)</span> - the dispersal
+matrix for blood-feeding mosquitoes</p></li>
+<li><p><span class="math inline">\({\cal K}_q\)</span> - the dispersal
+matrix for egg-laying mosquitoes</p></li>
+<li><p><span class="math inline">\(\Omega_b\)</span> - the demographic
+matrix: <span class="math inline">\(\mbox{diag}\left(g\right) -
+\mbox{diag}\left(\sigma_b\right) \left(I - \cal K_b
+\right)\)</span></p></li>
+<li><p><span class="math inline">\(\Omega_q\)</span> - - the demographic
+matrix <span class="math inline">\(\mbox{diag} \left(g\right) -
+\mbox{diag} \left(\sigma_q\right) \left(I - \cal K_q
+\right)\)</span></p></li>
+</ul>
+</div>
+<div id="equations" class="section level3">
+<h3>Equations</h3>
+<p><span class="math display">\[
+\begin{array}{rl}
+\dfrac{dU_b}{dt} &amp;= \Lambda  + \nu U_g - f U_b - \Omega_b \cdot U_b
+\\
+\dfrac{dU_g}{dt} &amp;= f (1- f q \kappa) U_b - \nu U_g  - \Omega_g
+\cdot U_g \\
+\dfrac{dY_b}{dt} &amp;= \nu Y_g + \phi Y_g - (f+\varphi) Y_g - \Omega_b
+\cdot Y_b \\
+\dfrac{dY_g}{dt} &amp;= f q \kappa U_b + f Y_b - (\nu + \varphi) Y_g -
+\Omega_g \cdot Y_g  \\
+\dfrac{dZ_b}{dt} &amp;= \varphi Y_b + \nu Z_g - f Z - \Omega_b \cdot Z_b
+\\
+\dfrac{dZ_g}{dt} &amp;= \varphi Y_g + f Z  - \nu Z  - \Omega_q \cdot Z_q
+\end{array}
+\]</span></p>
+<pre class="r"><code>model &lt;- xde_setup(MYZname=&quot;RMG&quot;, nPatches=4)</code></pre>
+</div>
+</div>
 
 
 
