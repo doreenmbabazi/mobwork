@@ -2,7 +2,7 @@
 title: "The SIS Model for Human Infection"
 date: "`r format(Sys.time(), '%B %d, %Y')`"
 output:
-  html_document: 
+  html_document:     
     theme: paper 
 vignette: >
   %\VignetteIndexEntry{The SIS Model for Human Infection}

@@ -16,8 +16,14 @@ suppressMessages(library(knitr))
 library(exDE) 
 library(mobwork) 
 library(deSolve) 
-#devtools::load_all()
 ```
+
+```{r, echo=F, eval=F}
+devtools::load_all()
+devtools::load_all("../../exDE")
+```
+
+Most of the models developed to model malaria parasite infections in mosquitoes look at the *infection states:* uninfected; infected; or infected and infectious. A few models have been developed that track also track *parity.* A different class of models tracks the behavioral / physiological state of mosquitoes, so we call them *behavioral state models.* In this model, mosquitoes are either *blood feeding* or *egg laying,* following Le Menach, *et al.* (2005)^[Menach AL, *et al.* The unexpected importance of mosquito oviposition behaviour for malaria: non-productive larval habitats can be sources for malaria transmission. Malar J 4, 23 (2005). https://doi.org/10.1186/1475-2875-4-23]. The model also has *infection states.* 
 
 ## The Model
 
@@ -87,8 +93,9 @@ $$
 
 The `xde_setup()` utilities allow the user to pass a single version of the dispersal matrix $\cal K.$ During `xde_setup()`, `Omega_b` and `Omega_q` are identical.  
 
+
 ```{r}
-model <- xde_setup(MYZname="RMG", Lname="trace", Xname = "trace", HPop = rep(1, 4), residence = 1:4, nPatches=4)
+model <- xde_setup(MYZname="RMG", Lname="trace", Xname = "trace", nPatches=3)
 ```
 
 ```{r}
