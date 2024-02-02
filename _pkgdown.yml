@@ -35,17 +35,29 @@ home:
         title: Changelog
         text: <a href="news/index.html">News</a>
 reference:
-- title: Plot terms
+- title: Analytics
+- subtitle: Compute Scaling Relationships
   contents:
-  - plot_eirVpr
-  - lines_eirVpr
-  - plot_eirpr
-  - lines_eirpr
-- title: Human Infection Dynamics
-  contents: split_stratum_by_biting
-- subtitle: The SIS Model
-  contents: split_stratum_by_biting.SIS
-- title: The Adult Mosquito RMG Model
+  - xde_scaling
+  - xde_scaling_Z
+  - xde_scaling_eir
+  - xde_scaling_lambda
+  - pr2Lambda
+  - ssMYZ
+- subtitle: Convert Scaling Relationships
+  contents:
+  - xde_eir2ni
+  - xde_eir2pr
+  - xde_pr2eir
+  - xde_pr2ni
+  - xde_pr2m
+  - xde_pr2lambda
+- title: Adult Mosquito Models
+  desc: |
+     The model library for adult mosquito infection dynamics
+- subtitle: Utilities
+  contents:
+- subtitle: The Adult Mosquito RMG Model
   contents:
   - F_eggs.RMG
   - F_fqZ.RMG
@@ -62,7 +74,16 @@ reference:
   - setup_MYZpar.RMG
   - setup_MYZinits.RMG
   - update_inits_MYZ.RMG
-- title: The Garki model
+- title: Human / vertebrate host infection & Immunity
+  desc: |
+    The model library
+- subtitle: Utilities
+  contents:
+  - ssMYZ
+- subtitle: The SIS Model
+  contents:
+  - split_stratum_by_biting.SIS
+- subtitle: The Garki model
   contents:
   - F_X.garki
   - F_H.garki
@@ -80,7 +101,7 @@ reference:
   - HTC.garki
   - xde_plot_X.garki
   - xde_lines_X_garki
-- title: The SIR model
+- subtitle: The SIR model
   contents:
   - F_X.SIR
   - F_H.SIR
@@ -98,7 +119,7 @@ reference:
   - HTC.SIR
   - xde_plot_X.SIR
   - xde_lines_X_SIR
-- title: The SEIR model
+- subtitle: The SEIR model
   contents:
   - F_X.SEIR
   - F_H.SEIR
@@ -116,20 +137,9 @@ reference:
   - HTC.SEIR
   - xde_plot_X.SEIR
   - xde_lines_X_SEIR
-- title: Scaling Relationships
-  contents: ssMYZ
-- subtitle: Compute Scaling Relationships
+- title: Plot terms
   contents:
-  - xde_scaling
-  - xde_scaling_Z
-  - xde_scaling_eir
-  - xde_scaling_lambda
-  - pr2Lambda
-- subtitle: Convert Scaling Relationships
-  contents:
-  - xde_eir2ni
-  - xde_eir2pr
-  - xde_pr2eir
-  - xde_pr2ni
-  - xde_pr2m
-  - xde_pr2lambda
+  - plot_eirVpr
+  - lines_eirVpr
+  - plot_eirpr
+  - lines_eirpr

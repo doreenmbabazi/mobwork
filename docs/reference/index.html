@@ -90,40 +90,14 @@
         </dt>
         <dd>Add lines for an eir-pr scaling relationship</dd>
       </dl></div><div class="section level2">
-      <h2 id="human-infection-dynamics">Human Infection Dynamics<a class="anchor" aria-label="anchor" href="#human-infection-dynamics"></a></h2>
+      <h2 id="adult-mosquito-models">Adult Mosquito Models<a class="anchor" aria-label="anchor" href="#adult-mosquito-models"></a></h2>
       
-      
+      <p class="section-desc"></p><p>The model library for adult mosquito infection dynamics</p>
 
       
-    </div><div id="" class="section level2">
+    </div><div class="section level2">
       
-      
-      
-
-      <dl><dt>
-          
-          <code><a href="split_stratum_by_biting.html">split_stratum_by_biting()</a></code> 
-        </dt>
-        <dd>Split a stratum into two strata, assigning</dd>
-      </dl></div><div class="section level2">
-      
-      <h3 id="the-sis-model">The SIS Model<a class="anchor" aria-label="anchor" href="#the-sis-model"></a></h3>
-      
-
-      
-    </div><div id="" class="section level2">
-      
-      
-      
-
-      <dl><dt>
-          
-          <code><a href="split_stratum_by_biting.SIS.html">split_stratum_by_biting(<i>&lt;SIS&gt;</i>)</a></code> 
-        </dt>
-        <dd>Split a stratum into two strata, assigning a fraction <code>p</code> a new biting weight that is multiplied by a factor <code>fac</code> compared with the old one. The biting weight for the remaining <code>1-p</code> gets a new factor <code>1/fac</code></dd>
-      </dl></div><div class="section level2">
-      <h2 id="the-adult-mosquito-rmg-model">The Adult Mosquito RMG Model<a class="anchor" aria-label="anchor" href="#the-adult-mosquito-rmg-model"></a></h2>
-      
+      <h3 id="the-adult-mosquito-rmg-model">The Adult Mosquito RMG Model<a class="anchor" aria-label="anchor" href="#the-adult-mosquito-rmg-model"></a></h3>
       
 
       
@@ -208,8 +182,51 @@
         </dt>
         <dd>Make inits for RMG adult mosquito model</dd>
       </dl></div><div class="section level2">
-      <h2 id="the-garki-model">The Garki model<a class="anchor" aria-label="anchor" href="#the-garki-model"></a></h2>
+      <h2 id="human-vertebrate-host-infection-immunity">Human / vertebrate host infection &amp; Immunity<a class="anchor" aria-label="anchor" href="#human-vertebrate-host-infection-immunity"></a></h2>
       
+      <p class="section-desc"></p><p>The model library</p>
+
+      
+    </div><div class="section level2">
+      
+      <h3 id="the-sis-model">The SIS Model<a class="anchor" aria-label="anchor" href="#the-sis-model"></a></h3>
+      
+
+      
+    </div><div id="" class="section level2">
+      
+      
+      
+
+      <dl><dt>
+          
+          <code><a href="split_stratum_by_biting.html">split_stratum_by_biting()</a></code> 
+        </dt>
+        <dd>Split a stratum into two strata, assigning</dd>
+      </dl><dl><dt>
+          
+          <code><a href="ssMYZ.html">ssMYZ()</a></code> 
+        </dt>
+        <dd>Set up the MYZss object for <code>xde_scaling_lambda</code></dd>
+      </dl></div><div class="section level2">
+      
+      <h3 id="the-sis-model-1">The SIS Model<a class="anchor" aria-label="anchor" href="#the-sis-model-1"></a></h3>
+      
+
+      
+    </div><div id="" class="section level2">
+      
+      
+      
+
+      <dl><dt>
+          
+          <code><a href="split_stratum_by_biting.SIS.html">split_stratum_by_biting(<i>&lt;SIS&gt;</i>)</a></code> 
+        </dt>
+        <dd>Split a stratum into two strata, assigning a fraction <code>p</code> a new biting weight that is multiplied by a factor <code>fac</code> compared with the old one. The biting weight for the remaining <code>1-p</code> gets a new factor <code>1/fac</code></dd>
+      </dl></div><div class="section level2">
+      
+      <h3 id="the-garki-model">The Garki model<a class="anchor" aria-label="anchor" href="#the-garki-model"></a></h3>
       
 
       
@@ -299,8 +316,8 @@
         </dt>
         <dd>Add lines for the density of infected individuals for the Garki model</dd>
       </dl></div><div class="section level2">
-      <h2 id="the-sir-model">The SIR model<a class="anchor" aria-label="anchor" href="#the-sir-model"></a></h2>
       
+      <h3 id="the-sir-model">The SIR model<a class="anchor" aria-label="anchor" href="#the-sir-model"></a></h3>
       
 
       
@@ -390,8 +407,8 @@
         </dt>
         <dd>Add lines for the density of infected individuals for the SIR model</dd>
       </dl></div><div class="section level2">
-      <h2 id="the-seir-model">The SEIR model<a class="anchor" aria-label="anchor" href="#the-seir-model"></a></h2>
       
+      <h3 id="the-seir-model">The SEIR model<a class="anchor" aria-label="anchor" href="#the-seir-model"></a></h3>
       
 
       
@@ -481,22 +498,12 @@
         </dt>
         <dd>Add lines for the density of infected individuals for the SEIR model</dd>
       </dl></div><div class="section level2">
-      <h2 id="scaling-relationships">Scaling Relationships<a class="anchor" aria-label="anchor" href="#scaling-relationships"></a></h2>
+      <h2 id="analytics">Analytics<a class="anchor" aria-label="anchor" href="#analytics"></a></h2>
       
       
 
       
-    </div><div id="" class="section level2">
-      
-      
-      
-
-      <dl><dt>
-          
-          <code><a href="ssMYZ.html">ssMYZ()</a></code> 
-        </dt>
-        <dd>Set up the MYZss object for <code>xde_scaling_lambda</code></dd>
-      </dl></div><div class="section level2">
+    </div><div class="section level2">
       
       <h3 id="compute-scaling-relationships">Compute Scaling Relationships<a class="anchor" aria-label="anchor" href="#compute-scaling-relationships"></a></h3>
       
