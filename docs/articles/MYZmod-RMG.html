@@ -38,11 +38,21 @@
 <li class="nav-item">
   <a class="nav-link" href="../reference/index.html">Functions</a>
 </li>
-<li class="active nav-item dropdown">
+<li class="nav-item dropdown">
   <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" id="dropdown-articles">Articles</a>
   <div class="dropdown-menu" aria-labelledby="dropdown-articles">
-    <a class="dropdown-item" href="../articles/Xmod-SIS.html">The SIS model</a>
     <a class="dropdown-item" href="../articles/X-How_To_Add_Model.html">How to add a new X model</a>
+  </div>
+</li>
+<li class="nav-item dropdown">
+  <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" id="dropdown-adult-mosquito">Adult Mosquito</a>
+  <div class="dropdown-menu" aria-labelledby="dropdown-adult-mosquito">
+    <a class="dropdown-item" href="../articles/Xmod-SIS.html">The SIS model</a>
+  </div>
+</li>
+<li class="active nav-item dropdown">
+  <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" id="dropdown-adult-mosquito">Adult Mosquito</a>
+  <div class="dropdown-menu" aria-labelledby="dropdown-adult-mosquito">
     <a class="dropdown-item" href="../articles/MYZmod-RMG.html">The RMG Model</a>
   </div>
 </li>
@@ -74,7 +84,7 @@
             <h3 data-toc-skip class="subtitle">A Behavioral State
 Model</h3>
             
-            <h4 data-toc-skip class="date">February 01, 2024</h4>
+            <h4 data-toc-skip class="date">February 02, 2024</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/dd-harp/mobwork/blob/HEAD/vignettes/MYZmod-RMG.Rmd" class="external-link"><code>vignettes/MYZmod-RMG.Rmd</code></a></small>
       <div class="d-none name"><code>MYZmod-RMG.Rmd</code></div>
@@ -119,6 +129,7 @@ mosquitoes</p></li>
 <div class="section level3">
 <h3 id="terms">Terms<a class="anchor" aria-label="anchor" href="#terms"></a>
 </h3>
+<p>Two terms are passed from another component of the model.</p>
 <ul>
 <li><p><span class="math inline">\(\Lambda\)</span> - the emergence rate
 of adult mosquitoes from aquatic habitats in each patch</p></li>
@@ -130,6 +141,8 @@ after blood feeding on a human</p></li>
 <div class="section level3">
 <h3 id="parameters">Parameters<a class="anchor" aria-label="anchor" href="#parameters"></a>
 </h3>
+<p><strong>Bionomics</strong> - Each one of the following parameters can
+take on a unique value in each patch.</p>
 <ul>
 <li><p><span class="math inline">\(f\)</span> - the blood feeding
 rate</p></li>
@@ -145,6 +158,10 @@ infected mosquitoes become infective, the inverse of the EIP</p></li>
 emigration rate for blood-feeding mosquitoes</p></li>
 <li><p><span class="math inline">\(\sigma_q\)</span> - the patch
 emigration rate for egg-laying mosquitoes</p></li>
+</ul>
+<p><strong>Dipsersal Matrices</strong> - Each one of the following
+parameters can take on a unique value in each patch.</p>
+<ul>
 <li><p><span class="math inline">\({\cal K}_b\)</span> - the dispersal
 matrix for blood-feeding mosquitoes, which has the form: <span class="math display">\[{\cal K} = \left[
 \begin{array}{ccccl}
@@ -158,6 +175,9 @@ k_{p,1} &amp; k_{p,2} &amp; k_{p,3} &amp;  \ldots &amp; 0 \\
 blood feeding mosquitoes leaving patch <span class="math inline">\(j\)</span> that end up in patch <span class="math inline">\(i\)</span>; the notation should be read as <span class="math inline">\(i \leftarrow j\)</span>, or <em>to <span class="math inline">\(i\)</span> from <span class="math inline">\(j\)</span></em>. Notably, the form of <span class="math inline">\(\cal K\)</span> is constrained such that <span class="math display">\[\sum_i k_{i,j} = 1.\]</span></p></li>
 <li><p><span class="math inline">\({\cal K}_q\)</span> - the dispersal
 matrix for egg-laying mosquitoes, which has the same form as <span class="math inline">\({\cal K}_b\)</span></p></li>
+</ul>
+<p><strong>The Demographic Matrices</strong></p>
+<ul>
 <li><p><span class="math inline">\(\Omega_b\)</span> - the demographic
 matrix for blood feeding mosquitoes; letting <span class="math inline">\(I\)</span> denote the identity matrix, <span class="math display">\[\Omega_b = \mbox{diag}\left(g\right) -
 \mbox{diag}\left(\sigma_b\right) \left(I - \cal K_b
@@ -167,14 +187,17 @@ matrix for egg laying mosquitoes; which has the same form as <span class="math i
 </ul>
 </div>
 <div class="section level3">
-<h3 id="equations">Equations<a class="anchor" aria-label="anchor" href="#equations"></a>
+<h3 id="dynamics">Dynamics<a class="anchor" aria-label="anchor" href="#dynamics"></a>
 </h3>
+<p>The following equations track adult mosquito behavioral and infection
+dynamics. A key assumption is that a fraction <span class="math inline">\(q\kappa\)</span> of blood feeding, uninfected
+mosquitoes become infected, thus transition from <span class="math inline">\(U_b\)</span> to <span class="math inline">\(Y_g.\)</span></p>
 <p><span class="math display">\[
 \begin{array}{rl}
 \dfrac{dU_b}{dt} &amp;= \Lambda  + \nu U_g - f U_b - \Omega_b \cdot U_b
 \\
-\dfrac{dU_g}{dt} &amp;= f (1- f q \kappa) U_b - \nu U_g  - \Omega_g
-\cdot U_g \\
+\dfrac{dU_g}{dt} &amp;= f (1- q \kappa) U_b - \nu U_g  - \Omega_g \cdot
+U_g \\
 \dfrac{dY_b}{dt} &amp;= \nu Y_g + \phi Y_g - (f+\varphi) Y_g - \Omega_b
 \cdot Y_b \\
 \dfrac{dY_g}{dt} &amp;= f q \kappa U_b + f Y_b - (\nu + \varphi) Y_g -

@@ -7,10 +7,14 @@ navbar:
     href: reference/index.html
   - text: Articles
     menu:
-    - text: The SIS model
-      href: articles/Xmod-SIS.html
     - text: How to add a new X model
       href: articles/X-How_To_Add_Model.html
+  - text: Adult Mosquito
+    menu:
+    - text: The SIS model
+      href: articles/Xmod-SIS.html
+  - text: Adult Mosquito
+    menu:
     - text: The RMG Model
       href: articles/MYZmod-RMG.html
   right:

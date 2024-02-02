@@ -47,12 +47,15 @@ This is a patch-based model with $p$ patches, and we assume that all the paramet
 
 ### Terms 
 
+Two terms are passed from another component of the model. 
+
 + $\Lambda$ -  the emergence rate of adult mosquitoes from aquatic habitats in each patch
 
 + $\kappa$ - the net infectiousness of humans, the probability a mosquito becomes infected after blood feeding on a human  
 
 ### Parameters
 
+**Bionomics** -  Each one of the following parameters can take on a unique value in each patch.  
 
 + $f$ - the blood feeding rate 
 
@@ -68,6 +71,8 @@ This is a patch-based model with $p$ patches, and we assume that all the paramet
 
 + $\sigma_q$ - the patch emigration rate for egg-laying mosquitoes 
 
+**Dipsersal Matrices** - Each one of the following parameters can take on a unique value in each patch.  
+
 + ${\cal K}_b$ - the dispersal matrix for blood-feeding mosquitoes, which has the form:
 $${\cal K} = \left[
 \begin{array}{ccccl}
@@ -82,18 +87,21 @@ The diagonal elements are all $0$, and other elements, $k_{i,j} \in {\cal K}$, a
 
 + ${\cal K}_q$ - the dispersal matrix for egg-laying mosquitoes, which has the same form as ${\cal K}_b$
 
+**The Demographic Matrices** 
+
 + $\Omega_b$ - the demographic matrix for blood feeding mosquitoes; letting $I$ denote the identity matrix, 
 $$\Omega_b = \mbox{diag}\left(g\right) - \mbox{diag}\left(\sigma_b\right) \left(I - \cal K_b \right)$$
 
 + $\Omega_q$ - the demographic matrix for egg laying mosquitoes; which has the same form as $\Omega_b$. 
 
+### Dynamics 
 
-### Equations 
+The following equations track adult mosquito behavioral and infection dynamics. A key assumption is that a fraction $q\kappa$ of blood feeding, uninfected mosquitoes become infected, thus transition from $U_b$ to $Y_g.$ 
 
 $$
 \begin{array}{rl}
 \dfrac{dU_b}{dt} &= \Lambda  + \nu U_g - f U_b - \Omega_b \cdot U_b \\
-\dfrac{dU_g}{dt} &= f (1- f q \kappa) U_b - \nu U_g  - \Omega_g \cdot U_g \\
+\dfrac{dU_g}{dt} &= f (1- q \kappa) U_b - \nu U_g  - \Omega_g \cdot U_g \\
 \dfrac{dY_b}{dt} &= \nu Y_g + \phi Y_g - (f+\varphi) Y_g - \Omega_b \cdot Y_b \\
 \dfrac{dY_g}{dt} &= f q \kappa U_b + f Y_b - (\nu + \varphi) Y_g - \Omega_g \cdot Y_g  \\
 \dfrac{dZ_b}{dt} &= \varphi Y_b + \nu Z_g - f Z - \Omega_b \cdot Z_b \\
