@@ -74,7 +74,7 @@
             <h3 data-toc-skip class="subtitle">A Behavioral State
 Model</h3>
             
-            <h4 data-toc-skip class="date">January 30, 2024</h4>
+            <h4 data-toc-skip class="date">February 01, 2024</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/dd-harp/mobwork/blob/HEAD/vignettes/MYZmod-RMG.Rmd" class="external-link"><code>vignettes/MYZmod-RMG.Rmd</code></a></small>
       <div class="d-none name"><code>MYZmod-RMG.Rmd</code></div>
@@ -82,6 +82,18 @@ Model</h3>
 
     
     
+<p>Most of the models developed to model malaria parasite infections in
+mosquitoes look at the <em>infection states:</em> uninfected; infected;
+or infected and infectious. A few models have been developed that track
+also track <em>parity.</em> A different class of models tracks the
+behavioral / physiological state of mosquitoes, so we call them
+<em>behavioral state models.</em> In this model, mosquitoes are either
+<em>blood feeding</em> or <em>egg laying,</em> following Le Menach,
+<em>et al.</em> (2005)<a class="footnote-ref" tabindex="0" data-bs-toggle="popover" data-bs-content='&lt;p&gt;Menach AL, &lt;em&gt;et al.&lt;/em&gt; The unexpected importance of
+mosquito oviposition behaviour for malaria: non-productive larval
+habitats can be sources for malaria transmission. Malar J 4, 23 (2005).
+&lt;a href="https://doi.org/10.1186/1475-2875-4-23" class="external-link uri"&gt;https://doi.org/10.1186/1475-2875-4-23&lt;/a&gt;&lt;/p&gt;'><sup>1</sup></a>. The model also has <em>infection
+states.</em></p>
 <div class="section level2">
 <h2 id="the-model">The Model<a class="anchor" aria-label="anchor" href="#the-model"></a>
 </h2>
@@ -175,7 +187,7 @@ single version of the dispersal matrix <span class="math inline">\(\cal
 K.\)</span> During <code>xde_setup()</code>, <code>Omega_b</code> and
 <code>Omega_q</code> are identical.</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">model</span> <span class="op">&lt;-</span> <span class="fu">xde_setup</span><span class="op">(</span>MYZname<span class="op">=</span><span class="st">"RMG"</span>, Lname<span class="op">=</span><span class="st">"trace"</span>, Xname <span class="op">=</span> <span class="st">"trace"</span>, HPop <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">4</span><span class="op">)</span>, residence <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">4</span>, nPatches<span class="op">=</span><span class="fl">4</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">model</span> <span class="op">&lt;-</span> <span class="fu">xde_setup</span><span class="op">(</span>MYZname<span class="op">=</span><span class="st">"RMG"</span>, Lname<span class="op">=</span><span class="st">"trace"</span>, Xname <span class="op">=</span> <span class="st">"trace"</span>, nPatches<span class="op">=</span><span class="fl">3</span><span class="op">)</span></span></code></pre></div>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">model</span> <span class="op">&lt;-</span> <span class="fu">xde_solve</span><span class="op">(</span><span class="va">model</span><span class="op">)</span></span></code></pre></div>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
@@ -183,8 +195,9 @@ K.\)</span> During <code>xde_setup()</code>, <code>Omega_b</code> and
 <span><span class="fu">xde_plot_M</span><span class="op">(</span><span class="va">model</span><span class="op">)</span></span>
 <span><span class="fu">xde_plot_YZ</span><span class="op">(</span><span class="va">model</span>, add_axes <span class="op">=</span> <span class="cn">F</span><span class="op">)</span></span>
 <span><span class="fu">xde_plot_YZ_fracs</span><span class="op">(</span><span class="va">model</span><span class="op">)</span></span></code></pre></div>
-<p><img src="MYZmod-RMG_files/figure-html/unnamed-chunk-4-1.png" width="528"></p>
+<p><img src="MYZmod-RMG_files/figure-html/unnamed-chunk-5-1.png" width="528"></p>
 </div>
+
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
     </nav></aside>
 </div>
