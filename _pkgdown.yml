@@ -55,8 +55,6 @@ reference:
 - title: Adult Mosquito Models
   desc: |
      The model library for adult mosquito infection dynamics
-- subtitle: Utilities
-  contents:
 - subtitle: The Adult Mosquito RMG Model
   contents:
   - F_eggs.RMG
@@ -77,9 +75,9 @@ reference:
 - title: Human / vertebrate host infection & Immunity
   desc: |
     The model library
-- subtitle: Utilities
+- subtitle: New Utilities
   contents:
-  - ssMYZ
+  - split_stratum_by_biting
 - subtitle: The SIS Model
   contents:
   - split_stratum_by_biting.SIS

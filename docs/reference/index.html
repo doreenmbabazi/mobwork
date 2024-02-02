@@ -59,8 +59,14 @@
     </div>
 
     <div class="section level2">
-      <h2 id="plot-terms">Plot terms<a class="anchor" aria-label="anchor" href="#plot-terms"></a></h2>
+      <h2 id="analytics">Analytics<a class="anchor" aria-label="anchor" href="#analytics"></a></h2>
       
+      
+
+      
+    </div><div class="section level2">
+      
+      <h3 id="compute-scaling-relationships">Compute Scaling Relationships<a class="anchor" aria-label="anchor" href="#compute-scaling-relationships"></a></h3>
       
 
       
@@ -71,24 +77,75 @@
 
       <dl><dt>
           
-          <code><a href="plot_eirVpr.html">plot_eirVpr()</a></code> 
+          <code><a href="xde_scaling.html">xde_scaling()</a></code> 
         </dt>
-        <dd>Plot EIR(t) <em>vs.</em> the PR(t)</dd>
+        <dd>Construct an eirpr object for an arbitary model</dd>
       </dl><dl><dt>
           
-          <code><a href="lines_eirVpr.html">lines_eirVpr()</a></code> 
+          <code><a href="xde_scaling_Z.html">xde_scaling_Z()</a></code> 
         </dt>
-        <dd>Add lines for the EIR(t) <em>vs.</em> the PR(t)</dd>
+        <dd>Compute eir-pr scaling relationships</dd>
       </dl><dl><dt>
           
-          <code><a href="plot_eirpr.html">plot_eirpr()</a></code> 
+          <code><a href="xde_scaling_eir.html">xde_scaling_eir()</a></code> 
         </dt>
-        <dd>Plot the eir-pr scaling relationship</dd>
+        <dd>Compute eir-pr scaling relationships</dd>
       </dl><dl><dt>
           
-          <code><a href="lines_eirpr.html">lines_eirpr()</a></code> 
+          <code><a href="xde_scaling_lambda.html">xde_scaling_lambda()</a></code> 
         </dt>
-        <dd>Add lines for an eir-pr scaling relationship</dd>
+        <dd>Compute lambda from an eirpr object using the Ross-Macdonald model</dd>
+      </dl><dl><dt>
+          
+          <code><a href="pr2Lambda.html">pr2Lambda()</a></code> 
+        </dt>
+        <dd>Using the eirpr matrix and a RM model, convert pr to Lambda</dd>
+      </dl><dl><dt>
+          
+          <code><a href="ssMYZ.html">ssMYZ()</a></code> 
+        </dt>
+        <dd>Set up the MYZss object for <code>xde_scaling_lambda</code></dd>
+      </dl></div><div class="section level2">
+      
+      <h3 id="convert-scaling-relationships">Convert Scaling Relationships<a class="anchor" aria-label="anchor" href="#convert-scaling-relationships"></a></h3>
+      
+
+      
+    </div><div id="" class="section level2">
+      
+      
+      
+
+      <dl><dt>
+          
+          <code><a href="xde_eir2ni.html">xde_eir2ni()</a></code> 
+        </dt>
+        <dd>Convert eir to ni</dd>
+      </dl><dl><dt>
+          
+          <code><a href="xde_eir2pr.html">xde_eir2pr()</a></code> 
+        </dt>
+        <dd>Convert eir to pr</dd>
+      </dl><dl><dt>
+          
+          <code><a href="xde_pr2eir.html">xde_pr2eir()</a></code> 
+        </dt>
+        <dd>Convert pr to eir</dd>
+      </dl><dl><dt>
+          
+          <code><a href="xde_pr2ni.html">xde_pr2ni()</a></code> 
+        </dt>
+        <dd>Convert pr to ni</dd>
+      </dl><dl><dt>
+          
+          <code><a href="xde_pr2m.html">xde_pr2m()</a></code> 
+        </dt>
+        <dd>Convert pr to mosquito density</dd>
+      </dl><dl><dt>
+          
+          <code><a href="xde_pr2lambda.html">xde_pr2lambda()</a></code> 
+        </dt>
+        <dd>Convert pr to lambda</dd>
       </dl></div><div class="section level2">
       <h2 id="adult-mosquito-models">Adult Mosquito Models<a class="anchor" aria-label="anchor" href="#adult-mosquito-models"></a></h2>
       
@@ -189,7 +246,7 @@
       
     </div><div class="section level2">
       
-      <h3 id="the-sis-model">The SIS Model<a class="anchor" aria-label="anchor" href="#the-sis-model"></a></h3>
+      <h3 id="new-utilities">New Utilities<a class="anchor" aria-label="anchor" href="#new-utilities"></a></h3>
       
 
       
@@ -203,14 +260,9 @@
           <code><a href="split_stratum_by_biting.html">split_stratum_by_biting()</a></code> 
         </dt>
         <dd>Split a stratum into two strata, assigning</dd>
-      </dl><dl><dt>
-          
-          <code><a href="ssMYZ.html">ssMYZ()</a></code> 
-        </dt>
-        <dd>Set up the MYZss object for <code>xde_scaling_lambda</code></dd>
       </dl></div><div class="section level2">
       
-      <h3 id="the-sis-model-1">The SIS Model<a class="anchor" aria-label="anchor" href="#the-sis-model-1"></a></h3>
+      <h3 id="the-sis-model">The SIS Model<a class="anchor" aria-label="anchor" href="#the-sis-model"></a></h3>
       
 
       
@@ -498,14 +550,8 @@
         </dt>
         <dd>Add lines for the density of infected individuals for the SEIR model</dd>
       </dl></div><div class="section level2">
-      <h2 id="analytics">Analytics<a class="anchor" aria-label="anchor" href="#analytics"></a></h2>
+      <h2 id="plot-terms">Plot terms<a class="anchor" aria-label="anchor" href="#plot-terms"></a></h2>
       
-      
-
-      
-    </div><div class="section level2">
-      
-      <h3 id="compute-scaling-relationships">Compute Scaling Relationships<a class="anchor" aria-label="anchor" href="#compute-scaling-relationships"></a></h3>
       
 
       
@@ -516,70 +562,24 @@
 
       <dl><dt>
           
-          <code><a href="xde_scaling.html">xde_scaling()</a></code> 
+          <code><a href="plot_eirVpr.html">plot_eirVpr()</a></code> 
         </dt>
-        <dd>Construct an eirpr object for an arbitary model</dd>
+        <dd>Plot EIR(t) <em>vs.</em> the PR(t)</dd>
       </dl><dl><dt>
           
-          <code><a href="xde_scaling_Z.html">xde_scaling_Z()</a></code> 
+          <code><a href="lines_eirVpr.html">lines_eirVpr()</a></code> 
         </dt>
-        <dd>Compute eir-pr scaling relationships</dd>
+        <dd>Add lines for the EIR(t) <em>vs.</em> the PR(t)</dd>
       </dl><dl><dt>
           
-          <code><a href="xde_scaling_eir.html">xde_scaling_eir()</a></code> 
+          <code><a href="plot_eirpr.html">plot_eirpr()</a></code> 
         </dt>
-        <dd>Compute eir-pr scaling relationships</dd>
+        <dd>Plot the eir-pr scaling relationship</dd>
       </dl><dl><dt>
           
-          <code><a href="xde_scaling_lambda.html">xde_scaling_lambda()</a></code> 
+          <code><a href="lines_eirpr.html">lines_eirpr()</a></code> 
         </dt>
-        <dd>Compute lambda from an eirpr object using the Ross-Macdonald model</dd>
-      </dl><dl><dt>
-          
-          <code><a href="pr2Lambda.html">pr2Lambda()</a></code> 
-        </dt>
-        <dd>Using the eirpr matrix and a RM model, convert pr to Lambda</dd>
-      </dl></div><div class="section level2">
-      
-      <h3 id="convert-scaling-relationships">Convert Scaling Relationships<a class="anchor" aria-label="anchor" href="#convert-scaling-relationships"></a></h3>
-      
-
-      
-    </div><div id="" class="section level2">
-      
-      
-      
-
-      <dl><dt>
-          
-          <code><a href="xde_eir2ni.html">xde_eir2ni()</a></code> 
-        </dt>
-        <dd>Convert eir to ni</dd>
-      </dl><dl><dt>
-          
-          <code><a href="xde_eir2pr.html">xde_eir2pr()</a></code> 
-        </dt>
-        <dd>Convert eir to pr</dd>
-      </dl><dl><dt>
-          
-          <code><a href="xde_pr2eir.html">xde_pr2eir()</a></code> 
-        </dt>
-        <dd>Convert pr to eir</dd>
-      </dl><dl><dt>
-          
-          <code><a href="xde_pr2ni.html">xde_pr2ni()</a></code> 
-        </dt>
-        <dd>Convert pr to ni</dd>
-      </dl><dl><dt>
-          
-          <code><a href="xde_pr2m.html">xde_pr2m()</a></code> 
-        </dt>
-        <dd>Convert pr to mosquito density</dd>
-      </dl><dl><dt>
-          
-          <code><a href="xde_pr2lambda.html">xde_pr2lambda()</a></code> 
-        </dt>
-        <dd>Convert pr to lambda</dd>
+        <dd>Add lines for an eir-pr scaling relationship</dd>
       </dl></div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
     </nav></aside></div>
