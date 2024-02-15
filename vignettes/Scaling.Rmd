@@ -1,0 +1,13 @@
+---
+title: "Scaling for Malaria Metrics" 
+date: "`r format(Sys.time(), '%B %d, %Y')`"
+output:
+  html_document: 
+    theme: paper 
+vignette: >
+  %\VignetteIndexEntry{Scaling for Malaria Metrics}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+This is a test. 

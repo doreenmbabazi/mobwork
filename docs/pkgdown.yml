@@ -3,9 +3,10 @@ pkgdown: 2.0.7
 pkgdown_sha: ~
 articles:
   MYZmod-RMG: MYZmod-RMG.html
+  Scaling: Scaling.html
   X-How_To_Add_Model: X-How_To_Add_Model.html
   Xmod-SIS: Xmod-SIS.html
-last_built: 2024-02-02T16:09Z
+last_built: 2024-02-12T19:04Z
 urls:
   reference: https://dd-harp.github.io/mobwork/reference
   article: https://dd-harp.github.io/mobwork/articles
