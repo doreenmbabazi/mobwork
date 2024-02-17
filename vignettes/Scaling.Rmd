@@ -20,9 +20,7 @@ suppressMessages(require(rootSolve))
 suppressMessages(require(mobwork))
 ```
 
-# {.tabset}
-
-## `xde_scaling()`
+In the following 
 
 The function `xde_scaling()` defines the relationship between the EIR and the PR, and it outputs stable orbits for each value of aEIR in a mesh from $10^{-1}$ up to $10^{3}$ The code is in `mob_library/Work`
 Do we need two versions?
