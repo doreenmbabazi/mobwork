@@ -111,7 +111,7 @@ setup_MYZpar.RMG = function(MYZname, pars, s, MYZopts=list(), EIPmod, calK){
 #' @return a [list]
 #' @export
 make_MYZpar_RMG = function(nPatches, MYZopts=list(), EIPmod, calK,
-                          g=1/12, sigma=1/8, f=0.3, q=0.95,
+                          g=1/12, sigma=1/8, f=0.3, q=0.9,
                           nu=1, eggsPerBatch=60){
 
   stopifnot(is.matrix(calK))
@@ -144,11 +144,11 @@ make_MYZpar_RMG = function(nPatches, MYZopts=list(), EIPmod, calK,
     MYZpar$eip <- EIP(0, EIPmod)
     MYZpar$phi0 <- 1/MYZpar$eip
 
-    MYZpar$calKb <- calK
-    MYZpar$calKq <- calK
+    # MYZpar$calKb <- calK
+    # MYZpar$calKq <- calK
 
-    MYZpar$Omega_b <- make_Omega(g, sigma, calK, nPatches)
-    MYZpar$Omega_q <- make_Omega(g, sigma, calK, nPatches)
+    MYZpar$Omega_b <- make_Omega(g, sigma, calKb, nPatches)
+    MYZpar$Omega_q <- make_Omega(g, sigma, calKq, nPatches)
 
     return(MYZpar)
 })}
